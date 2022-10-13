@@ -1,0 +1,38 @@
+{
+  "@@locale": "en",
+  "loading": "Loading",
+  "pleaseEnterYourEmail": "Please Enter Your Email",
+  "iHaveAnAccount": "I have an account",
+  "errorHappened": "Error Happened",
+  "errorLoadingData": "Error Loading Data",
+  "emailAddressIsRequired": "Email Address is Required",
+  "pleaseInputPhoneNumber": "Please input phone number",
+  "confirm": "Confirm",
+  "phoneNumber": "Phone Number",
+  "language": "Language",
+  "signOut": "Sign out",
+  "login": "Login",
+  "settings": "Settings",
+  "changeLanguage": "Change Language",
+
+  "changePass": "Change password",
+  "oldPass": "Old password",
+  "wrongPass": "incorrect old password",
+  "companyInfo": "Company info",
+  "networkError": "networkError",
+  "warning": "Warning",
+  "newPassword": "new password",
+  "password": "Password",
+  "invalidCredentials": "username or password is wrong",
+  "username": "username",
+  "pleaseCompleteField": "please Complete Field",
+  "passwordIsTooShort": "password Is Too Short",
+  "refresh": "refresh",
+
+
+  "occasions": "Occasions",
+  "friends" : "Friends"
+
+
+
+}
