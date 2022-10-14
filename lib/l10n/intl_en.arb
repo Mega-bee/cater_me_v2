@@ -31,8 +31,37 @@
 
 
   "occasions": "Occasions",
-  "friends" : "Friends"
+  "friends" : "Friends",
+
+  "darkMode": "Dark mode",
+
+  "profile": "Profile",
+  "address": "Address",
+  "paymentMethod": "Payment method",
+  "terms": "Terms",
+  "contactUs": "Contact us",
+  "support": "Support",
+  "orders": "Orders",
+  "notifications": "Notifications",
+
+  "addToCart": "Add to cart",
+  "minQuantity": "Minimum Quantity",
+  "maxQuantity": "Maximum Quantity",
+  "Item": "Item",
+  "sar": " SAR ",
+  "increment": "Increment",
+  "changeQuantity": "Change quantity",
+  "friendName" : "Friend name",
+  "updateFriend": "Update friend",
+  "createFriend": "Create friend",
+  "selectFromContact": "Select from contacts",
 
 
+  "occasionTitle": "Occasion title",
+  "timeOfEvent": "Time of event",
+  "createOccasion": "Create occasion",
+  "updateOccasion" : "Update Occasion",
+  "whatOrder": "What's your order ?",
+  "whatOrderYouWant": "What do you want to order ?"
 
 }

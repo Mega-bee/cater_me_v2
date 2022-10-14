@@ -5,39 +5,37 @@ class FriendCard extends StatelessWidget {
   final FriendsResponse model;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
-  const FriendCard({  required this.model, required this.onEdit, required this.onDelete})  ;
+  const FriendCard(
+      {required this.model, required this.onEdit, required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(8.0),
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        child: ListTile(leading:
-        Icon(Icons.date_range , color: Theme.of(context).primaryColor,size: 40,),
-        title: Text(model.name ?? '',style: TextStyle(fontWeight: FontWeight.bold),),
-          subtitle: Text(model.phoneNumber ?? ''),
-          trailing:  SizedBox(
+        child: ListTile(title: Text(model.name ?? ''),subtitle: Text(model.phoneNumber ?? ''),
+          leading:CircleAvatar(backgroundImage: NetworkImage(model.image ?? '')) ,  trailing:  SizedBox(
             width: 85,
             child: Row(
                 children: [
-              InkWell(
-                onTap: onEdit,
-                child: Card(
-                    elevation: 3,
-                  color:    Colors.green,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Icon(Icons.edit ,color: Colors.white,size: 20,),
-                    )),
-              ),
-              SizedBox(width: 5,),
+                  InkWell(
+                    onTap: onEdit,
+                    child: Card(
+                        elevation: 3,
+                        color:    Colors.green,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: Icon(Icons.edit ,color: Colors.white,size: 20,),
+                        )),
+                  ),
+                  SizedBox(width: 5,),
                   InkWell(
                     onTap: onDelete,
                     child: Card(
-                      elevation: 3,
+                        elevation: 3,
                         color:    Colors.red,
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                         child: Padding(
@@ -45,12 +43,9 @@ class FriendCard extends StatelessWidget {
                           child: Icon(Icons.delete ,color: Colors.white,size: 20,),
                         )),
                   ),
-            ]),
-          ),
-
-
-        ),
-      ),
+                ]),
+          ),),
+      )
     );
   }
 }

@@ -9,42 +9,40 @@ class FriendsListSuccess extends States {
   final List<FriendsResponse> friendsList;
   FriendsScreenState screenState;
 
-  FriendsListSuccess(
-      {required this.friendsList, required this.screenState});
+  FriendsListSuccess({required this.friendsList, required this.screenState});
 
   @override
   Widget getUI(BuildContext context) {
     return ListView.builder(
-      itemBuilder: (context, index) => FriendCard(
-        model: friendsList[index],
-        onDelete: () {
-          screenState.deleteFriend(friendsList[index].id.toString());
-        },
-        onEdit: () {
-          showModalBottomSheet(
-              backgroundColor: Colors.transparent,
-              context: context,
-              builder: (context) {
-                return CreateFriendSheet(
-                  createFriend: (req) {
-                    req.id =  friendsList[index].id;
-                    screenState.updateFriend(req);
-                  },
-                  isUpdated: true,
-                  response:  friendsList[index],
-                );
-              },
-              shape: RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(15))),
-              isScrollControlled: true,
-              elevation: 5
-          );
-        },
-      ),
+        itemBuilder: (context, index) =>  FriendCard(
+          model: friendsList[index],
+          onDelete: () {
+            screenState.deleteFriend(friendsList[index].id.toString());
+          },
+          onEdit: () {
+            showModalBottomSheet(
+                backgroundColor: Colors.transparent,
+                context: context,
+                builder: (context) {
+                  return CreateFriendSheet(
+                    createFriend: (req) {
+                      req.id = friendsList[index].id;
+                      screenState.updateFriend(req);
+                    },
+                    isUpdated: true,
+                    response: friendsList[index],
+                  );
+                },
+                shape: RoundedRectangleBorder(
+                    borderRadius:
+                    BorderRadius.vertical(top: Radius.circular(15))),
+                isScrollControlled: true,
+                elevation: 5);
+          },
+        ),
+      itemCount: friendsList.length,
       physics: BouncingScrollPhysics(),
       shrinkWrap: true,
-      itemCount: friendsList.length,
     );
   }
 }

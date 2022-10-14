@@ -90,16 +90,21 @@ _i1.GetIt $initGetIt(
         get<_i9.ApiClient>(),
         get<_i12.AuthService>(),
       ));
-  gh.factory<_i17.SettingScreen>(
-      () => _i17.SettingScreen(get<_i12.AuthService>()));
+  gh.factory<_i17.SettingScreen>(() => _i17.SettingScreen(
+        get<_i12.AuthService>(),
+        get<_i6.LocalizationService>(),
+        get<_i10.AppThemeDataService>(),
+      ));
   gh.factory<_i18.SplashScreen>(
       () => _i18.SplashScreen(get<_i12.AuthService>()));
   gh.factory<_i19.FriendsCubit>(
       () => _i19.FriendsCubit(get<_i13.FriendsRepository>()));
   gh.factory<_i20.FriendsScreen>(
       () => _i20.FriendsScreen(get<_i19.FriendsCubit>()));
-  gh.factory<_i21.HomePageCubit>(
-      () => _i21.HomePageCubit(get<_i14.HomePageRepository>()));
+  gh.factory<_i21.HomePageCubit>(() => _i21.HomePageCubit(
+        get<_i14.HomePageRepository>(),
+        get<_i6.LocalizationService>(),
+      ));
   gh.factory<_i22.HomePageScreen>(
       () => _i22.HomePageScreen(get<_i21.HomePageCubit>()));
   gh.factory<_i23.ItemDetailsScreen>(() => _i23.ItemDetailsScreen(

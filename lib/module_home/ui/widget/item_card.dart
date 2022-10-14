@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cater_me_v2/generated/l10n.dart';
 import 'package:cater_me_v2/module_home/homepage_route.dart';
 import 'package:cater_me_v2/module_home/response/homepage_response.dart';
 import 'package:flutter/material.dart';
@@ -8,12 +9,15 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 class ItemCard extends StatelessWidget {
   final Item model;
   final double width;
-  const ItemCard({
+    ItemCard({
     required this.model, required this.width,
   });
 
+    bool isArabic = false;
   @override
   Widget build(BuildContext context) {
+    isArabic =  Localizations.localeOf(context).languageCode == 'ar'  ? true : false;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -23,6 +27,7 @@ class ItemCard extends StatelessWidget {
                 arguments: model);
           },
           child: Card(
+            color: Theme.of(context).cardColor,
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
             elevation: 5,
@@ -35,7 +40,7 @@ class ItemCard extends StatelessWidget {
                     topRight: Radius.circular(20)),
                 child: CachedNetworkImage(
                   key: UniqueKey(),
-                  imageUrl: model.image ?? '',
+                  imageUrl: isArabic ? model?.imageAr??'' : model?.image ?? '',
                   fit: BoxFit.cover,
                   height: 130,
                   width: width,
@@ -67,7 +72,7 @@ class ItemCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsetsDirectional.only(start: 8, top: 3),
             child: Text(
-              "${model.title}",
+              isArabic ?  "${model.titleAr}" :"${model.title}"  ,
               style: GoogleFonts.poppins(
                 fontStyle: FontStyle.normal,
                 fontSize: 14,
@@ -81,11 +86,8 @@ class ItemCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsetsDirectional.only(start: 8),
           child: Text(
-            "SAR " + "${model.price}" + ".0",
-            style: GoogleFonts.poppins(
-                fontStyle: FontStyle.normal,
-                fontSize: 14,
-                color: Theme.of(context).primaryColorDark),
+            "${model.price}" + S.of(context).sar ,
+            style: TextStyle(color: Colors.green.shade600),
           ),
         ),
       ],

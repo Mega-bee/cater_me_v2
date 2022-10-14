@@ -339,6 +339,266 @@ class S {
       args: [],
     );
   }
+
+  /// `Dark mode`
+  String get darkMode {
+    return Intl.message(
+      'Dark mode',
+      name: 'darkMode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address`
+  String get address {
+    return Intl.message(
+      'Address',
+      name: 'address',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment method`
+  String get paymentMethod {
+    return Intl.message(
+      'Payment method',
+      name: 'paymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Terms`
+  String get terms {
+    return Intl.message(
+      'Terms',
+      name: 'terms',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact us`
+  String get contactUs {
+    return Intl.message(
+      'Contact us',
+      name: 'contactUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Support`
+  String get support {
+    return Intl.message(
+      'Support',
+      name: 'support',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Orders`
+  String get orders {
+    return Intl.message(
+      'Orders',
+      name: 'orders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to cart`
+  String get addToCart {
+    return Intl.message(
+      'Add to cart',
+      name: 'addToCart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minimum Quantity`
+  String get minQuantity {
+    return Intl.message(
+      'Minimum Quantity',
+      name: 'minQuantity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Maximum Quantity`
+  String get maxQuantity {
+    return Intl.message(
+      'Maximum Quantity',
+      name: 'maxQuantity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Item`
+  String get Item {
+    return Intl.message(
+      'Item',
+      name: 'Item',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` SAR `
+  String get sar {
+    return Intl.message(
+      ' SAR ',
+      name: 'sar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Increment`
+  String get increment {
+    return Intl.message(
+      'Increment',
+      name: 'increment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change quantity`
+  String get changeQuantity {
+    return Intl.message(
+      'Change quantity',
+      name: 'changeQuantity',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Friend name`
+  String get friendName {
+    return Intl.message(
+      'Friend name',
+      name: 'friendName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update friend`
+  String get updateFriend {
+    return Intl.message(
+      'Update friend',
+      name: 'updateFriend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create friend`
+  String get createFriend {
+    return Intl.message(
+      'Create friend',
+      name: 'createFriend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select from contacts`
+  String get selectFromContact {
+    return Intl.message(
+      'Select from contacts',
+      name: 'selectFromContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Occasion title`
+  String get occasionTitle {
+    return Intl.message(
+      'Occasion title',
+      name: 'occasionTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time of event`
+  String get timeOfEvent {
+    return Intl.message(
+      'Time of event',
+      name: 'timeOfEvent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create occasion`
+  String get createOccasion {
+    return Intl.message(
+      'Create occasion',
+      name: 'createOccasion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update Occasion`
+  String get updateOccasion {
+    return Intl.message(
+      'Update Occasion',
+      name: 'updateOccasion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What's your order ?`
+  String get whatOrder {
+    return Intl.message(
+      'What\'s your order ?',
+      name: 'whatOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What do you want to order ?`
+  String get whatOrderYouWant {
+    return Intl.message(
+      'What do you want to order ?',
+      name: 'whatOrderYouWant',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
@@ -347,6 +607,7 @@ class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   List<Locale> get supportedLocales {
     return const <Locale>[
       Locale.fromSubtags(languageCode: 'en'),
+      Locale.fromSubtags(languageCode: 'ar'),
     ];
   }
 

@@ -28,16 +28,16 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-            child: Container(
-                child: Center(
-                    child: Image.asset(
+      backgroundColor: Colors.black,
+        body: Center(
+          child: Image.asset(
       LottieAsset.SPLASH_SCREEN,
-    )))));
+    ),
+        ));
   }
 
   Future<String> _getNextRoute() async {
-    await Future.delayed(Duration(seconds: 3));
+    await Future.delayed(Duration(seconds: 6));
     if (widget._authService.isLoggedIn) {
       return HomePageRoutes.homePage;
     } else {

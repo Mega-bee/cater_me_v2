@@ -89,8 +89,5 @@ class AuthService {
     await _prefsHelper.cleanAll();
   }
 
-  int? getClientID (){
-    return _prefsHelper.getClientId();
-  }
 
 }

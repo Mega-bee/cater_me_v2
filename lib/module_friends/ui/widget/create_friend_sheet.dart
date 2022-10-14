@@ -1,3 +1,4 @@
+import 'package:cater_me_v2/generated/l10n.dart';
 import 'package:cater_me_v2/module_friends/request/create_friend_request.dart';
 import 'package:cater_me_v2/module_friends/response/friend_response.dart';
 import 'package:cater_me_v2/utils/components/custom_feild.dart';
@@ -51,7 +52,7 @@ class _CreateOccasionCardState extends State<CreateFriendSheet> {
                   preIcon: Icon(
                     Icons.person,
                   ),
-                  hintText: 'Friend name',
+                  hintText: S.of(context).friendName,
                   controller: nameController,
                 ),
                 CustomFormField(
@@ -59,7 +60,7 @@ class _CreateOccasionCardState extends State<CreateFriendSheet> {
                   preIcon: Icon(
                     Icons.phone_android,
                   ),
-                  hintText: 'Phone number',
+                  hintText: S.of(context).phoneNumber,
                   controller: phoneController,
                 ),
               ],),
@@ -68,7 +69,7 @@ class _CreateOccasionCardState extends State<CreateFriendSheet> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text('Select from contacts',style: TextStyle(fontWeight: FontWeight.bold , fontSize: 18),),
+                Text(S.of(context).selectFromContact,style: TextStyle(fontWeight: FontWeight.bold , fontSize: 18),),
                 InkWell(
                   onTap: ()async{
 
@@ -84,7 +85,7 @@ class _CreateOccasionCardState extends State<CreateFriendSheet> {
                   },
                   child: Card(
                       elevation: 3,
-                      color:    Colors.green.shade900,
+                      color:  Colors.green.shade900,
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       child: Padding(
                         padding: const EdgeInsets.all(5.0),
@@ -99,7 +100,7 @@ class _CreateOccasionCardState extends State<CreateFriendSheet> {
               padding: const EdgeInsets.all(15.0),
               child: CustomLoadingButton(
                 bgColor: Theme.of(context).primaryColor,
-                text: widget.isUpdated ? 'Update Friend' : 'Create friend',
+                text: widget.isUpdated ? S.of(context).updateFriend : S.of(context).createFriend,
                 textColor: Colors.white,
                 loading: false,
                 buttonTab: () {

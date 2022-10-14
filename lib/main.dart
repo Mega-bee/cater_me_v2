@@ -120,7 +120,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 //    widget._localNotificationService.init();
     widget._localizationService.localizationStream.listen((event) {
 //      timeago.setDefaultLocale(event);
-      Moment.setLocaleGlobally(event == 'en' ? LocaleEn() : LocaleAr());
+//       Moment.setLocaleGlobally(event == 'en' ? LocaleEn() : LocaleAr());
+    print('LLLLAAAANGGhhhOMMMEE' + '${event}');
       lang = event;
       setState(() {});
     });

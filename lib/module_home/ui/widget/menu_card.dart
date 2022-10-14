@@ -6,10 +6,13 @@ import 'package:flutter/material.dart';
 
 class MenusCard extends StatelessWidget {
   final Item? model;
-  const MenusCard({ required this.model});
+    MenusCard({ required this.model});
 
+  bool isArabic=false;
   @override
   Widget build(BuildContext context) {
+    isArabic =  Localizations.localeOf(context).languageCode == 'ar'  ? true : false;
+
     return InkWell(
       onTap: (){
         Navigator.pushNamed(context, HomePageRoutes.itemsDetails,
@@ -18,14 +21,13 @@ class MenusCard extends StatelessWidget {
       child: Card(
         elevation: 2,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0),),
-        color: Colors.grey.shade50,
         child: Hero(
           tag: model?.image ?? '',
           child: CachedNetworkImage(
             // cacheManager: customCacheManager,
             // maxHeightDiskCache: 100,
             key: UniqueKey(),
-            imageUrl: model?.image ?? '',
+            imageUrl:isArabic ? model?.imageAr??'' : model?.image ?? '',
             fit: BoxFit.cover,
             color: Colors.grey.shade50,
             imageBuilder: (context, imageProvider) => Container(

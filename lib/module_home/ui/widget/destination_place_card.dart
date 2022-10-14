@@ -6,17 +6,19 @@ import 'package:flutter/material.dart';
 
 class PackagesWithItems extends StatelessWidget {
   final Packages? model;
-  const PackagesWithItems({this.model});
+    PackagesWithItems({this.model});
 
+  bool isArabic = false;
   @override
   Widget build(BuildContext context) {
+    isArabic =  Localizations.localeOf(context).languageCode == 'ar'  ? true : false;
     return model!.items!.isNotEmpty
         ? Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               TitleHome(
-                  title: model!.name ?? '',
+                  title:isArabic? model!.nameAr ?? '' : model!.name ?? '',
                   body: '',
                   onArrowTap: () {
                     Navigator.pushNamed(context, HomePageRoutes.itemsList,

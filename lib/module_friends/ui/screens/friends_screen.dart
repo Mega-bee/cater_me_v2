@@ -53,7 +53,6 @@ class FriendsScreenState extends State<FriendsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).selectedRowColor,
       appBar: AppBar(
         title: Text(S.of(context).friends),
         actions: [

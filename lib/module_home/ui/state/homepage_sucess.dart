@@ -12,12 +12,15 @@ import '../widget/Carousel_slider_widget/carousel_image_slider.dart';
 
 class HomePageSuccess extends States {
   final HomePageResponse homepage;
-  HomePageScreenState   homepageState;
+  final HomePageScreenState   homepageState;
 
-  HomePageSuccess({required this.homepage, required this.homepageState});
+  HomePageSuccess({required this.homepage, required this.homepageState}) ;
+
+  bool isArabic = false;
 
   @override
   Widget getUI(BuildContext context) {
+    isArabic =  Localizations.localeOf(context).languageCode == 'ar'  ? true : false;
     return SafeArea(
       child: RefreshIndicator(
         onRefresh: () async {
@@ -46,7 +49,9 @@ class HomePageSuccess extends States {
                           imageUrl: homepage.ads?[itemIndex].image ?? '',
                         )),
 
-                  TitleHome(title: homepage.packages?.name ?? '',body: '',onArrowTap: (){
+                  TitleHome(
+                    title:isArabic ?  homepage.packages?.nameAr ??'' :
+                    homepage.packages?.name ?? '',body: '',onArrowTap: (){
                     Navigator.pushNamed(context,  HomePageRoutes.itemsList , arguments: homepage.packages);
 
                   }, ),
@@ -80,6 +85,7 @@ class HomePageSuccess extends States {
                     itemBuilder: (context, index) {
                        return PackagesWithItems(model: homepage.addons![index],);
                     }),
+                SizedBox(height: 50,),
               ],
             ),
           ),

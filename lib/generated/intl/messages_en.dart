@@ -22,31 +22,49 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Item": MessageLookupByLibrary.simpleMessage("Item"),
+        "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
+        "address": MessageLookupByLibrary.simpleMessage("Address"),
         "changeLanguage":
             MessageLookupByLibrary.simpleMessage("Change Language"),
         "changePass": MessageLookupByLibrary.simpleMessage("Change password"),
+        "changeQuantity":
+            MessageLookupByLibrary.simpleMessage("Change quantity"),
         "companyInfo": MessageLookupByLibrary.simpleMessage("Company info"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "contactUs": MessageLookupByLibrary.simpleMessage("Contact us"),
+        "createFriend": MessageLookupByLibrary.simpleMessage("Create friend"),
+        "createOccasion":
+            MessageLookupByLibrary.simpleMessage("Create occasion"),
+        "darkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
         "emailAddressIsRequired":
             MessageLookupByLibrary.simpleMessage("Email Address is Required"),
         "errorHappened": MessageLookupByLibrary.simpleMessage("Error Happened"),
         "errorLoadingData":
             MessageLookupByLibrary.simpleMessage("Error Loading Data"),
+        "friendName": MessageLookupByLibrary.simpleMessage("Friend name"),
         "friends": MessageLookupByLibrary.simpleMessage("Friends"),
         "iHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("I have an account"),
+        "increment": MessageLookupByLibrary.simpleMessage("Increment"),
         "invalidCredentials": MessageLookupByLibrary.simpleMessage(
             "username or password is wrong"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "loading": MessageLookupByLibrary.simpleMessage("Loading"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "maxQuantity": MessageLookupByLibrary.simpleMessage("Maximum Quantity"),
+        "minQuantity": MessageLookupByLibrary.simpleMessage("Minimum Quantity"),
         "networkError": MessageLookupByLibrary.simpleMessage("networkError"),
         "newPassword": MessageLookupByLibrary.simpleMessage("new password"),
+        "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "occasionTitle": MessageLookupByLibrary.simpleMessage("Occasion title"),
         "occasions": MessageLookupByLibrary.simpleMessage("Occasions"),
         "oldPass": MessageLookupByLibrary.simpleMessage("Old password"),
+        "orders": MessageLookupByLibrary.simpleMessage("Orders"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordIsTooShort":
             MessageLookupByLibrary.simpleMessage("password Is Too Short"),
+        "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment method"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pleaseCompleteField":
             MessageLookupByLibrary.simpleMessage("please Complete Field"),
@@ -54,11 +72,25 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please Enter Your Email"),
         "pleaseInputPhoneNumber":
             MessageLookupByLibrary.simpleMessage("Please input phone number"),
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "refresh": MessageLookupByLibrary.simpleMessage("refresh"),
+        "sar": MessageLookupByLibrary.simpleMessage(" SAR "),
+        "selectFromContact":
+            MessageLookupByLibrary.simpleMessage("Select from contacts"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "signOut": MessageLookupByLibrary.simpleMessage("Sign out"),
+        "support": MessageLookupByLibrary.simpleMessage("Support"),
+        "terms": MessageLookupByLibrary.simpleMessage("Terms"),
+        "timeOfEvent": MessageLookupByLibrary.simpleMessage("Time of event"),
+        "updateFriend": MessageLookupByLibrary.simpleMessage("Update friend"),
+        "updateOccasion":
+            MessageLookupByLibrary.simpleMessage("Update Occasion"),
         "username": MessageLookupByLibrary.simpleMessage("username"),
         "warning": MessageLookupByLibrary.simpleMessage("Warning"),
+        "whatOrder":
+            MessageLookupByLibrary.simpleMessage("What\'s your order ?"),
+        "whatOrderYouWant":
+            MessageLookupByLibrary.simpleMessage("What do you want to order ?"),
         "wrongPass":
             MessageLookupByLibrary.simpleMessage("incorrect old password")
       };

@@ -15,9 +15,16 @@ class IconBackCard extends StatelessWidget {
         child: Column(
           children: [
             Container(
-             color: Theme.of(context).disabledColor,
-             child: Icon(iconData),),
-           Text(title)
+              decoration: BoxDecoration(
+                  shape: BoxShape.rectangle,
+                  color: Theme.of(context).focusColor.withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+              ),
+             child: Padding(
+               padding: const EdgeInsets.all(10.0),
+               child: Icon(iconData),
+             ),),
+           Text(title,style: TextStyle(fontSize: 12),)
           ],
         ),
       ),

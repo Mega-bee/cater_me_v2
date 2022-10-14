@@ -149,6 +149,7 @@ dependencies:
   flutter_html: ^3.0.0-alpha.6
   flutter_date_pickers: ^0.4.0
   fluttercontactpicker: ^4.7.0
+
 #  flutter_native_contact_picker: ^0.0.3
 
 

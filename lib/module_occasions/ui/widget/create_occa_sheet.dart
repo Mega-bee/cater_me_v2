@@ -1,3 +1,4 @@
+import 'package:cater_me_v2/generated/l10n.dart';
 import 'package:cater_me_v2/module_occasions/request/create_occasion_request.dart';
 import 'package:cater_me_v2/module_occasions/response/occasions_response.dart';
 import 'package:cater_me_v2/utils/components/custom_feild.dart';
@@ -55,7 +56,7 @@ class _CreateOccasionCardState extends State<CreateOccasionSheet> {
               preIcon: Icon(
                 Icons.title,
               ),
-              hintText: 'Occasion title',
+              hintText: S.of(context).occasionTitle,
               controller: titleController,
             ),
             Padding(
@@ -82,7 +83,7 @@ class _CreateOccasionCardState extends State<CreateOccasionSheet> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  'Time of event',
+                  S.of(context).timeOfEvent,
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 ElevatedButton(
@@ -109,7 +110,7 @@ class _CreateOccasionCardState extends State<CreateOccasionSheet> {
               padding: const EdgeInsets.all(15.0),
               child: CustomLoadingButton(
                   bgColor: Theme.of(context).primaryColor,
-                  text:widget.isUpdated  ? 'Update Occasion' : 'Create occasion',
+                  text:widget.isUpdated  ? S.of(context).updateOccasion : S.of(context).createOccasion,
                   textColor: Colors.white,
                   loading: false,
                   buttonTab: () {

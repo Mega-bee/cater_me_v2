@@ -54,7 +54,6 @@ class HomePageScreenState extends State<HomePageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).selectedRowColor,
         appBar: AppBar(
           title: Image.asset(
             ImageAsset.LOGO,

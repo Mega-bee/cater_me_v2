@@ -29,6 +29,7 @@ class AppThemeDataService {
       return ThemeData(
           brightness: Brightness.dark,
           colorScheme: darkScheme,
+          primaryColor: PrimaryColor,
           // useMaterial3: true,
           focusColor: PrimaryColor,
           checkboxTheme: CheckboxThemeData(

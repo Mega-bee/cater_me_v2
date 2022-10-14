@@ -21,10 +21,13 @@ class PackagesItemsListScreen extends StatefulWidget {
 class PackagesItemsListState extends State<PackagesItemsListScreen> {
   Packages? packages;
   bool flags = true;
+  bool isArabic = false;
 
   @override
   void initState() {
     super.initState();
+
+
   }
 
   void refresh() {
@@ -39,12 +42,12 @@ class PackagesItemsListState extends State<PackagesItemsListScreen> {
     if (args != null && flags) {
       packages = args as Packages;
       flags = false;
+      isArabic =  Localizations.localeOf(context).languageCode == 'ar'  ? true : false;
     }
     return Scaffold(
-      backgroundColor: Theme.of(context).selectedRowColor,
         appBar: AppBar(
           title: Text(
-            packages?.name ?? '',
+          isArabic ? packages?.nameAr ??'' :  packages?.name ?? '',
           ),
         ),
         body: GridView.count(
