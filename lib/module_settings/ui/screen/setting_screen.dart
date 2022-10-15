@@ -1,9 +1,11 @@
 import 'package:cater_me_v2/generated/l10n.dart';
-import 'package:cater_me_v2/module_auth/authorization_routes.dart';
 import 'package:cater_me_v2/module_auth/service/auth_service/auth_service.dart';
+import 'package:cater_me_v2/module_credits/credit_route.dart';
 import 'package:cater_me_v2/module_friends/friends_route.dart';
 import 'package:cater_me_v2/module_localization/service/localization_service/localization_service.dart';
 import 'package:cater_me_v2/module_occasions/occasions_route.dart';
+import 'package:cater_me_v2/module_payments/payment_route.dart';
+import 'package:cater_me_v2/module_profile/profile_route.dart';
 import 'package:cater_me_v2/module_settings/ui/widgets/icon_background_card.dart';
 import 'package:cater_me_v2/module_settings/ui/widgets/language_sheet.dart';
 import 'package:cater_me_v2/module_theme/service/theme_service/theme_service.dart';
@@ -58,11 +60,11 @@ class _SettingScreenState extends State<SettingScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       IconBackCard(
-                          title:  S.of(context).notifications,
+                          title: S.of(context).notifications,
                           iconData: Icons.notifications_active_outlined,
                           onTapCard: () {}),
                       IconBackCard(
-                          title:  S.of(context).orders,
+                          title: S.of(context).orders,
                           iconData: FontAwesomeIcons.firstOrder,
                           onTapCard: () {}),
                       IconBackCard(
@@ -75,9 +77,7 @@ class _SettingScreenState extends State<SettingScreen> {
                       IconBackCard(
                           title: S.of(context).support,
                           iconData: Icons.support_agent_outlined,
-                          onTapCard: () {
-
-                          }),
+                          onTapCard: () {}),
                     ],
                   ),
                 ),
@@ -100,7 +100,10 @@ class _SettingScreenState extends State<SettingScreen> {
                   child: Column(
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, ProfileRoutes.editProfile);
+                        },
                         child: ListTile(
                           leading: Icon(Icons.person),
                           title: Text(
@@ -131,7 +134,8 @@ class _SettingScreenState extends State<SettingScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.pushNamed(context, FriendsRoutes.VIEW_Friend);
+                          Navigator.pushNamed(
+                              context, FriendsRoutes.VIEW_Friend);
                         },
                         child: ListTile(
                           leading: Icon(Icons.person_pin_rounded),
@@ -147,7 +151,10 @@ class _SettingScreenState extends State<SettingScreen> {
                         height: 1,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, CreditRoutes.VIEW_CREDITS);
+                        },
                         child: ListTile(
                           leading: Icon(Icons.payment),
                           title: Text(
@@ -185,8 +192,11 @@ class _SettingScreenState extends State<SettingScreen> {
                             title: Text(
                               S.of(context).language,
                             ),
-                            trailing: Text(
-                                Localizations.localeOf(context).languageCode)),
+                            trailing: Text(Text(Localizations.localeOf(context)
+                                        .languageCode) ==
+                                    'ar'
+                                ? 'العربية'
+                                : 'English')),
                       ),
                       Divider(
                         endIndent: 50,
@@ -234,7 +244,9 @@ class _SettingScreenState extends State<SettingScreen> {
                         height: 1,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, PaymentRoutes.PAYMENT_METHOD);
+                        },
                         child: ListTile(
                           leading: Icon(Icons.contact_phone),
                           title: Text(

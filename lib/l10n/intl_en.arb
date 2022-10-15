@@ -62,6 +62,12 @@
   "createOccasion": "Create occasion",
   "updateOccasion" : "Update Occasion",
   "whatOrder": "What's your order ?",
-  "whatOrderYouWant": "What do you want to order ?"
+  "whatOrderYouWant": "What do you want to order ?",
+
+  "updateProfile": "Update profile",
+  "updateSuccessfully": "Update successfully",
+
+  "updateCredit": "updateCredit",
+  "credits" : "Credits"
 
 }

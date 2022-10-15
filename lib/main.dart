@@ -5,10 +5,13 @@ import 'package:cater_me_v2/generated/l10n.dart';
 // import 'package:cater_me_v2/global_nav_key.dart';
 import 'package:cater_me_v2/hive/hive_init.dart';
 import 'package:cater_me_v2/module_auth/authoriazation_module.dart';
+import 'package:cater_me_v2/module_credits/credit_module.dart';
 import 'package:cater_me_v2/module_friends/friends_module.dart';
 import 'package:cater_me_v2/module_home/homepage_module.dart';
 import 'package:cater_me_v2/module_localization/service/localization_service/localization_service.dart';
 import 'package:cater_me_v2/module_occasions/occasions_module.dart';
+import 'package:cater_me_v2/module_payments/payment_module.dart';
+import 'package:cater_me_v2/module_profile/profile_module.dart';
 import 'package:cater_me_v2/module_settings/setting_module.dart';
 import 'package:cater_me_v2/module_splash/splash_module.dart';
 import 'package:cater_me_v2/module_splash/splash_routes.dart';
@@ -81,6 +84,9 @@ class MyApp extends StatefulWidget {
   final OccasionsModule _occasionsModule;
   final SettingModule _settingModule;
   final FriendsModule _friendsModule;
+  final ProfileModule _profileModule;
+  final CreditsModule _creditsModule;
+  final PaymentModule _paymentModule;
 
   MyApp(
       this._themeDataService,
@@ -94,7 +100,10 @@ class MyApp extends StatefulWidget {
       this._homePageModule,
       this._occasionsModule,
       this._settingModule,
-      this._friendsModule
+      this._friendsModule ,
+      this._profileModule,
+      this._creditsModule,
+      this._paymentModule
       );
 
   @override

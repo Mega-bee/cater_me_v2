@@ -391,6 +391,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.3.0"
+  flutter_checkout_payment:
+    dependency: "direct main"
+    description:
+      name: flutter_checkout_payment
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   flutter_colorful_tab:
     dependency: "direct main"
     description:
@@ -398,6 +405,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.0"
+  flutter_credit_card:
+    dependency: "direct main"
+    description:
+      name: flutter_credit_card
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.4"
   flutter_date_pickers:
     dependency: "direct main"
     description:
@@ -417,6 +431,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  flutter_hooks:
+    dependency: "direct main"
+    description:
+      name: flutter_hooks
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.18.5+1"
   flutter_html:
     dependency: "direct main"
     description:

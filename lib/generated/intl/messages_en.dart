@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "createFriend": MessageLookupByLibrary.simpleMessage("Create friend"),
         "createOccasion":
             MessageLookupByLibrary.simpleMessage("Create occasion"),
+        "credits": MessageLookupByLibrary.simpleMessage("Credits"),
         "darkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
         "emailAddressIsRequired":
             MessageLookupByLibrary.simpleMessage("Email Address is Required"),
@@ -82,9 +83,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "support": MessageLookupByLibrary.simpleMessage("Support"),
         "terms": MessageLookupByLibrary.simpleMessage("Terms"),
         "timeOfEvent": MessageLookupByLibrary.simpleMessage("Time of event"),
+        "updateCredit": MessageLookupByLibrary.simpleMessage("updateCredit"),
         "updateFriend": MessageLookupByLibrary.simpleMessage("Update friend"),
         "updateOccasion":
             MessageLookupByLibrary.simpleMessage("Update Occasion"),
+        "updateProfile": MessageLookupByLibrary.simpleMessage("Update profile"),
+        "updateSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Update successfully"),
         "username": MessageLookupByLibrary.simpleMessage("username"),
         "warning": MessageLookupByLibrary.simpleMessage("Warning"),
         "whatOrder":

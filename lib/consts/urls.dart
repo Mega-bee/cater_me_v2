@@ -6,9 +6,12 @@ class Urls {
   static const String ACCOUNTS = DOMAIN + 'Accounts/';
   static const String OCCASIONS = DOMAIN + 'Occasions/';
   static const String FRIENDS = DOMAIN + 'Friends/';
+  static const String CARDS = DOMAIN + 'CreditCards/';
 
   //-------------Auth------------
   static const String LOGIN = ACCOUNTS + 'Login';
+  static const String GET_PROFILE = ACCOUNTS + 'GetProfile';
+  static const String UPDATE_PROFILE = ACCOUNTS + 'UpdateProfile';
 
 //-----------Home-----------
   static const String GET_HOME_PAGE = DOMAIN + 'HomePage/GetHomePage';
@@ -25,4 +28,9 @@ class Urls {
   static const String CREATE_FRIEND = FRIENDS + 'CreateFriend';
   static const String UPDATE_FRIEND = FRIENDS + 'UpdateFriend';
   static const String DELETE_FRIEND = FRIENDS + 'DeleteFriend/';
+
+  //-----------CREDITS-----------
+  static const String GET_CREDITS = CARDS + 'GetAllCreditCards';
+  static const String CREATE_CREDITS = CARDS + 'CreateCreditCard';
+  static const String DELETE_CREDITS = CARDS + 'DeleteCreditCard/';
 }

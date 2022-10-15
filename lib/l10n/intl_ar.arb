@@ -55,5 +55,10 @@
   "createOccasion": " خلق مناسبة",
   "updateOccasion": "تعديل المناسبة",
   "whatOrder": "ما هو طلبك ؟ ",
-  "whatOrderYouWant": "ماذا تريد ان تطلب ؟ "
+  "whatOrderYouWant": "ماذا تريد ان تطلب ؟ ",
+  "updateProfile": "تعديل الملف",
+  "updateSuccessfully": "تم التعديل بنجاح",
+
+  "updateCredit": "تعديل البطاقة",
+  "credits" : "البطاقات"
 }
