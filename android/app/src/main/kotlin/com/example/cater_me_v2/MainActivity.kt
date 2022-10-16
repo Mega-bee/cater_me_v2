@@ -1,4 +1,4 @@
-package com.example.cater_me_v2
+package com.megabee.caterme
 
 import io.flutter.embedding.android.FlutterActivity
 

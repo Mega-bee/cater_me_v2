@@ -1,8 +1,6 @@
-enum MailTypeEnum {
-  IMG,
-  ZIP,
-  PDF,
-  PHOTOSHOP,
-  WORD,
-  EXCEL,
+enum OrderStatusEnum {
+  PENDING ,
+  RECEIVED,
+  PREPARING,
+  DELIVERED
 }

@@ -25,24 +25,33 @@ class MessageLookup extends MessageLookupByLibrary {
         "Item": MessageLookupByLibrary.simpleMessage("Item"),
         "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
+        "buildingName": MessageLookupByLibrary.simpleMessage("Building name"),
         "changeLanguage":
             MessageLookupByLibrary.simpleMessage("Change Language"),
         "changePass": MessageLookupByLibrary.simpleMessage("Change password"),
         "changeQuantity":
             MessageLookupByLibrary.simpleMessage("Change quantity"),
+        "checkOut": MessageLookupByLibrary.simpleMessage("CheckOut"),
+        "city": MessageLookupByLibrary.simpleMessage("City"),
         "companyInfo": MessageLookupByLibrary.simpleMessage("Company info"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact us"),
+        "country": MessageLookupByLibrary.simpleMessage("Country"),
+        "createAddress": MessageLookupByLibrary.simpleMessage("Create address"),
+        "createCredit": MessageLookupByLibrary.simpleMessage("Create Credit"),
         "createFriend": MessageLookupByLibrary.simpleMessage("Create friend"),
         "createOccasion":
             MessageLookupByLibrary.simpleMessage("Create occasion"),
         "credits": MessageLookupByLibrary.simpleMessage("Credits"),
+        "dabbrnie": MessageLookupByLibrary.simpleMessage("Dabbrnie"),
         "darkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
+        "deliveringTo": MessageLookupByLibrary.simpleMessage("Delivering to"),
         "emailAddressIsRequired":
             MessageLookupByLibrary.simpleMessage("Email Address is Required"),
         "errorHappened": MessageLookupByLibrary.simpleMessage("Error Happened"),
         "errorLoadingData":
             MessageLookupByLibrary.simpleMessage("Error Loading Data"),
+        "floorNumber": MessageLookupByLibrary.simpleMessage("Floor number"),
         "friendName": MessageLookupByLibrary.simpleMessage("Friend name"),
         "friends": MessageLookupByLibrary.simpleMessage("Friends"),
         "iHaveAnAccount":
@@ -58,6 +67,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "networkError": MessageLookupByLibrary.simpleMessage("networkError"),
         "newPassword": MessageLookupByLibrary.simpleMessage("new password"),
         "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+        "numberOfGuest":
+            MessageLookupByLibrary.simpleMessage("Number of guest"),
         "occasionTitle": MessageLookupByLibrary.simpleMessage("Occasion title"),
         "occasions": MessageLookupByLibrary.simpleMessage("Occasions"),
         "oldPass": MessageLookupByLibrary.simpleMessage("Old password"),
@@ -76,14 +87,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "refresh": MessageLookupByLibrary.simpleMessage("refresh"),
         "sar": MessageLookupByLibrary.simpleMessage(" SAR "),
+        "select": MessageLookupByLibrary.simpleMessage("Select"),
         "selectFromContact":
             MessageLookupByLibrary.simpleMessage("Select from contacts"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "setupItem": MessageLookupByLibrary.simpleMessage("Setup item"),
         "signOut": MessageLookupByLibrary.simpleMessage("Sign out"),
+        "street": MessageLookupByLibrary.simpleMessage("Street"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
+        "tax": MessageLookupByLibrary.simpleMessage("Tax"),
         "terms": MessageLookupByLibrary.simpleMessage("Terms"),
         "timeOfEvent": MessageLookupByLibrary.simpleMessage("Time of event"),
-        "updateCredit": MessageLookupByLibrary.simpleMessage("updateCredit"),
+        "titleAddress": MessageLookupByLibrary.simpleMessage("Address title"),
+        "totalAmount": MessageLookupByLibrary.simpleMessage("Total amount"),
+        "totalPrice": MessageLookupByLibrary.simpleMessage("Total price"),
+        "totalPriceWithoutDabb": MessageLookupByLibrary.simpleMessage(
+            "Total Price Without Dabbrnie"),
+        "totalTax": MessageLookupByLibrary.simpleMessage("Total tax"),
+        "updateAddress": MessageLookupByLibrary.simpleMessage("Update address"),
         "updateFriend": MessageLookupByLibrary.simpleMessage("Update friend"),
         "updateOccasion":
             MessageLookupByLibrary.simpleMessage("Update Occasion"),

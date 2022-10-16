@@ -1,11 +1,11 @@
 class CreateCreditRequest {
-  int? id;
-  String title;
-  String dateTime;
+  String? token;
+  String name;
+  String cvv;
 
-  CreateCreditRequest({this.id,required this.title,required this.dateTime});
+  CreateCreditRequest({required this.token,required this.name,required this.cvv});
 
   Map<String, dynamic> toJson() {
-    return {'id': id ?? 0, 'Title': title, "Date": dateTime};
+    return {'token': token ?? 0, 'name': name, "cvv": cvv};
   }
 }

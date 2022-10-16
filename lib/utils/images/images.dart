@@ -2,6 +2,13 @@
 class ImageAsset {
   static const ROOT = 'assets/images/';
   static const LOGO = ROOT + 'Logoicon.png';
+  static const ADDRESS = ROOT + 'address.png';
+  static const PHONE_BOOK = ROOT + 'phone-book.png';
+
+  static const WAITING = ROOT + 'waiting-pay.png';
+  static const RECEIVE = ROOT + 'revice.png';
+  static const PREPARING = ROOT + 'preper.png';
+  static const DELIVERED = ROOT + 'deleiver.png';
 
 }
 

@@ -124,17 +124,18 @@ class _AddToCartSheetState extends State<AddToCartSheet> {
                         IconButton(
                             onPressed: () {
                               if (widget.model.selectedQuantity !=
-                                  widget.model.max) {
+                                  widget.model.min) {
                                 widget.model.selectedQuantity =
-                                    (widget.model.selectedQuantity! +
-                                        widget.model.increment!);
+                                (widget.model.selectedQuantity! -
+                                    widget.model.increment!);
                               }
                               setState(() {});
                             },
                             icon: Icon(
-                              Icons.add_box_rounded,
+                              Icons.indeterminate_check_box,
                               size: 35,
                             )),
+
                         Text(
                           widget.model.selectedQuantity.toString(),
                           style: TextStyle(fontSize: 20),
@@ -142,15 +143,15 @@ class _AddToCartSheetState extends State<AddToCartSheet> {
                         IconButton(
                             onPressed: () {
                               if (widget.model.selectedQuantity !=
-                                  widget.model.min) {
+                                  widget.model.max) {
                                 widget.model.selectedQuantity =
-                                    (widget.model.selectedQuantity! -
-                                        widget.model.increment!);
+                                (widget.model.selectedQuantity! +
+                                    widget.model.increment!);
                               }
                               setState(() {});
                             },
                             icon: Icon(
-                              Icons.indeterminate_check_box,
+                              Icons.add_box_rounded,
                               size: 35,
                             )),
                       ],
@@ -164,13 +165,31 @@ class _AddToCartSheetState extends State<AddToCartSheet> {
                             const EdgeInsetsDirectional.fromSTEB(2, 1, 5, 3),
                         child: ElevatedButton(
                             onPressed: () {
-                              if (widget.AlreadyExist) {
-                                itemsInCart.remove(widget.model);
+                              if(widget.model.isMenu){
+                               var f = itemsInCart.where((element) => element.isMenu);
+                               if(f.isNotEmpty){
+                                 showDialog(context: context,
+                                   builder: (context) => showAlertForAnotherMenu(f.first.title ??'' , (){
+                                     itemsInCart.remove(f.first);
+                                     itemsInCart.add(widget.model);
+                                     Navigator.pop(context);
+                                     widget.refreshHome(true);
+                                   }),);
+                               }else{
+                                 itemsInCart.add(widget.model);
+                                 Navigator.pop(context);
+                                 widget.refreshHome(true);
+                               }
+                              }else{
+                                if (widget.AlreadyExist) {
+                                  itemsInCart.remove(widget.model);
+                                }
+
+                                itemsInCart.add(widget.model);
+                                Navigator.pop(context);
+                                widget.refreshHome(true);
                               }
 
-                              itemsInCart.add(widget.model);
-                              Navigator.pop(context);
-                              widget.refreshHome(true);
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Theme.of(context).primaryColor,
@@ -204,5 +223,27 @@ class _AddToCartSheetState extends State<AddToCartSheet> {
         ),
       ),
     );
+  }
+
+  showAlertForAnotherMenu (String menuTitle , VoidCallback replaceMenu){
+  return  AlertDialog(
+      title: Text('Warning' , style: TextStyle(color: Colors.yellow.shade700),),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      content:Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text('You are already select ${menuTitle}'),
+          SizedBox(height: 12,),
+          Text('do you want remove and add this one?'),
+        ],
+      ),
+      actions: [
+        TextButton(onPressed: (){
+          replaceMenu();
+        }, child: Text('Ok')),
+        TextButton(onPressed: (){
+          Navigator.pop(context);
+        }, child: Text('Cancel')),
+    ],);
   }
 }

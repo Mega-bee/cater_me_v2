@@ -620,11 +620,11 @@ class S {
     );
   }
 
-  /// `updateCredit`
-  String get updateCredit {
+  /// `Create Credit`
+  String get createCredit {
     return Intl.message(
-      'updateCredit',
-      name: 'updateCredit',
+      'Create Credit',
+      name: 'createCredit',
       desc: '',
       args: [],
     );
@@ -635,6 +635,196 @@ class S {
     return Intl.message(
       'Credits',
       name: 'credits',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Address title`
+  String get titleAddress {
+    return Intl.message(
+      'Address title',
+      name: 'titleAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `City`
+  String get city {
+    return Intl.message(
+      'City',
+      name: 'city',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Country`
+  String get country {
+    return Intl.message(
+      'Country',
+      name: 'country',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Building name`
+  String get buildingName {
+    return Intl.message(
+      'Building name',
+      name: 'buildingName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Street`
+  String get street {
+    return Intl.message(
+      'Street',
+      name: 'street',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Floor number`
+  String get floorNumber {
+    return Intl.message(
+      'Floor number',
+      name: 'floorNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create address`
+  String get createAddress {
+    return Intl.message(
+      'Create address',
+      name: 'createAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update address`
+  String get updateAddress {
+    return Intl.message(
+      'Update address',
+      name: 'updateAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total price`
+  String get totalPrice {
+    return Intl.message(
+      'Total price',
+      name: 'totalPrice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total amount`
+  String get totalAmount {
+    return Intl.message(
+      'Total amount',
+      name: 'totalAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Price Without Dabbrnie`
+  String get totalPriceWithoutDabb {
+    return Intl.message(
+      'Total Price Without Dabbrnie',
+      name: 'totalPriceWithoutDabb',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dabbrnie`
+  String get dabbrnie {
+    return Intl.message(
+      'Dabbrnie',
+      name: 'dabbrnie',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `CheckOut`
+  String get checkOut {
+    return Intl.message(
+      'CheckOut',
+      name: 'checkOut',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total tax`
+  String get totalTax {
+    return Intl.message(
+      'Total tax',
+      name: 'totalTax',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tax`
+  String get tax {
+    return Intl.message(
+      'Tax',
+      name: 'tax',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Setup item`
+  String get setupItem {
+    return Intl.message(
+      'Setup item',
+      name: 'setupItem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of guest`
+  String get numberOfGuest {
+    return Intl.message(
+      'Number of guest',
+      name: 'numberOfGuest',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivering to`
+  String get deliveringTo {
+    return Intl.message(
+      'Delivering to',
+      name: 'deliveringTo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select`
+  String get select {
+    return Intl.message(
+      'Select',
+      name: 'select',
       desc: '',
       args: [],
     );

@@ -5,9 +5,8 @@ class CreditsResponse {
     this.cardId,
     this.cardNumber,
     this.expiryDate,
-    this.type
-
-
+    this.type,
+    this.selected = false
    });
 
     int? id;
@@ -17,6 +16,7 @@ class CreditsResponse {
    String? expiryDate;
    String? cardNumber;
    String? type;
+   bool?  selected;
 
 
   CreditsResponse.fromJson(Map<String, dynamic> json)  {
@@ -26,6 +26,8 @@ class CreditsResponse {
        expiryDate = json["expiryDate"];
        cardNumber = json["cardNumber"];
        type = json["type"];
+       selected = false;
+
 
      }
  }

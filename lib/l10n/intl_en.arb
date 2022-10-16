@@ -67,7 +67,30 @@
   "updateProfile": "Update profile",
   "updateSuccessfully": "Update successfully",
 
-  "updateCredit": "updateCredit",
-  "credits" : "Credits"
+  "createCredit": "Create Credit",
+  "credits" : "Credits",
+
+  "titleAddress": "Address title",
+  "city": "City",
+  "country": "Country",
+  "buildingName": "Building name",
+  "street": "Street",
+  "floorNumber": "Floor number",
+  "createAddress": "Create address",
+  "updateAddress": "Update address",
+
+  "totalPrice": "Total price",
+  "totalAmount": "Total amount",
+  "totalPriceWithoutDabb": "Total Price Without Dabbrnie",
+  "dabbrnie": "Dabbrnie",
+  "checkOut": "CheckOut",
+  "totalTax": "Total tax",
+  "tax": "Tax",
+  "setupItem": "Setup item",
+  "numberOfGuest": "Number of guest",
+
+  "deliveringTo": "Delivering to",
+  "select": "Select"
+
 
 }

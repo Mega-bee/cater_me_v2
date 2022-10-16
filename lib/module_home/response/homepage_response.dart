@@ -4,21 +4,21 @@
      this.ads,
      this.packages,
      this.addons,
-     // this.orderSettings,
+     this.orderSettings,
      this.notificationCount,
    });
 
    List<Ad>? ads;
    Packages? packages;
    List<Packages>? addons;
-   // OrderSettings? orderSettings;
+   OrderSettings? orderSettings;
    int? notificationCount;
 
    factory HomePageResponse.fromJson(Map<String, dynamic> json) => HomePageResponse(
      ads: List<Ad>.from(json["ads"].map((x) => Ad.fromJson(x))),
      packages: Packages.fromJson(json["packages"]),
      addons: List<Packages>.from(json["addons"].map((x) => Packages.fromJson(x))),
-     // orderSettings: OrderSettings.fromJson(json["orderSettings"]),
+     orderSettings: OrderSettings.fromJson(json["orderSettings"]),
      notificationCount: json["notificationCount"],
    );
 
@@ -79,7 +79,9 @@
      this.increment,
      this.isShisha,
      this.isSoldPerPackage,
-     this.selectedQuantity
+     this.daberniPrice,
+     this.selectedQuantity,
+     this.isMenu = false
    });
 
    int? id;
@@ -89,8 +91,9 @@
    String? titleAr;
    String? description;
    String? descriptionAr;
-   int? price;
-   int? tax;
+   num? price;
+   num? daberniPrice;
+   num? tax;
    bool? isFavorite;
    int? min;
    int? max;
@@ -98,6 +101,7 @@
    bool? isShisha;
    bool? isSoldPerPackage;
    int? selectedQuantity;
+   bool isMenu;
 
 
    factory Item.fromJson(Map<String, dynamic> json) => Item(
@@ -116,74 +120,57 @@
      increment: json["increment"],
      isShisha: json["isShisha"],
      isSoldPerPackage: json["isSoldPerPackage"],
+     daberniPrice: json["daberniPrice"],
 
    );
 
-   Map<String, dynamic> toJson() => {
-     "id": id,
-     "image": image,
-     "imageAR": imageAr,
-     "title": title,
-     "titleAR": titleAr,
-     "description": description,
-     "descriptionAR": descriptionAr,
-     "price": price,
-     "tax": tax,
-     "isFavorite": isFavorite,
-     "min": min,
-     "max": max,
-     "increment": increment,
-     "isShisha": isShisha,
-     "isSoldPerPackage": isSoldPerPackage,
-   };
  }
 
 
- //
- // class OrderSettings {
- //   OrderSettings({
- //     this.isDabberniOn,
- //     this.hoursOfDaberni,
- //     this.tax,
- //     this.numberOfGuests,
- //
- //     this.setupItems,
- //   });
- //
- //   bool? isDabberniOn;
- //   int? hoursOfDaberni;
- //   int? tax;
- //   List<NumberOfGuest>? numberOfGuests;
- //
- //   List<NumberOfGuest> setupItems;
- //
- //   factory OrderSettings.fromJson(Map<String, dynamic> json) => OrderSettings(
- //     isDabberniOn: json["isDabberniOn"],
- //     hoursOfDaberni: json["hoursOfDaberni"],
- //     tax: json["tax"],
- //     numberOfGuests: List<NumberOfGuest>.from(json["numberOfGuests"].map((x) => NumberOfGuest.fromJson(x))),
- //
- //     setupItems: List<NumberOfGuest>.from(json["setupItems"].map((x) => NumberOfGuest.fromJson(x))),
- //   );
- //
- //
- // }
- //
- // class NumberOfGuest {
- //   NumberOfGuest({
- //     this.id,
- //     this.title,
- //     this.titleAr,
- //   });
- //
- //   int? id;
- //   String? title;
- //   String? titleAr;
- //
- //   factory NumberOfGuest.fromJson(Map<String, dynamic> json) => NumberOfGuest(
- //     id: json["id"],
- //     title: json["title"],
- //     titleAr: json["titleAR"],
- //   );
- //
- // }
+
+ class OrderSettings {
+   OrderSettings({
+     this.isDabberniOn,
+     this.hoursOfDaberni =0,
+     this.tax,
+     this.numberOfGuests,
+     this.setupItems,
+   });
+
+   bool? isDabberniOn;
+   int  hoursOfDaberni;
+   num? tax;
+   List<NumberOfGuest>? numberOfGuests;
+
+   List<NumberOfGuest>? setupItems;
+
+   factory OrderSettings.fromJson(Map<String, dynamic> json) => OrderSettings(
+     isDabberniOn: json["isDabberniOn"],
+     hoursOfDaberni: json["hoursOfDaberni"],
+     tax: json["tax"],
+     numberOfGuests: List<NumberOfGuest>.from(json["numberOfGuests"].map((x) => NumberOfGuest.fromJson(x))),
+
+     setupItems: List<NumberOfGuest>.from(json["setupItems"].map((x) => NumberOfGuest.fromJson(x))),
+   );
+
+
+ }
+
+ class NumberOfGuest {
+   NumberOfGuest({
+     this.id,
+     this.title,
+     this.titleAr,
+   });
+
+   int? id;
+   String? title;
+   String? titleAr;
+
+   factory NumberOfGuest.fromJson(Map<String, dynamic> json) => NumberOfGuest(
+     id: json["id"],
+     title: json["title"],
+     titleAr: json["titleAR"],
+   );
+
+ }

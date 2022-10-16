@@ -4,12 +4,14 @@ import 'package:cater_me_v2/di/di_config.dart';
 import 'package:cater_me_v2/generated/l10n.dart';
 // import 'package:cater_me_v2/global_nav_key.dart';
 import 'package:cater_me_v2/hive/hive_init.dart';
+import 'package:cater_me_v2/module_addresses/address_module.dart';
 import 'package:cater_me_v2/module_auth/authoriazation_module.dart';
 import 'package:cater_me_v2/module_credits/credit_module.dart';
 import 'package:cater_me_v2/module_friends/friends_module.dart';
 import 'package:cater_me_v2/module_home/homepage_module.dart';
 import 'package:cater_me_v2/module_localization/service/localization_service/localization_service.dart';
 import 'package:cater_me_v2/module_occasions/occasions_module.dart';
+import 'package:cater_me_v2/module_orders/order_module.dart';
 import 'package:cater_me_v2/module_payments/payment_module.dart';
 import 'package:cater_me_v2/module_profile/profile_module.dart';
 import 'package:cater_me_v2/module_settings/setting_module.dart';
@@ -87,6 +89,8 @@ class MyApp extends StatefulWidget {
   final ProfileModule _profileModule;
   final CreditsModule _creditsModule;
   final PaymentModule _paymentModule;
+  final AddressModule _addressModule;
+  final OrdersModule _ordersModule;
 
   MyApp(
       this._themeDataService,
@@ -103,7 +107,9 @@ class MyApp extends StatefulWidget {
       this._friendsModule ,
       this._profileModule,
       this._creditsModule,
-      this._paymentModule
+      this._paymentModule,
+      this._addressModule ,
+      this._ordersModule
       );
 
   @override

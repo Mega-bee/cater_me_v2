@@ -1,5 +1,6 @@
 import 'package:cater_me_v2/consts/globale_cart.dart';
 import 'package:cater_me_v2/di/di_config.dart';
+import 'package:cater_me_v2/module_home/response/homepage_response.dart';
 import 'package:cater_me_v2/module_home/ui/widget/custom_action_botton.dart';
 import 'package:cater_me_v2/module_settings/setting_routes.dart';
 import 'package:cater_me_v2/utils/global/global_state_manager.dart';
@@ -10,6 +11,7 @@ import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/images/images.dart';
 import '../../state_manager/homepage_state_manager.dart';
+import 'package:tip_dialog/tip_dialog.dart';
 
 @injectable
 class HomePageScreen extends StatefulWidget {
@@ -24,6 +26,7 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class HomePageScreenState extends State<HomePageScreen> {
+  late OrderSettings orderSettingsModel;
   @override
   void initState() {
     super.initState();
@@ -75,11 +78,22 @@ class HomePageScreenState extends State<HomePageScreen> {
         body: BlocBuilder<HomePageCubit, States>(
           bloc: widget.cubit,
           builder: (context, state) {
-            return state.getUI(context);
+            return Stack(
+              children: [
+                state.getUI(context),
+
+              ],
+            );
           },
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton:
-            itemsInCart.isNotEmpty ? CustomActionButton() : Container());
+        floatingActionButton: itemsInCart.isNotEmpty
+            ? CustomActionButton(
+                orderSettingsModel,
+                (request) {
+                  widget.cubit.placeOrder(request, this);
+                },
+              )
+            : Container());
   }
 }

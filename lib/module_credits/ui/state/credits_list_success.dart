@@ -14,6 +14,8 @@ class CreditsListSuccess extends States {
   Widget getUI(BuildContext context) {
     return ListView.builder(
         itemBuilder: (context, index) =>  CreditCard(
+          isSelectedPage: false,
+          onSelect: (){},
           model: creditsList[index],
           onDelete: () {
             screenState.deleteCredit(creditsList[index].id.toString());

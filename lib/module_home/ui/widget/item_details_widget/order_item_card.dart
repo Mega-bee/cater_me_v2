@@ -8,7 +8,8 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 class OrderItemCard extends StatefulWidget {
   final Item model;
   final VoidCallback onDelete;
-  const OrderItemCard({required this.model, required this.onDelete});
+  final bool isDarrby;
+  const OrderItemCard({required this.model, required this.onDelete, required this.isDarrby});
 
   @override
   State<OrderItemCard> createState() => _OrderItemCardState();
@@ -73,7 +74,7 @@ class _OrderItemCardState extends State<OrderItemCard> {
                   children: [
                     Text(isArabic ? widget.model.titleAr ?? '' : widget.model.title ?? ''),
                     Text(
-                      "${widget.model.price}" +S.of(context).sar ,
+                      (  widget.isDarrby ? "${widget.model.daberniPrice}" :  "${widget.model.price}") +S.of(context).sar ,
                       style: GoogleFonts.poppins(
                           fontStyle: FontStyle.normal,
                           fontSize: 14,

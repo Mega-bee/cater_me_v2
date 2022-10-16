@@ -7,6 +7,9 @@ class Urls {
   static const String OCCASIONS = DOMAIN + 'Occasions/';
   static const String FRIENDS = DOMAIN + 'Friends/';
   static const String CARDS = DOMAIN + 'CreditCards/';
+  static const String ADDRESS = DOMAIN + 'Addresses/';
+  static const String ORDERS = DOMAIN + 'Orders/';
+  static const String CHECKOUT = DOMAIN + 'Checkout/';
 
   //-------------Auth------------
   static const String LOGIN = ACCOUNTS + 'Login';
@@ -33,4 +36,21 @@ class Urls {
   static const String GET_CREDITS = CARDS + 'GetAllCreditCards';
   static const String CREATE_CREDITS = CARDS + 'CreateCreditCard';
   static const String DELETE_CREDITS = CARDS + 'DeleteCreditCard/';
+
+
+  //-----------ADDRESS-----------
+  static const String GET_ADDRESSES = ADDRESS + 'GetAllAddresses';
+  static const String CREATE_ADDRESS = ADDRESS + 'CreateAddress';
+  static const String UPDATE_ADDRESS = ADDRESS + 'UpdateAddress';
+  static const String DELETE_ADDRESS = ADDRESS + 'DeleteAddress/';
+
+  //----------ORDERS----------
+  static const String GET_ORDERS = ORDERS + 'GetAllOrders';
+  static const String GET_ORDER = ORDERS + 'GetOrder/';
+
+  static const String PLACE_ORDER = ORDERS + 'PlaceOrder';
+
+  //------------REQUEST---------------
+  static const String REQUEST_PAYMENT = CHECKOUT + 'RequestPayment';
+
 }

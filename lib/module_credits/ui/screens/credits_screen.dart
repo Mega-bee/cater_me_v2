@@ -1,6 +1,5 @@
 import 'package:cater_me_v2/generated/l10n.dart';
 import 'package:cater_me_v2/module_credits/request/create_credit_request.dart';
-import 'package:cater_me_v2/module_friends/request/create_friend_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -60,7 +59,10 @@ class CreditScreenState extends State<CreditScreen> {
                   backgroundColor: Colors.transparent,
                   context: context,
                   builder: (context) {
-                    return  CreateCreditSheet(createCredit: (re){},);
+                    return  CreateCreditSheet(createCredit: (request){
+                      Navigator.pop(context);
+                      widget.cubit.createCredit(this, request);
+                    },);
                   },
                   shape: RoundedRectangleBorder(
                       borderRadius:

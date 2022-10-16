@@ -1,47 +1,54 @@
 
-import 'package:cater_me_v2/consts/role_status.dart';
+import 'dart:ui';
+
+import 'package:cater_me_v2/consts/order_status.dart';
+import 'package:cater_me_v2/utils/images/images.dart';
 import 'package:flutter/material.dart';
 
-class StatusRoleHelper {
-  static RoleEnum getStatusEnum(String? status) {
-    if (status == 'ROLE_OWNER') {
-      return RoleEnum.STORE_OWNER;
-    } else if (status == 'ROLE_SUPER_ADMIN') {
-      return RoleEnum.SUPER_ADMIN;
-    } else if (status == 'ROLE_ADMIN') {
-      return RoleEnum.ADMIN;
-    } else if (status == 'ROLE_CAPTAIN') {
-      return RoleEnum.CAPTAIN;
+class StatusOrderHelper {
+  static OrderStatusEnum getStatusEnum(String? status) {
+    if (status == 'Payment Pending') {
+      return OrderStatusEnum.PENDING;
+    } else if (status == 'Received') {
+      return OrderStatusEnum.RECEIVED;
+    } else if (status == 'Preparing') {
+      return OrderStatusEnum.PREPARING;
+    } else if (status == 'Delivered') {
+      return OrderStatusEnum.DELIVERED;
     }
-    return RoleEnum.CAPTAIN;
+    return OrderStatusEnum.PENDING;
   }
 
-  static Color getRoleColor(RoleEnum status) {
+  static String getOrderImage(OrderStatusEnum status) {
     switch (status) {
-      case RoleEnum.ADMIN:
-        return Colors.blue.shade50;
-      case RoleEnum.SUPER_ADMIN:
-        return Colors.red.shade50;
-      case RoleEnum.CAPTAIN:
-        return Colors.yellow.shade50;
-      case RoleEnum.STORE_OWNER:
-        return Colors.green.shade50;
+      case OrderStatusEnum.PENDING:
+        return ImageAsset.WAITING;
+      case OrderStatusEnum.RECEIVED:
+        return ImageAsset.RECEIVE;
+      case OrderStatusEnum.PREPARING:
+        return ImageAsset.PREPARING;
+      case OrderStatusEnum.DELIVERED:
+        return ImageAsset.DELIVERED;
       default:
-        return Colors.red;
+        return ImageAsset.WAITING;
     }
   }
-  static String getEnumStatus(RoleEnum? orderStatus) {
-    switch (orderStatus) {
-      case RoleEnum.STORE_OWNER:
-        return 'ROLE_OWNER';
-      case RoleEnum.ADMIN:
-        return 'ROLE_ADMIN';
-      case RoleEnum.SUPER_ADMIN:
-        return 'ROLE_SUPER_ADMIN';
-      case RoleEnum.CAPTAIN:
-        return 'ROLE_CAPTAIN';
+  static Color getOrderColor(OrderStatusEnum status) {
+    switch (status) {
+      case OrderStatusEnum.PENDING:
+        return Colors.yellow.shade900;
+
+      case OrderStatusEnum.RECEIVED:
+        return Colors.blue.shade900;
+
+      case OrderStatusEnum.PREPARING:
+        return Colors.brown.shade900;
+
+      case OrderStatusEnum.DELIVERED:
+        return Colors.green.shade900;
       default:
-        return '';
+        return  Colors.yellow.shade900;
     }
   }
+
 }

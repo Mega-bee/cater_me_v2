@@ -1,9 +1,11 @@
 import 'package:cater_me_v2/generated/l10n.dart';
+import 'package:cater_me_v2/module_addresses/address_route.dart';
 import 'package:cater_me_v2/module_auth/service/auth_service/auth_service.dart';
 import 'package:cater_me_v2/module_credits/credit_route.dart';
 import 'package:cater_me_v2/module_friends/friends_route.dart';
 import 'package:cater_me_v2/module_localization/service/localization_service/localization_service.dart';
 import 'package:cater_me_v2/module_occasions/occasions_route.dart';
+import 'package:cater_me_v2/module_orders/order_route.dart';
 import 'package:cater_me_v2/module_payments/payment_route.dart';
 import 'package:cater_me_v2/module_profile/profile_route.dart';
 import 'package:cater_me_v2/module_settings/ui/widgets/icon_background_card.dart';
@@ -66,7 +68,9 @@ class _SettingScreenState extends State<SettingScreen> {
                       IconBackCard(
                           title: S.of(context).orders,
                           iconData: FontAwesomeIcons.firstOrder,
-                          onTapCard: () {}),
+                          onTapCard: () {
+                            Navigator.pushNamed(context, OrderRoutes.VIEW_ORDERS);
+                          }),
                       IconBackCard(
                           title: S.of(context).occasions,
                           iconData: Icons.date_range,
@@ -118,7 +122,9 @@ class _SettingScreenState extends State<SettingScreen> {
                         height: 1,
                       ),
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushNamed(context, AddressRoutes.VIEW_ADDRESS , arguments: false);
+                        },
                         child: ListTile(
                           leading: Icon(Icons.location_on_outlined),
                           title: Text(

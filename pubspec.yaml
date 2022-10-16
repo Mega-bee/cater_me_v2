@@ -150,10 +150,12 @@ dependencies:
   fluttercontactpicker: ^4.7.0
   flutter_hooks: ^0.18.5+1
   carousel_slider: ^4.1.1
+  dropdown_button2: ^1.8.5
 
 # payment
   flutter_checkout_payment: ^1.1.0
   flutter_credit_card: ^3.0.4
+  pay: ^1.0.11
 
 
 
@@ -203,6 +205,7 @@ flutter:
   assets:
     - assets/images/
     - assets/animations/
+    - assets/
 #    - assets/fonts/
 
 #  fonts:

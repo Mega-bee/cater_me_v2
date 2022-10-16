@@ -15,6 +15,7 @@ class MenusCard extends StatelessWidget {
 
     return InkWell(
       onTap: (){
+        model?.isMenu = true;
         Navigator.pushNamed(context, HomePageRoutes.itemsDetails,
             arguments: model);
       },

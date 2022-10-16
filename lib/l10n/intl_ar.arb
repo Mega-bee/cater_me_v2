@@ -59,6 +59,29 @@
   "updateProfile": "تعديل الملف",
   "updateSuccessfully": "تم التعديل بنجاح",
 
-  "updateCredit": "تعديل البطاقة",
-  "credits" : "البطاقات"
+  "createCredit": "إنشاء بطاقة",
+  "credits" : "البطاقات",
+
+  "titleAddress": "اسم العنوان",
+  "city": "المدينة",
+  "country": "البلد",
+  "buildingName": "اسم البناء",
+  "street": "الشارع",
+  "floorNumber": "رقم الطابق",
+
+  "createAddress": "إنشاء العنوان",
+  "updateAddress": "تحديث العنوان",
+
+  "totalPrice": "السعر الكلي",
+  "totalAmount": " المبلغ الإجمالي",
+  "totalPriceWithoutDabb": " السعر الإجمالي بدون دبرني",
+  "dabbrnie": " دابرني",
+  "checkOut": " الدفع",
+  "totalTax": " مجموع الضريبة",
+  "tax": " ضريبة",
+  "setupItem": " عنصر الإعداد",
+  "numberOfGuest": " عدد الحضور",
+
+  "deliveringTo": "توصيل إلى",
+  "select": "اختر"
 }

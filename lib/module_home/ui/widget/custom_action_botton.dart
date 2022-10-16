@@ -1,11 +1,14 @@
 import 'package:cater_me_v2/generated/l10n.dart';
+import 'package:cater_me_v2/module_home/request/place_order_request.dart';
+import 'package:cater_me_v2/module_home/response/homepage_response.dart';
 import 'package:cater_me_v2/module_home/ui/widget/cart_sheet.dart';
 import 'package:flutter/material.dart';
 
 
 class CustomActionButton extends StatefulWidget {
-
-  const CustomActionButton();
+  final OrderSettings settings;
+  final Function(PlaceOrderRequest) onCheckOutClick;
+  const CustomActionButton(this.settings, this.onCheckOutClick);
 
   @override
   State<CustomActionButton> createState() => _CustomActionButtonState();
@@ -37,7 +40,9 @@ class _CustomActionButtonState extends State<CustomActionButton>
             context: context,
             elevation: 5,
             builder: (BuildContext context) {
-              return  CartSheet( );
+              return  CartSheet( widget.settings,(p0) {
+                widget.onCheckOutClick(p0);
+              },);
             },
           );
         },
