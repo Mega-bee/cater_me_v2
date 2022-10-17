@@ -42,7 +42,7 @@ class OrdersDetailsScreenState extends State<OrdersDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     var args =  ModalRoute.of(context)?.settings.arguments;
-    if(args != null && args is String){
+    if(args != null && args is String && falg){
       orderId = args;
       widget.cubit.getOrdersDetails(this ,orderId ?? '-1');
       falg=false;

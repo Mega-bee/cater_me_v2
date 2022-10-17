@@ -31,8 +31,8 @@ class AddressResponse {
        buildingName = json["buildingName"];
        street = json["street"];
        title = json["title"];
-       longitude = json["longitude"];
-       latitude = json["latitude"];
+       longitude = json["longitude"] ?? '';
+       latitude = json["latitude"] ?? '';
        floorNumber = json["floorNumber"];
        isSelected = false;
      }

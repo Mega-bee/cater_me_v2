@@ -1,25 +1,12 @@
 class PaymentResponse {
   PaymentResponse({
-     this.id,
-     this.name,
-     this.phoneNumber,
-     this.email,
-     this.image,
-   });
+     this.link,
 
-    int? id;
-   String? name;
-   String? phoneNumber;
-   String? email;
-   String? image;
+   });
+   String? link;
 
 
   PaymentResponse.fromJson(Map<String, dynamic> json)  {
-       name =  json["name"];
-       id = json["id"];
-       image = json["image"];
-       phoneNumber = json["phoneNumber"];
-       email = json["email"];
-
+       link =  json["link"];
      }
  }

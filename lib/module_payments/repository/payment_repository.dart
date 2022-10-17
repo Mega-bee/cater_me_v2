@@ -19,6 +19,7 @@ class PaymentRepository {
       Urls.REQUEST_PAYMENT,
       request.toJson(),
       headers: {'Authorization': 'Bearer ' '$token'},
+      jsonDataType: true
     );
     if (response == null) return null;
     return response;

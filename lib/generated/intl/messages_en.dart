@@ -43,7 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "createOccasion":
             MessageLookupByLibrary.simpleMessage("Create occasion"),
         "credits": MessageLookupByLibrary.simpleMessage("Credits"),
-        "dabbrnie": MessageLookupByLibrary.simpleMessage("Dabbrnie"),
+        "dabbrniePrice": MessageLookupByLibrary.simpleMessage("Dabbrnie price"),
         "darkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
         "deliveringTo": MessageLookupByLibrary.simpleMessage("Delivering to"),
         "emailAddressIsRequired":
@@ -76,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordIsTooShort":
             MessageLookupByLibrary.simpleMessage("password Is Too Short"),
+        "payNow": MessageLookupByLibrary.simpleMessage("Pay now"),
         "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment method"),
         "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone Number"),
         "pleaseCompleteField":

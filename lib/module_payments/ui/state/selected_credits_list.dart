@@ -1,5 +1,7 @@
+import 'package:cater_me_v2/generated/l10n.dart';
 import 'package:cater_me_v2/module_credits/response/credit_response.dart';
 import 'package:cater_me_v2/module_credits/ui/widget/credit_card.dart';
+import 'package:cater_me_v2/module_payments/request/payment_request.dart';
 import 'package:cater_me_v2/module_payments/ui/screens/payment_method_screen.dart';
 import 'package:flutter/material.dart';
 import '../../../abstracts/states/state.dart';
@@ -42,7 +44,8 @@ class SelectedCreditsListSuccess extends States {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15))),
             onPressed: () {
-              // Navigator.pop(context,_selectedCard);
+              print('pressss');
+             screenState.requestPayment(PaymentRequest(cardId: _selectedCard?.cardId ??''));
             },
             child: Padding(
               padding: const EdgeInsets.all(10.0),
@@ -51,7 +54,7 @@ class SelectedCreditsListSuccess extends States {
                 children: [
                   Icon(Icons.payment),
                   SizedBox(width: 10,),
-                  Text('Pay now' , style: TextStyle(fontSize: 18 , color: Colors.white , fontWeight: FontWeight.bold),),
+                  Text(S.of(context).payNow , style: TextStyle(fontSize: 18 , color: Colors.white , fontWeight: FontWeight.bold),),
                 ],
               ),
             )),

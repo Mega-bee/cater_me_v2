@@ -5,10 +5,14 @@ import 'package:cater_me_v2/module_credits/request/create_credit_request.dart';
 import 'package:cater_me_v2/module_credits/response/credit_response.dart';
 import 'package:cater_me_v2/module_payments/repository/payment_repository.dart';
 import 'package:cater_me_v2/module_payments/request/payment_request.dart';
+import 'package:cater_me_v2/module_payments/response/pay_response.dart';
 import 'package:cater_me_v2/module_payments/ui/screens/payment_method_screen.dart';
+import 'package:cater_me_v2/module_payments/ui/screens/payment_verify_otp_screen.dart';
 import 'package:cater_me_v2/module_payments/ui/state/selected_credits_list.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:tip_dialog/tip_dialog.dart';
 import '../../abstracts/states/loading_state.dart';
 import '../../abstracts/states/state.dart';
 
@@ -68,10 +72,17 @@ class PaymentCubit extends Cubit<States> {
     });
   }
 
-  paymentReq (PaymentRequest request){
+  paymentRequest (PaymentMethodScreenState screenState, PaymentRequest request){
+    print('loooooooo');
+    TipDialogHelper.loading('Loading');
     _paymentRepository.requestPayment(request).then((value)  {
       if(value != null) {
-        print('');
+        PaymentResponse response = PaymentResponse.fromJson(value.data.insideData);
+        // TipDialogHelper.dismiss();
+        Navigator.pushAndRemoveUntil(screenState.context, MaterialPageRoute(builder: (context) =>
+            PaymentVerifyOtpScreen(webUrl: response.link ??''),), (route) => false);
+      }else{
+        TipDialogHelper.fail(value?.errorMessage ?? 'connection error');
       }
     });
   }

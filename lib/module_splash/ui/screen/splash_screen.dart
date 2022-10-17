@@ -1,6 +1,7 @@
 import 'package:cater_me_v2/module_auth/authorization_routes.dart';
 import 'package:cater_me_v2/module_auth/service/auth_service/auth_service.dart';
 import 'package:cater_me_v2/module_home/homepage_route.dart';
+import 'package:cater_me_v2/module_payments/ui/screens/payment_verify_otp_screen.dart';
 import 'package:cater_me_v2/utils/images/images.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';

@@ -9,6 +9,8 @@ import 'package:cater_me_v2/utils/components/custom_feild.dart';
 import 'package:cater_me_v2/utils/components/custom_loading_button.dart';
 
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_date_pickers/flutter_date_pickers.dart';
 import 'package:intl/intl.dart';
@@ -37,11 +39,12 @@ class _CustomBottomSheetState extends State<CartSheet> {
   List<NumberOfGuest>  selectedSetupItem = [];
   List<String>  selectedSetupItemNames = [];
   AddressResponse? selectedAddress;
+  bool isShisha = false;
 
   num basePrice = 0;
-  num taxPrice = 0;
+  // num taxPrice = 0;
   num dabbrneTotalPrice = 0;
-  num totalAmount = 0;
+  // num totalAmount = 0;
 
   @override
   void initState() {
@@ -74,12 +77,8 @@ class _CustomBottomSheetState extends State<CartSheet> {
     itemsInCart.forEach((element) {
       basePrice = basePrice + element.price!;
       dabbrneTotalPrice = dabbrneTotalPrice + element.daberniPrice!;
-      taxPrice = taxPrice + element.tax!;
     });
-    if (isDabbrneiActive) {
-      totalAmount = dabbrneTotalPrice + taxPrice;
-    } else
-      totalAmount = basePrice + taxPrice;
+    isShisha =  itemsInCart.contains((element) => element.isShisha == true);
     setState(() {});
   }
 
@@ -162,11 +161,20 @@ class _CustomBottomSheetState extends State<CartSheet> {
                               ),
                               ElevatedButton(
                                 onPressed: () async {
-                                  _selectTime = (await showTimePicker(
-                                      context: context,
-                                      initialTime: TimeOfDay.now()))!;
-                                  setState(() {});
-                                  checkDabbnei();
+                                  showCupertinoModalPopup(builder: (context) =>
+                                      Container(
+                                        height: 200,
+                                        color: Theme.of(context).cardColor,
+                                        child: CupertinoDatePicker(
+                                          mode: CupertinoDatePickerMode.time,
+                                          onDateTimeChanged: (value) {
+                                            _selectTime = TimeOfDay(hour: value.hour, minute: value.minute);
+                                            setState(() {});
+                                            checkDabbnei();
+                                          },
+                                          initialDateTime: DateTime.now(),
+                                        ),
+                                      ),context: context);
                                 },
                                 child: Text(_selectTime.format(context)),
                                 style: OutlinedButton.styleFrom(
@@ -286,48 +294,79 @@ class _CustomBottomSheetState extends State<CartSheet> {
                               TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                       ),
+                      // Padding(
+                      //   padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                      //   child: Card(
+                      //     shape: RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(12)),
+                      //     elevation: 3,
+                      //     child: DropdownButton2(
+                      //       dropdownFullScreen: true,
+                      //
+                      //       hint: Text(S.of(context).numberOfGuest),
+                      //       items: widget.settings.numberOfGuests
+                      //           ?.map((item) => DropdownMenuItem<NumberOfGuest>(
+                      //                 value: item,
+                      //                 child: Text(
+                      //                   isArabic
+                      //                       ? item.titleAr ?? ''
+                      //                       : item.title ?? '',
+                      //                   style: const TextStyle(
+                      //                     fontSize: 14,
+                      //                   ),
+                      //                 ),
+                      //               ))
+                      //           .toList(),
+                      //       onChanged: (value) {
+                      //         setState(() {
+                      //           selectedGuest = value as NumberOfGuest;
+                      //         });
+                      //       },
+                      //       underline: Container(),
+                      //       dropdownElevation: 5,
+                      //       isExpanded: true,
+                      //       dropdownOverButton: true,
+                      //       // dropdownPadding: const EdgeInsets.symmetric(vertical: 6),
+                      //       dropdownDecoration: BoxDecoration(
+                      //         borderRadius: BorderRadius.circular(4),
+                      //         color: Colors.grey.shade200,
+                      //       ),
+                      //       itemPadding: EdgeInsetsDirectional.all(5),
+                      //       value: selectedGuest,
+                      //       buttonPadding: EdgeInsetsDirectional.all(5),
+                      //     ),
+                      //   ),
+                      // ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                         child: Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12)),
                           elevation: 3,
-                          child: DropdownButton2(
-                            hint: Text(S.of(context).numberOfGuest),
-                            items: widget.settings.numberOfGuests
-                                ?.map((item) => DropdownMenuItem<NumberOfGuest>(
-                                      value: item,
-                                      child: Text(
-                                        isArabic
-                                            ? item.titleAr ?? ''
-                                            : item.title ?? '',
-                                        style: const TextStyle(
-                                          fontSize: 14,
-                                        ),
-                                      ),
-                                    ))
-                                .toList(),
-                            onChanged: (value) {
-                              setState(() {
-                                selectedGuest = value as NumberOfGuest;
-                              });
-                            },
-                            underline: Container(),
-                            dropdownElevation: 5,
-                            isExpanded: true,
-                            dropdownOverButton: true,
-                            // dropdownPadding: const EdgeInsets.symmetric(vertical: 6),
-                            dropdownDecoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: Colors.grey.shade200,
+                          child: DropdownSearch<NumberOfGuest>(
+                            items: widget.settings.numberOfGuests!,
+                            dropdownDecoratorProps: DropDownDecoratorProps(
+                              dropdownSearchDecoration: InputDecoration(
+                                // labelText: S.of(context).numberOfGuest,
+                                hintText: S.of(context).numberOfGuest,
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8)
+                                // filled: true,
+                              ),
                             ),
-                            itemPadding: EdgeInsetsDirectional.all(5),
-                            value: selectedGuest,
-                            buttonPadding: EdgeInsetsDirectional.all(5),
+                            popupProps: PopupProps.modalBottomSheet(
+                              itemBuilder: _customPopupItemBuilderExample2 ,
+                              title: Text(S.of(context).numberOfGuest),
+                              showSelectedItems: true,
+                            ),
+                            selectedItem: selectedGuest,
+                             onChanged: (v){
+                              selectedGuest = v;
+                             },
+                            itemAsString: (item) => item.title ?? '',
+                              compareFn: (item1, item2) => item1.id == item2.id,
                           ),
                         ),
                       ),
-
                       SizedBox(
                         height: 5,
                       ),
@@ -341,92 +380,124 @@ class _CustomBottomSheetState extends State<CartSheet> {
                               TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                         ),
                       ),
+
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 15, 0),
+                        padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                         child: Card(
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12)),
                           elevation: 3,
-                          child: DropdownButton2(
-                            hint: Text(S.of(context).setupItem),
-                            selectedItemBuilder: (context) {
-                              return widget.settings.setupItems!.map(
-                                    (item) {
-                                  return Container(
-                                    alignment: AlignmentDirectional.center,
-                                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                    child: Text(
-                                      selectedSetupItemNames.join(', '),
-                                      style: const TextStyle(
-                                        fontSize: 14,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                      maxLines: 1,
-                                    ),
-                                  );
-                                },
-                              ).toList();
-                            },
-                            items: widget.settings.setupItems
-                                ?.map((item) => DropdownMenuItem<NumberOfGuest>(
-                                      value: item,
-                                      child: StatefulBuilder(
-                                         builder:(context, menuSetState) {
-                                           final _isSelected = selectedSetupItem.contains(item);
-                                           return InkWell(
-                                             onTap: () {
-                                               if(_isSelected){
-                                                 selectedSetupItem.remove(item) ;
-                                               isArabic?  selectedSetupItemNames.remove(item.titleAr)
-                                                   : selectedSetupItemNames.remove(item.title);
-                                               }else {
-                                                 selectedSetupItem.add(item) ;
-                                                 isArabic?  selectedSetupItemNames.add(item.titleAr ?? '')
-                                                     : selectedSetupItemNames.add(item.title ?? '');
-                                               }
+                          child: DropdownSearch<NumberOfGuest>.multiSelection(
 
-                                               //This rebuilds the StatefulWidget to update the button's text
-                                               setState(() {});
-                                               //This rebuilds the dropdownMenu Widget to update the check mark
-                                               menuSetState(() {});
-                                             },
-                                             child: Container(
-                                               height: double.infinity,
-                                               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                                               child: Row(
-                                                 children: [
-                                                   _isSelected
-                                                       ? const Icon(Icons.check_box_outlined)
-                                                       : const Icon(Icons.check_box_outline_blank),
-                                                   const SizedBox(width: 16),
-                                                   Text(
-                                                   isArabic ? item.titleAr ?? '' : item.title ?? '',
-                                                   ),
-                                                 ],
-                                               ),
-                                             ),
-                                           );
-                                         },
-                                      ),
-                                    ))
-                                .toList(),
-                            onChanged: (value) {
-                            },
-                            underline: Container(),
-                            dropdownElevation: 5,
-                            isExpanded: true,
-                            dropdownOverButton: true,
-                            // dropdownPadding: const EdgeInsets.symmetric(vertical: 6),
-                            dropdownDecoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: Colors.grey.shade200,
+                            // clearButtonProps: ClearButtonProps(isVisible: true),
+                            popupProps: PopupPropsMultiSelection.modalBottomSheet(
+                              showSelectedItems: true,
+                              itemBuilder: _customPopupItemBuilderExample2,
                             ),
-                            itemPadding: EdgeInsetsDirectional.all(5),
-                            value: selectedSetupItem.isEmpty ? null : selectedSetupItem.last,
-                            buttonPadding: EdgeInsetsDirectional.all(5),
+                            compareFn: (item, selectedItem) =>
+                            item.id == selectedItem.id,
+                            dropdownDecoratorProps: DropDownDecoratorProps(
+                              dropdownSearchDecoration: InputDecoration(
+                                  hintText: S.of(context).setupItem,
+                                  contentPadding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                                // filled: true,
+                              ),
+                            ),
+                            dropdownBuilder: _customDropDownExampleMultiSelection,
+                            items: widget.settings.setupItems!,
+                            onChanged: (value) {
+                              selectedSetupItem = value;
+                            },
+                            selectedItems: selectedSetupItem,
                           ),
                         ),
                       ),
+
+                      // Padding(
+                      //   padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 15, 0),
+                      //   child: Card(
+                      //     shape: RoundedRectangleBorder(
+                      //         borderRadius: BorderRadius.circular(12)),
+                      //     elevation: 3,
+                      //     child: DropdownButton2(
+                      //       hint: Text(S.of(context).setupItem),
+                      //       selectedItemBuilder: (context) {
+                      //         return widget.settings.setupItems!.map(
+                      //               (item) {
+                      //             return Container(
+                      //               alignment: AlignmentDirectional.center,
+                      //               padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      //               child: Text(
+                      //                 selectedSetupItemNames.join(', '),
+                      //                 style: const TextStyle(
+                      //                   fontSize: 14,
+                      //                   overflow: TextOverflow.ellipsis,
+                      //                 ),
+                      //                 maxLines: 1,
+                      //               ),
+                      //             );
+                      //           },
+                      //         ).toList();
+                      //       },
+                      //       items: widget.settings.setupItems
+                      //           ?.map((item) => DropdownMenuItem<NumberOfGuest>(
+                      //                 value: item,
+                      //                 child: StatefulBuilder(
+                      //                    builder:(context, menuSetState) {
+                      //                      final _isSelected = selectedSetupItem.contains(item);
+                      //                      return InkWell(
+                      //                        onTap: () {
+                      //                          if(_isSelected){
+                      //                            selectedSetupItem.remove(item) ;
+                      //                          isArabic?  selectedSetupItemNames.remove(item.titleAr)
+                      //                              : selectedSetupItemNames.remove(item.title);
+                      //                          }else {
+                      //                            selectedSetupItem.add(item) ;
+                      //                            isArabic?  selectedSetupItemNames.add(item.titleAr ?? '')
+                      //                                : selectedSetupItemNames.add(item.title ?? '');
+                      //                          }
+                      //
+                      //                          //This rebuilds the StatefulWidget to update the button's text
+                      //                          setState(() {});
+                      //                          //This rebuilds the dropdownMenu Widget to update the check mark
+                      //                          menuSetState(() {});
+                      //                        },
+                      //                        child: Container(
+                      //                          height: double.infinity,
+                      //                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      //                          child: Row(
+                      //                            children: [
+                      //                              _isSelected
+                      //                                  ? const Icon(Icons.check_box_outlined)
+                      //                                  : const Icon(Icons.check_box_outline_blank),
+                      //                              const SizedBox(width: 16),
+                      //                              Text(
+                      //                              isArabic ? item.titleAr ?? '' : item.title ?? '',
+                      //                              ),
+                      //                            ],
+                      //                          ),
+                      //                        ),
+                      //                      );
+                      //                    },
+                      //                 ),
+                      //               ))
+                      //           .toList(),
+                      //       onChanged: (value) {
+                      //       },
+                      //       underline: Container(),
+                      //       dropdownElevation: 5,
+                      //       isExpanded: true,
+                      //       dropdownOverButton: true,
+                      //       // dropdownPadding: const EdgeInsets.symmetric(vertical: 6),
+                      //       dropdownDecoration: BoxDecoration( borderRadius: BorderRadius.circular(4),
+                      //         color: Colors.grey.shade200,),
+                      //       itemPadding: EdgeInsetsDirectional.all(5),
+                      //       value: selectedSetupItem.isEmpty ? null : selectedSetupItem.last,
+                      //       buttonPadding: EdgeInsetsDirectional.all(5),
+                      //
+                      //     ),
+                      //   ),
+                      // ),
 
                       // total amount
                       Padding(
@@ -440,14 +511,23 @@ class _CustomBottomSheetState extends State<CartSheet> {
                             child: Column(children: [
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Row(
+                                child:  isDabbrneiActive ?  Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Text(S.of(context).totalPriceWithoutDabb),
-                                    Text(basePrice.toString() + S.of(context).sar),
+                                    Text(S.of(context).dabbrniePrice),
+                                         Text(dabbrneTotalPrice.toString() + S.of(context).sar)
                                   ],
-                                ),
-                              ),
+                                ) :
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(S.of(context).totalPrice),
+                                    Text(basePrice.toString() + S.of(context).sar)
+
+                                  ],
+                                )
+                              )   ,
+
                               Divider(
                                 height: 1,
                                 thickness: 1,
@@ -457,67 +537,26 @@ class _CustomBottomSheetState extends State<CartSheet> {
                               SizedBox(
                                 height: 5,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(S.of(context).dabbrnie),
-                                    isDabbrneiActive
-                                        ? Text('0' + S.of(context).sar)
-                                        : Text(basePrice.toString() +
-                                            S.of(context).sar),
-                                  ],
-                                ),
-                              ),
-                              Divider(
-                                height: 1,
-                                thickness: 1,
-                                endIndent: 10,
-                                indent: 10,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(S.of(context).totalTax),
-                                    Text(
-                                      taxPrice.toString() + S.of(context).sar,
-                                      style: TextStyle(
-                                          color: Theme.of(context).errorColor),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Divider(
-                                height: 1,
-                                thickness: 1,
-                                endIndent: 10,
-                                indent: 10,
-                              ),
-                              SizedBox(
-                                height: 5,
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text('Total amount'),
-                                    Text(
-                                      totalAmount.toString() + S.of(context).sar,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                          color: Theme.of(context).primaryColor),
-                                    ),
-                                  ],
-                                ),
-                              ),
+                              // Padding(
+                              //   padding: const EdgeInsets.all(8.0),
+                              //   child: Row(
+                              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              //     children: [
+                              //       Text('Total amount'),
+                              //       Text(
+                              //         totalAmount.toString() + S.of(context).sar,
+                              //         style: TextStyle(
+                              //             fontWeight: FontWeight.bold,
+                              //             fontSize: 18,
+                              //             color: Theme.of(context).primaryColor),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
+
+                              Center(child:
+    isShisha ? Text('100% inclusive tax on shisha' , style: TextStyle(color: Colors.red),) :
+                              Text('15% inclusive tax on food and beverage' , style: TextStyle(color: Colors.red),))
                             ]),
                           ),
                         ),
@@ -547,7 +586,7 @@ class _CustomBottomSheetState extends State<CartSheet> {
                                         titleController.text,
                                         DateFormat('yyyy-MM-dd')
                                             .format(_selectedDate),
-                                        _selectTime.format(context),
+                                        _selectTime.format(context).split(' ').first,
                                         selectedGuest?.id,
                                         '', '', setup,orders));
                               }
@@ -567,6 +606,40 @@ class _CustomBottomSheetState extends State<CartSheet> {
               }
             })
       ],
+    );
+  }
+  Widget _customPopupItemBuilderExample2(
+      BuildContext context,
+      NumberOfGuest? item,
+      bool isSelected,
+      ) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 8),
+      decoration: !isSelected
+          ? null
+          : BoxDecoration(
+        border: Border.all(color: Theme.of(context).primaryColor),
+        borderRadius: BorderRadius.circular(5),
+        color: Colors.grey.shade300
+      ),
+      child: ListTile(
+        selected: isSelected,
+        title:isArabic? Text(item?.titleAr ?? '') :Text(item?.title ?? ''),
+      ),
+    );
+  }
+
+  Widget _customDropDownExampleMultiSelection(
+      BuildContext context, List<NumberOfGuest?> selectedItems) {
+    return Wrap(
+      children: selectedItems.map((e) {
+        return Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Container(
+            child: isArabic? Text(e?.titleAr ?? '') :Text(e?.title ?? ''),
+          ),
+        );
+      }).toList(),
     );
   }
 }

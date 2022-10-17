@@ -75,7 +75,7 @@
   "totalPrice": "السعر الكلي",
   "totalAmount": " المبلغ الإجمالي",
   "totalPriceWithoutDabb": " السعر الإجمالي بدون دبرني",
-  "dabbrnie": " دابرني",
+  "dabbrniePrice": "دبرني سعر",
   "checkOut": " الدفع",
   "totalTax": " مجموع الضريبة",
   "tax": " ضريبة",
@@ -83,5 +83,6 @@
   "numberOfGuest": " عدد الحضور",
 
   "deliveringTo": "توصيل إلى",
-  "select": "اختر"
+  "select": "اختر",
+  "payNow": "أدفع الان"
 }

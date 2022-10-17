@@ -1,4 +1,5 @@
 import 'package:cater_me_v2/module_credits/request/create_credit_request.dart';
+import 'package:cater_me_v2/module_payments/request/payment_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -19,6 +20,8 @@ class PaymentMethodScreen extends StatefulWidget {
 }
 
 class PaymentMethodScreenState extends State<PaymentMethodScreen> {
+  int? orderId;
+
   @override
   void initState() {
     super.initState();
@@ -27,6 +30,11 @@ class PaymentMethodScreenState extends State<PaymentMethodScreen> {
 
   createCredit(CreateCreditRequest request) {
     widget.cubit.createCredit(this, request);
+  }
+  requestPayment(PaymentRequest request) {
+    print(orderId);
+    request.orderId = orderId;
+    widget.cubit.paymentRequest(this, request);
   }
 
   @override
@@ -42,6 +50,10 @@ class PaymentMethodScreenState extends State<PaymentMethodScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var args = ModalRoute.of(context)?.settings.arguments;
+    if(args != null && args is int){
+      orderId = args;
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text('Select payment method'),

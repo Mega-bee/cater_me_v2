@@ -750,11 +750,11 @@ class S {
     );
   }
 
-  /// `Dabbrnie`
-  String get dabbrnie {
+  /// `Dabbrnie price`
+  String get dabbrniePrice {
     return Intl.message(
-      'Dabbrnie',
-      name: 'dabbrnie',
+      'Dabbrnie price',
+      name: 'dabbrniePrice',
       desc: '',
       args: [],
     );
@@ -825,6 +825,16 @@ class S {
     return Intl.message(
       'Select',
       name: 'select',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay now`
+  String get payNow {
+    return Intl.message(
+      'Pay now',
+      name: 'payNow',
       desc: '',
       args: [],
     );

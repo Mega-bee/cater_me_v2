@@ -82,7 +82,7 @@
   "totalPrice": "Total price",
   "totalAmount": "Total amount",
   "totalPriceWithoutDabb": "Total Price Without Dabbrnie",
-  "dabbrnie": "Dabbrnie",
+  "dabbrniePrice": "Dabbrnie price",
   "checkOut": "CheckOut",
   "totalTax": "Total tax",
   "tax": "Tax",
@@ -90,7 +90,7 @@
   "numberOfGuest": "Number of guest",
 
   "deliveringTo": "Delivering to",
-  "select": "Select"
-
+  "select": "Select",
+  "payNow": "Pay now"
 
 }

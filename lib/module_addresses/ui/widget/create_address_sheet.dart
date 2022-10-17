@@ -1,9 +1,11 @@
 import 'package:cater_me_v2/generated/l10n.dart';
 import 'package:cater_me_v2/module_addresses/request/create_address_request.dart';
 import 'package:cater_me_v2/module_addresses/response/address_response.dart';
+import 'package:cater_me_v2/module_addresses/ui/widget/choose_location_wedgit.dart';
 import 'package:cater_me_v2/utils/components/custom_feild.dart';
 import 'package:cater_me_v2/utils/components/custom_loading_button.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 
 class CreateAddressSheet extends StatefulWidget {
@@ -24,6 +26,9 @@ class _CreateOccasionCardState extends State<CreateAddressSheet> {
   var buldingNameController = TextEditingController();
   var floorController = TextEditingController();
   var streetController = TextEditingController();
+
+  LatLng? addressLoca;
+
   final GlobalKey<FormState> _addAddressKey = GlobalKey<FormState>();
 
   @override
@@ -36,6 +41,9 @@ class _CreateOccasionCardState extends State<CreateAddressSheet> {
       buldingNameController.text  = widget.response?.buildingName ??'';
       floorController.text  = widget.response?.floorNumber.toString() ??'';
       streetController.text  = widget.response?.street  ??'';
+      if(widget.response!.latitude!.isEmpty ||widget.response!.longitude!.isEmpty ) {
+      }
+   else  addressLoca = LatLng(double.parse(widget.response?.latitude??'0.0') ,double.parse(widget.response?.longitude??'0.0'));
     }
   }
 
@@ -119,6 +127,40 @@ class _CreateOccasionCardState extends State<CreateAddressSheet> {
                   hintText: S.of(context).floorNumber,
                   controller: floorController,
                 ),
+                
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text('Add your location'),
+                    InkWell(
+                        onTap: (){
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) =>  ChooseLocationWidget(previousLocation: addressLoca,) ))
+                              .then((value) {
+                                if(value != null){
+                                  addressLoca = value as LatLng;
+                                  setState(() {});
+                                }
+                          });
+                        },
+                        child:widget.isUpdated ? Text('Update location'):
+                        Text('Select location')),
+
+                  ],
+                ) ,
+                addressLoca != null ?
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: 150,
+                      child: GoogleMap(
+                        markers: {
+                          Marker(markerId: MarkerId('ss'),position: addressLoca!)
+                        },
+                          initialCameraPosition:
+                          CameraPosition(target: addressLoca!,zoom: 15),),
+                    ),
+                  ) :Container()
               ],),
             ),
 
@@ -135,7 +177,9 @@ class _CreateOccasionCardState extends State<CreateAddressSheet> {
                       CreateAddressRequest(0, cityController.text,
                           countryController.text, streetController.text,
                           buldingNameController.text, titleController.text,
-                          '', '',int.parse(floorController.text)  )
+                          addressLoca?.longitude.toString(),
+                          addressLoca?.latitude.toString(),
+                          int.parse(floorController.text)  )
                     );
                   }
                 },

@@ -51,7 +51,7 @@ class HomePageCubit extends Cubit<States> {
         TipDialogHelper.fail("Connection error, try again");
       }else if (value.code == 201){
         TipDialogHelper.dismiss();
-        Navigator.pushNamed(screenState.context, PaymentRoutes.PAYMENT_METHOD ,);
+        Navigator.pushNamed(screenState.context, PaymentRoutes.PAYMENT_METHOD ,arguments: value.data.insideData);
       }else {
         TipDialogHelper.dismiss();
         TipDialogHelper.fail(value.errorMessage);

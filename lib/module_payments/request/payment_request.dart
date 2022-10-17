@@ -1,8 +1,8 @@
 class PaymentRequest {
   int? orderId;
-  int? cardId;
+  String? cardId;
 
-  PaymentRequest(this.orderId, this.cardId);
+  PaymentRequest( { this.orderId, this.cardId });
   Map<String, dynamic> toJson() {
     return {
       'orderId': orderId ?? 0,
