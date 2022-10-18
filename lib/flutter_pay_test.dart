@@ -24,7 +24,7 @@ void main() {
 const _paymentItems = [
   PaymentItem(
     label: 'Total',
-    amount: '99.99',
+    amount: '1',
     status: PaymentItemStatus.final_price,
   )
 ];
@@ -49,11 +49,11 @@ class PaySampleApp extends StatefulWidget {
 
 class _PaySampleAppState extends State<PaySampleApp> {
   void onGooglePayResult(paymentResult) {
-    debugPrint(paymentResult.toString());
+    print(paymentResult.toString());
   }
 
   void onApplePayResult(paymentResult) {
-    debugPrint(paymentResult.toString());
+    print(paymentResult.toString());
   }
 
   @override
@@ -93,9 +93,9 @@ class _PaySampleAppState extends State<PaySampleApp> {
             type: ApplePayButtonType.buy,
             margin: const EdgeInsets.only(top: 15.0),
             onPaymentResult: onApplePayResult,
-            // loadingIndicator: const Center(
-            //   child: CircularProgressIndicator(),
-            // ),
+            loadingIndicator: const Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
           const SizedBox(height: 15)
         ],
