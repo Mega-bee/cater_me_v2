@@ -72,7 +72,7 @@ class PaymentCubit extends Cubit<States> {
     });
   }
 
-  paymentRequest (PaymentMethodScreenState screenState, PaymentRequest request){
+  paymentRequest (PaymentMethodScreenState screenState, PaymentTypeRequest request){
     print('loooooooo');
     TipDialogHelper.loading('Loading');
     _paymentRepository.requestPayment(request).then((value)  {

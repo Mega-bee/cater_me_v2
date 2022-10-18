@@ -13,7 +13,7 @@ class PaymentRepository {
   PaymentRepository(this._apiClient, this._authService);
 
   Future<WebServiceResponse?> requestPayment(
-      PaymentRequest request) async {
+      PaymentTypeRequest request) async {
     var token = await _authService.getToken();
     WebServiceResponse? response = await _apiClient.post(
       Urls.REQUEST_PAYMENT,

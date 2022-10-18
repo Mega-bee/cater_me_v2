@@ -1,4 +1,5 @@
 import 'package:cater_me_v2/module_credits/request/create_credit_request.dart';
+import 'package:cater_me_v2/module_credits/ui/widget/create_credit_sheet.dart';
 import 'package:cater_me_v2/module_payments/request/payment_request.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,7 +32,7 @@ class PaymentMethodScreenState extends State<PaymentMethodScreen> {
   createCredit(CreateCreditRequest request) {
     widget.cubit.createCredit(this, request);
   }
-  requestPayment(PaymentRequest request) {
+  requestPayment(PaymentTypeRequest request) {
     print(orderId);
     request.orderId = orderId;
     widget.cubit.paymentRequest(this, request);
@@ -57,6 +58,30 @@ class PaymentMethodScreenState extends State<PaymentMethodScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Select payment method'),
+        actions: [
+          InkWell(
+            onTap: () {
+              showModalBottomSheet(
+                  backgroundColor: Colors.transparent,
+                  context: context,
+                  builder: (context) {
+                    return  CreateCreditSheet(createCredit: (request){
+                      Navigator.pop(context);
+                      widget.cubit.createCredit(this, request);
+                    },);
+                  },
+                  shape: RoundedRectangleBorder(
+                      borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(15))),
+                  isScrollControlled: true,
+                  elevation: 5);
+            },
+            child: Padding(
+              padding: const EdgeInsetsDirectional.only(end: 25),
+              child: Icon(Icons.add_comment),
+            ),
+          )
+        ],
       ),
       body: BlocBuilder<PaymentCubit, States>(
         bloc: widget.cubit,
