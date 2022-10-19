@@ -15,6 +15,7 @@ class SelectedCreditsListSuccess extends States {
 
   SelectedCreditsListSuccess(
       {required this.creditsList, required this.screenState});
+
   CreditsResponse? _selectedCard;
 
   final AppleParameters appleParameters = AppleParameters(
@@ -100,100 +101,114 @@ class SelectedCreditsListSuccess extends States {
                 physics: BouncingScrollPhysics(),
                 shrinkWrap: true,
               ),
-              SizedBox(height: 160,),
+              SizedBox(
+                height: 160,
+              ),
             ],
           ),
         ),
-
         Align(
           alignment: AlignmentDirectional.bottomCenter,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-            _selectedCard != null
-                ? Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).primaryColor,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15))),
-                  onPressed: () {
-                    print('pressss');
-                    screenState.requestPayment(PaymentTypeRequest(cardId: _selectedCard?.cardId ??''));
+              _selectedCard != null
+                  ? Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Theme.of(context).primaryColor,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8))),
+                          onPressed: () {
+                            print('pressss');
+                            screenState.requestPayment(PaymentTypeRequest(
+                                cardId: _selectedCard?.cardId ?? ''));
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(Icons.payment),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Text(
+                                  S.of(context).payNow,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          )),
+                    )
+                  : Container(),
+              AdaptivePayButton(
+                applePayButton: ApplePayButton(
+                  style: ApplePayButtonStyle.automatic,
+                  type: ApplePayButtonType.plain,
+                  height: 50,
+                  width: 376,
+                  request: PaymentRequest.apple(
+                    apple: appleParameters,
+                    currencyCode: 'SAR',
+                    countryCode: 'SA',
+                    paymentItems: [
+                      PaymentItem(name: 'Caterme', price: calculateTotalPrice())
+                    ],
+                  ),
+                  onPaymentResult: (PaymentResponse? req) {
+                    if (req != null) {
+                      screenState
+                          .requestPayment(PaymentTypeRequest(type: 'applepay'));
+                    }
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.payment),
-                        SizedBox(width: 10,),
-                        Text(S.of(context).payNow , style: TextStyle(fontSize: 18 , color: Colors.white , fontWeight: FontWeight.bold),),
-                      ],
-                    ),
-                  )),
-            ) : Container(),
-            AdaptivePayButton(
-              applePayButton: ApplePayButton(
-                style: ApplePayButtonStyle.automatic,
-                type: ApplePayButtonType.plain,
-                width: double.maxFinite,
-                request: PaymentRequest.apple(
-                  apple: appleParameters,
-                  currencyCode: 'SAR',
-                  countryCode: 'SA',
-                  paymentItems: [
-                    PaymentItem(name: 'Caterme', price: calculateTotalPrice())
-                  ],
+                  onError: (Object? e) {},
                 ),
-                onPaymentResult: (PaymentResponse? req) {
-                  if(req != null){
-                    screenState.requestPayment(PaymentTypeRequest(type:'applepay'));
-                  }
-                },
-                onError: (Object? e) {
-
-                },
-              ),
-              googlePayButton: GooglePayButton(
-                type: GooglePayButtonType.plain,
-                width: double.maxFinite,
-                request: PaymentRequest.google(
-                  paymentNetworks: <PaymentNetwork>[
-                    PaymentNetwork.amex,
-                    PaymentNetwork.discover,
-                    PaymentNetwork.interac,
-                    PaymentNetwork.jcb,
-                    PaymentNetwork.mastercard,
-                    PaymentNetwork.visa,
-                    PaymentNetwork.mir,
-                  ],
-                  google: googleParameters,
-                  currencyCode: 'SAR',
-                  countryCode: 'SA',
-                  paymentItems: [
-                    PaymentItem(name: 'Caterme', price: calculateTotalPrice())
-                  ],
+                googlePayButton: GooglePayButton(
+                  type: GooglePayButtonType.plain,
+                  height: 50,
+                  width: 376,
+                  request: PaymentRequest.google(
+                    paymentNetworks: <PaymentNetwork>[
+                      PaymentNetwork.amex,
+                      PaymentNetwork.discover,
+                      PaymentNetwork.interac,
+                      PaymentNetwork.jcb,
+                      PaymentNetwork.mastercard,
+                      PaymentNetwork.visa,
+                      PaymentNetwork.mir,
+                    ],
+                    google: googleParameters,
+                    currencyCode: 'SAR',
+                    countryCode: 'SA',
+                    paymentItems: [
+                      PaymentItem(name: 'Caterme', price: calculateTotalPrice())
+                    ],
+                  ),
+                  onPaymentResult: (PaymentResponse? req) {
+                    if (req != null) {
+                      screenState.requestPayment(
+                          PaymentTypeRequest(type: 'googlepay'));
+                    }
+                  },
+                  onError: (Object? e) {},
                 ),
-                onPaymentResult: (PaymentResponse? req) {
-                  if(req != null){
-                    screenState.requestPayment(PaymentTypeRequest(type:'googlepay'));
-                  }
-                },
-                onError: (Object? e) {
-
-                },
               ),
-            ),
-
-          ],),
+              SizedBox(
+                height: 30,
+              ),
+            ],
+          ),
         )
       ],
     );
   }
 
- double calculateTotalPrice(){
+  double calculateTotalPrice() {
     double price = 0;
     itemsInCart.forEach((element) {
       price = price + element.price!;

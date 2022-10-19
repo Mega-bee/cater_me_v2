@@ -171,7 +171,7 @@ class _MyAppState extends State<MyApp> {
                   },
                 ),
                 googlePayButton: GooglePayButton(
-                  type: GooglePayButtonType.plain,
+                  type: GooglePayButtonType.pay,
                   request: PaymentRequest.google(
                     paymentNetworks: <PaymentNetwork>[
                       PaymentNetwork.amex,
