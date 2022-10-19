@@ -91,6 +91,12 @@
 
   "deliveringTo": "Delivering to",
   "select": "Select",
-  "payNow": "Pay now"
+  "payNow": "Pay now",
+
+  "code": "Otp code",
+
+  "dontHaveAccount": "you don't have account ? ",
+  "createAccount": "Create account",
+  "loginAlert": "You should login first"
 
 }

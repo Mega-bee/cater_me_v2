@@ -76,105 +76,120 @@ class SelectedCreditsListSuccess extends States {
 
   @override
   Widget getUI(BuildContext context) {
-    return Scaffold(
-      body: ListView.builder(
-        itemBuilder: (context, index) => CreditCard(
-          onSelect: () {
-            creditsList.forEach((element) {
-              element.selected = false;
-            });
-            creditsList[index].selected = true;
-            _selectedCard = creditsList[index];
-            screenState.refresh();
-          },
-          isSelectedPage: true,
-          model: creditsList[index],
-          onDelete: () {},
+    return Stack(
+      alignment: AlignmentDirectional.topCenter,
+      children: [
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              ListView.builder(
+                itemBuilder: (context, index) => CreditCard(
+                  onSelect: () {
+                    creditsList.forEach((element) {
+                      element.selected = false;
+                    });
+                    creditsList[index].selected = true;
+                    _selectedCard = creditsList[index];
+                    screenState.refresh();
+                  },
+                  isSelectedPage: true,
+                  model: creditsList[index],
+                  onDelete: () {},
+                ),
+                itemCount: creditsList.length,
+                physics: BouncingScrollPhysics(),
+                shrinkWrap: true,
+              ),
+              SizedBox(height: 160,),
+            ],
+          ),
         ),
-        itemCount: creditsList.length,
-        physics: BouncingScrollPhysics(),
-        shrinkWrap: true,
-      ),
-      floatingActionButton: Column(children: [
-        _selectedCard != null
-            ? Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Theme.of(context).primaryColor,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15))),
-              onPressed: () {
-                print('pressss');
-                screenState.requestPayment(PaymentTypeRequest(cardId: _selectedCard?.cardId ??''));
-              },
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.payment),
-                    SizedBox(width: 10,),
-                    Text(S.of(context).payNow , style: TextStyle(fontSize: 18 , color: Colors.white , fontWeight: FontWeight.bold),),
+
+        Align(
+          alignment: AlignmentDirectional.bottomCenter,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+            _selectedCard != null
+                ? Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: Theme.of(context).primaryColor,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15))),
+                  onPressed: () {
+                    print('pressss');
+                    screenState.requestPayment(PaymentTypeRequest(cardId: _selectedCard?.cardId ??''));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.payment),
+                        SizedBox(width: 10,),
+                        Text(S.of(context).payNow , style: TextStyle(fontSize: 18 , color: Colors.white , fontWeight: FontWeight.bold),),
+                      ],
+                    ),
+                  )),
+            ) : Container(),
+            AdaptivePayButton(
+              applePayButton: ApplePayButton(
+                style: ApplePayButtonStyle.automatic,
+                type: ApplePayButtonType.plain,
+                width: double.maxFinite,
+                request: PaymentRequest.apple(
+                  apple: appleParameters,
+                  currencyCode: 'SAR',
+                  countryCode: 'SA',
+                  paymentItems: [
+                    PaymentItem(name: 'Caterme', price: calculateTotalPrice())
                   ],
                 ),
-              )),
-        ) : Container(),
-        SizedBox(height: 6,),
-        AdaptivePayButton(
-          applePayButton: ApplePayButton(
-            style: ApplePayButtonStyle.automatic,
-            type: ApplePayButtonType.plain,
-            request: PaymentRequest.apple(
-              apple: appleParameters,
-              currencyCode: 'SAR',
-              countryCode: 'SA',
-              paymentItems: [
-                PaymentItem(name: 'Caterme', price: calculateTotalPrice())
-              ],
+                onPaymentResult: (PaymentResponse? req) {
+                  if(req != null){
+                    screenState.requestPayment(PaymentTypeRequest(type:'applepay'));
+                  }
+                },
+                onError: (Object? e) {
+
+                },
+              ),
+              googlePayButton: GooglePayButton(
+                type: GooglePayButtonType.plain,
+                width: double.maxFinite,
+                request: PaymentRequest.google(
+                  paymentNetworks: <PaymentNetwork>[
+                    PaymentNetwork.amex,
+                    PaymentNetwork.discover,
+                    PaymentNetwork.interac,
+                    PaymentNetwork.jcb,
+                    PaymentNetwork.mastercard,
+                    PaymentNetwork.visa,
+                    PaymentNetwork.mir,
+                  ],
+                  google: googleParameters,
+                  currencyCode: 'SAR',
+                  countryCode: 'SA',
+                  paymentItems: [
+                    PaymentItem(name: 'Caterme', price: calculateTotalPrice())
+                  ],
+                ),
+                onPaymentResult: (PaymentResponse? req) {
+                  if(req != null){
+                    screenState.requestPayment(PaymentTypeRequest(type:'googlepay'));
+                  }
+                },
+                onError: (Object? e) {
+
+                },
+              ),
             ),
-            onPaymentResult: (PaymentResponse? req) {
-              if(req != null){
-                screenState.requestPayment(PaymentTypeRequest(type:'applepay'));
-              }
-            },
-            onError: (Object? e) {
 
-            },
-          ),
-          googlePayButton: GooglePayButton(
-            type: GooglePayButtonType.plain,
-            request: PaymentRequest.google(
-              paymentNetworks: <PaymentNetwork>[
-                PaymentNetwork.amex,
-                PaymentNetwork.discover,
-                PaymentNetwork.interac,
-                PaymentNetwork.jcb,
-                PaymentNetwork.mastercard,
-                PaymentNetwork.visa,
-                PaymentNetwork.mir,
-              ],
-              google: googleParameters,
-              currencyCode: 'SAR',
-              countryCode: 'SA',
-              paymentItems: [
-                PaymentItem(name: 'Caterme', price: calculateTotalPrice())
-              ],
-            ),
-            onPaymentResult: (PaymentResponse? req) {
-              if(req != null){
-                screenState.requestPayment(PaymentTypeRequest(type:'googlepay'));
-              }
-            },
-            onError: (Object? e) {
-
-            },
-          ),
-        ),
-
-      ],),
-
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+          ],),
+        )
+      ],
     );
   }
 

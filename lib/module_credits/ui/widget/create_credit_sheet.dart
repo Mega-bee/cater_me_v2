@@ -37,7 +37,7 @@ class _CreateOccasionCardState extends State<CreateCreditSheet> {
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
       initialChildSize: 0.7,
-      maxChildSize: 0.9,
+      maxChildSize: 1.0,
       builder: (context, scrollController) => Container(
         decoration: BoxDecoration(
             color: Theme.of(context).scaffoldBackgroundColor,
@@ -151,7 +151,8 @@ class _CreateOccasionCardState extends State<CreateCreditSheet> {
              name: cardNameHolder.text, cvv: cvvController.text,
              token: response?.token ??''));
        } catch (err) {
-         print(err);
+         TipDialogHelper.dismiss();
+         TipDialogHelper.fail(err.toString());
        }
      }
    });

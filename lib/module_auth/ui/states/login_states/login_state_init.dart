@@ -1,4 +1,5 @@
 import 'package:cater_me_v2/generated/l10n.dart';
+import 'package:cater_me_v2/module_auth/authorization_routes.dart';
 import 'package:cater_me_v2/module_auth/ui/screen/login_screen/login_screen.dart';
 import 'package:cater_me_v2/module_auth/ui/states/login_states/login_state.dart';
 import 'package:cater_me_v2/module_auth/ui/widget/login_widgets/custom_field.dart';
@@ -37,7 +38,7 @@ class LoginStateInit extends LoginState {
                     ? Padding(
                         padding: const EdgeInsets.all(24.0),
                         child: Image.asset(
-                          ImageAsset.LOGO,
+                          ImageAsset.LOGOAuth,
                           width: 90,
                           height: 230,
                         ),
@@ -47,10 +48,11 @@ class LoginStateInit extends LoginState {
                   height: 45,
                 ),
                 CustomLoginFormField(
-                  hintText: S.of(context).username,
+                  hintText: S.of(context).phoneNumber,
                   validator: true,
+                  phone: true,
                   controller: usernameController,
-                  preIcon: Icon(Icons.email),
+                  preIcon: Icon(Icons.phone_android),
                   borderRadius: 15,
                 ),
                 SizedBox(
@@ -81,8 +83,25 @@ class LoginStateInit extends LoginState {
                   textColor: Colors.white,
                 ),
                 SizedBox(
+                  height: 15,
+                ),
+
+                InkWell(
+                  onTap: (){
+                    Navigator.pushNamed(context, AuthorizationRoutes.REGISTER_SCREEN);
+                  },
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                    Text(S.of(context).dontHaveAccount),
+                    Text(S.of(context).createAccount ,
+                      style: TextStyle(fontWeight: FontWeight.bold  ,color: Theme.of(context).primaryColor,),),
+                  ],),
+                ),
+                SizedBox(
                   height: 20,
                 ),
+
                 Center(
                   child: RichText(
                     text: TextSpan(

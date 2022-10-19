@@ -39,10 +39,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<String> _getNextRoute() async {
     await Future.delayed(Duration(seconds: 6));
-    if (widget._authService.isLoggedIn) {
-      return HomePageRoutes.homePage;
-    } else {
-      return AuthorizationRoutes.LOGIN_SCREEN;
-    }
+    // if (widget._authService.isLoggedIn) {
+    //   return HomePageRoutes.homePage;
+    // } else {
+    //   return AuthorizationRoutes.LOGIN_SCREEN;
+    // }
+    return HomePageRoutes.homePage;
   }
 }

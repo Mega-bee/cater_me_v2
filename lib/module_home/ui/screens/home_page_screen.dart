@@ -2,6 +2,7 @@ import 'package:cater_me_v2/consts/globale_cart.dart';
 import 'package:cater_me_v2/di/di_config.dart';
 import 'package:cater_me_v2/module_home/response/homepage_response.dart';
 import 'package:cater_me_v2/module_home/ui/widget/custom_action_botton.dart';
+import 'package:cater_me_v2/module_home/ui/widget/search_item_card.dart';
 import 'package:cater_me_v2/module_settings/setting_routes.dart';
 import 'package:cater_me_v2/utils/global/global_state_manager.dart';
 import 'package:flutter/cupertino.dart';
@@ -27,6 +28,7 @@ class HomePageScreen extends StatefulWidget {
 
 class HomePageScreenState extends State<HomePageScreen> {
   late OrderSettings orderSettingsModel;
+  List<Item> allProducts = [];
   @override
   void initState() {
     super.initState();
@@ -69,9 +71,12 @@ class HomePageScreenState extends State<HomePageScreen> {
               },
               child: Icon(Icons.person)),
           actions: [
-            Icon(
-              CupertinoIcons.search,
-              size: 35,
+            IconButton(
+              onPressed: (){
+                  showSearch(context: context, delegate: CustomDelegate(allProducts));
+              },
+              icon: Icon(Icons.search),
+
             )
           ],
         ),
@@ -96,4 +101,53 @@ class HomePageScreenState extends State<HomePageScreen> {
               )
             : Container());
   }
+}
+
+class CustomDelegate extends SearchDelegate {
+  List<Item>  allItems;
+
+
+  CustomDelegate(this.allItems);
+
+  @override
+  List<Widget>? buildActions(BuildContext context) {
+    return [
+      IconButton(onPressed: (){
+        query = '';
+      }, icon: Icon(Icons.clear))
+    ];
+  }
+
+  @override
+  Widget? buildLeading(BuildContext context) {
+    return  IconButton(onPressed: (){
+     close(context, '');
+    }, icon: Icon(Icons.arrow_back));
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    List<Item>  matchItem = [];
+    for(var pro in allItems){
+      if(pro.title!.toLowerCase().contains(query.toLowerCase()) || pro.titleAr!.toLowerCase().contains(query.toLowerCase())){
+        matchItem.add(pro);
+      }
+    }
+    return ListView.builder(itemBuilder: (context, index) =>
+        SearchItemCard(model: matchItem[index]),itemCount: matchItem.length,shrinkWrap: true,);
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    List<Item>  matchItem = [];
+    for(var pro in allItems){
+      if(pro.title!.toLowerCase().contains(query.toLowerCase()) || pro.titleAr!.toLowerCase().contains(query.toLowerCase())){
+        matchItem.add(pro);
+      }
+    }
+    return ListView.builder(itemBuilder: (context, index) =>
+        SearchItemCard(model: matchItem[index]),
+      itemCount: matchItem.length,shrinkWrap: true,);
+  }
+
 }

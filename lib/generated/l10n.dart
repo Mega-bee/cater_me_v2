@@ -839,6 +839,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Otp code`
+  String get code {
+    return Intl.message(
+      'Otp code',
+      name: 'code',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `you don't have account ? `
+  String get dontHaveAccount {
+    return Intl.message(
+      'you don\'t have account ? ',
+      name: 'dontHaveAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create account`
+  String get createAccount {
+    return Intl.message(
+      'Create account',
+      name: 'createAccount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You should login first`
+  String get loginAlert {
+    return Intl.message(
+      'You should login first',
+      name: 'loginAlert',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

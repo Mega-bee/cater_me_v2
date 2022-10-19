@@ -94,6 +94,7 @@ class ItemDetailsScreenState extends State<ItemDetailsScreen> {
                                 context: context,
                                 backgroundColor: Colors.transparent,
                                 builder: (context) => AddToCartSheet(
+                                  loggedUser: widget._authService.isLoggedIn,
                                     model: itemDetails!,
                                     AlreadyExist: alreadyInList,
                                     refreshHome: (actionBool) {

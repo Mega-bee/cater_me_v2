@@ -10,6 +10,7 @@ import 'package:cater_me_v2/module_credits/credit_module.dart';
 import 'package:cater_me_v2/module_friends/friends_module.dart';
 import 'package:cater_me_v2/module_home/homepage_module.dart';
 import 'package:cater_me_v2/module_localization/service/localization_service/localization_service.dart';
+import 'package:cater_me_v2/module_notification/notification_module.dart';
 import 'package:cater_me_v2/module_occasions/occasions_module.dart';
 import 'package:cater_me_v2/module_orders/order_module.dart';
 import 'package:cater_me_v2/module_payments/payment_module.dart';
@@ -81,7 +82,6 @@ class MyApp extends StatefulWidget {
 //  final LocalNotificationService _localNotificationService;
   final SplashModule _splashModule;
   final AuthorizationModule _authorizationModule;
-  // final SettingsModule _settingsModule;
   final HomePageModule _homePageModule;
   final OccasionsModule _occasionsModule;
   final SettingModule _settingModule;
@@ -91,6 +91,7 @@ class MyApp extends StatefulWidget {
   final PaymentModule _paymentModule;
   final AddressModule _addressModule;
   final OrdersModule _ordersModule;
+  final NotificationModule _notificationModule;
 
   MyApp(
       this._themeDataService,
@@ -99,8 +100,6 @@ class MyApp extends StatefulWidget {
 //      this._localNotificationService,
       this._splashModule,
       this._authorizationModule,
-//      this._chatModule,
-//       this._settingsModule,
       this._homePageModule,
       this._occasionsModule,
       this._settingModule,
@@ -109,7 +108,8 @@ class MyApp extends StatefulWidget {
       this._creditsModule,
       this._paymentModule,
       this._addressModule ,
-      this._ordersModule
+      this._ordersModule,
+      this._notificationModule
       );
 
   @override

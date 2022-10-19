@@ -13,6 +13,7 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_date_pickers/flutter_date_pickers.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:tip_dialog/tip_dialog.dart';
 
@@ -45,6 +46,7 @@ class _CustomBottomSheetState extends State<CartSheet> {
   // num taxPrice = 0;
   num dabbrneTotalPrice = 0;
   // num totalAmount = 0;
+  final GlobalKey<FormState> _loginKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -589,8 +591,9 @@ class _CustomBottomSheetState extends State<CartSheet> {
                                         _selectTime.format(context).split(' ').first,
                                         selectedGuest?.id,
                                         '', '', setup,orders));
+                              }else{
+                                Fluttertoast.showToast(msg: 'Write occasion title');
                               }
-
                             }),
                       )
                     ],

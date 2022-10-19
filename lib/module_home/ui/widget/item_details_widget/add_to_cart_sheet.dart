@@ -1,16 +1,18 @@
 import 'package:cater_me_v2/consts/globale_cart.dart';
 import 'package:cater_me_v2/generated/l10n.dart';
 import 'package:cater_me_v2/module_home/response/homepage_response.dart';
+import 'package:cater_me_v2/utils/components/custom_alert_dialog.dart';
 import 'package:flutter/material.dart';
 
 class AddToCartSheet extends StatefulWidget {
   final Item model;
   final Function(bool) refreshHome;
   final bool AlreadyExist;
+  final bool loggedUser;
   const AddToCartSheet(
       {required this.model,
       required this.refreshHome,
-      required this.AlreadyExist});
+      required this.AlreadyExist, required this.loggedUser});
 
   @override
   State<AddToCartSheet> createState() => _AddToCartSheetState();
@@ -165,31 +167,34 @@ class _AddToCartSheetState extends State<AddToCartSheet> {
                             const EdgeInsetsDirectional.fromSTEB(2, 1, 5, 3),
                         child: ElevatedButton(
                             onPressed: () {
-                              if(widget.model.isMenu){
-                               var f = itemsInCart.where((element) => element.isMenu);
-                               if(f.isNotEmpty){
-                                 showDialog(context: context,
-                                   builder: (context) => showAlertForAnotherMenu(f.first.title ??'' , (){
-                                     itemsInCart.remove(f.first);
-                                     itemsInCart.add(widget.model);
-                                     Navigator.pop(context);
-                                     widget.refreshHome(true);
-                                   }),);
-                               }else{
-                                 itemsInCart.add(widget.model);
-                                 Navigator.pop(context);
-                                 widget.refreshHome(true);
-                               }
-                              }else{
-                                if (widget.AlreadyExist) {
-                                  itemsInCart.remove(widget.model);
+                              if(widget.loggedUser){
+                                if(widget.model.isMenu){
+                                  var f = itemsInCart.where((element) => element.isMenu);
+                                  if(f.isNotEmpty){
+                                    showDialog(context: context,
+                                      builder: (context) => showAlertForAnotherMenu(f.first.title ??'' , (){
+                                        itemsInCart.remove(f.first);
+                                        itemsInCart.add(widget.model);
+                                        Navigator.pop(context);
+                                        widget.refreshHome(true);
+                                      }),);
+                                  }else{
+                                    itemsInCart.add(widget.model);
+                                    Navigator.pop(context);
+                                    widget.refreshHome(true);
+                                  }
+                                }else{
+                                  if (widget.AlreadyExist) {
+                                    itemsInCart.remove(widget.model);
+                                  }
+                                  itemsInCart.add(widget.model);
+                                  Navigator.pop(context);
+                                  widget.refreshHome(true);
                                 }
-
-                                itemsInCart.add(widget.model);
-                                Navigator.pop(context);
-                                widget.refreshHome(true);
+                              }else {
+                                showDialog(context: context,builder: (context) =>
+                                    CustomDialogBox(title: S.of(context).loginAlert,),);
                               }
-
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Theme.of(context).primaryColor,

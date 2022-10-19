@@ -5,6 +5,9 @@ import 'package:cater_me_v2/module_auth/exceptions/auth_exception.dart';
 import 'package:cater_me_v2/module_auth/presistance/auth_prefs_helper.dart';
 import 'package:cater_me_v2/module_auth/repository/auth/auth_repository.dart';
 import 'package:cater_me_v2/module_auth/request/login_request/login_request.dart';
+import 'package:cater_me_v2/module_auth/request/register_request/generate_otp.dart';
+import 'package:cater_me_v2/module_auth/request/register_request/register_request.dart';
+import 'package:cater_me_v2/module_auth/request/register_request/verfy_code_request.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -48,13 +51,47 @@ class AuthService {
     _authSubject.add(AuthStatus.AUTHORIZED_CLIENT);
   }
 
+  Future<void> signUpApi(RegisterRequest request) async {
+    WebServiceResponse? signResult = await _authManager.registerClient(request);
+    if (signResult == null) {
+      _authSubject.addError('Connection error');
+      throw AuthorizationException('Connection error');
+    } else if (  signResult.code != 401  ) {
+      _authSubject.addError(signResult.errorMessage);
+      throw AuthorizationException(signResult.errorMessage);
+    }
+    generateOtpApi(GenerateOtpRequest(request.phone),request.password ??'');
+  }
+
+  Future<void> generateOtpApi(GenerateOtpRequest request,String pass) async {
+    WebServiceResponse? generateResult = await _authManager.generateOtp(request);
+    if (generateResult == null) {
+      _authSubject.addError('Connection error');
+      throw AuthorizationException('Connection error');
+    } else if (  generateResult.code != 200  ) {
+      _authSubject.addError(generateResult.errorMessage);
+      throw AuthorizationException(generateResult.errorMessage);
+    }
+      _prefsHelper.setPassword(pass);
+      _prefsHelper.setUsername(request.phoneNumber ?? '');
+    _authSubject.add(AuthStatus.CONFIRM_CODE);
+  }
+
+  Future<void> confirmOtpApi(VerifyCodeRequest request) async {
+    request.phoneNumber = username;
+    WebServiceResponse? confirmResult = await _authManager.confirmOtp(request);
+    if (confirmResult == null) {
+      _authSubject.addError('Connection error');
+      throw AuthorizationException('Connection error');
+    } else if (  confirmResult.code != 200  ) {
+      _authSubject.addError(confirmResult.errorMessage);
+      throw AuthorizationException(confirmResult.errorMessage);
+    }
+    loginApi(request.phoneNumber??'' ,password);
+  }
+
   Future<String?> getToken() async {
     try {
-      var tokenDate = _prefsHelper.getTokenDate();
-      var diff = DateTime.now().difference(tokenDate).inMinutes;
-      if (diff.abs() > 55) {
-        throw TokenExpiredException('Token is created $diff minutes ago');
-      }
       return _prefsHelper.getToken();
     } on AuthorizationException {
       _prefsHelper.deleteToken();

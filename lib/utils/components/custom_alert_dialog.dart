@@ -1,36 +1,7 @@
-import 'dart:async';
-
 import 'package:cater_me_v2/generated/l10n.dart';
+import 'package:cater_me_v2/module_auth/authorization_routes.dart';
 import 'package:cater_me_v2/utils/images/images.dart';
 import 'package:flutter/material.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
-
-class CustomAlertDialog extends StatelessWidget {
-  final VoidCallback? onPressed;
-  final String content;
-  final String? title;
-  CustomAlertDialog(
-      {required this.onPressed, required this.content, this.title});
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      title: Text(title ?? S.current.warning),
-      content: Container(child: Text(content)),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      actions: [
-        TextButton(onPressed: onPressed, child: Text(S.current.confirm)),
-        TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text('Cancel')),
-      ],
-    );
-  }
-}
 
 class CustomDialogBox extends StatefulWidget {
   final String title;
@@ -42,9 +13,6 @@ class CustomDialogBox extends StatefulWidget {
 }
 
 class _CustomDialogBoxState extends State<CustomDialogBox> {
-  TextEditingController passwordController = TextEditingController();
-  StreamController<ErrorAnimationType> errorController = StreamController<ErrorAnimationType>();
-
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -65,7 +33,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
           margin: EdgeInsets.only(top: 40),
           decoration: BoxDecoration(
               shape: BoxShape.rectangle,
-              color: Colors.white,
+              color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
@@ -78,51 +46,23 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
                   widget.title,
-                  style: TextStyle(fontWeight: FontWeight.w600),
+                  style: TextStyle(fontWeight: FontWeight.w600 , fontSize: 18),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: PinCodeTextField(
-                  appContext: context,
-                  length: 5,
-                  obscureText: false,
-                  animationType: AnimationType.slide,
-                  pinTheme: PinTheme(
-                    shape: PinCodeFieldShape.box,
-                    borderRadius: BorderRadius.circular(10),
-                    fieldHeight: 40,
-                    fieldWidth: 40,
-                    activeFillColor: Colors.white,
-                    inactiveFillColor: Colors.grey.shade300,
-            selectedColor: Colors.white,
-                    borderWidth: 0,
-                    selectedFillColor:Theme.of(context).primaryColor
-                  ),
-                  animationDuration: Duration(milliseconds: 300),
-//                backgroundColor: Colors.blue.shade50,
-                enableActiveFill: true,
-                  controller: passwordController,
-                  onCompleted: (v) {
-                    Navigator.pop(context);
+              Align(
+                alignment: Alignment.bottomRight,
+                child: TextButton.icon(
+                  onPressed: () {
+                    Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      AuthorizationRoutes.LOGIN_SCREEN,
+                          (route) => false,
+                    );
                   },
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  keyboardType: TextInputType.number,
-                  validator: (va){
-                    if(va != '12345'){
-                      return 'errroorr';
-                    }
-                  },
-                  onSubmitted: (v){
-                    print(v);
-                    print('Submmiiit');
-                  },
-                  errorAnimationController: errorController,
-
+                  icon: Icon(Icons.login),
+                  label: Text(S.of(context).login),
                 ),
-              ),
+              )
             ],
           ),
         ),
@@ -134,8 +74,7 @@ class _CustomDialogBoxState extends State<CustomDialogBox> {
             radius: 40,
             child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(12)),
-                // child: Image.asset(ImageAsset.PASSWORD)),
-            )
+                child: Image.asset(ImageAsset.PASSWORD)),
           ),
         ),
       ],

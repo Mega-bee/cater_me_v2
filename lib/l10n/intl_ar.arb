@@ -84,5 +84,11 @@
 
   "deliveringTo": "توصيل إلى",
   "select": "اختر",
-  "payNow": "أدفع الان"
+  "payNow": "أدفع الان",
+
+  "code": "رمز التحقق",
+
+  "dontHaveAccount": "ليس لديك حساب ؟ ",
+  "createAccount": "إنشاء حساب",
+  "loginAlert": "يجب عليك تسجيل الدخول أولا"
 }

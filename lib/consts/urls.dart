@@ -10,9 +10,15 @@ class Urls {
   static const String ADDRESS = DOMAIN + 'Addresses/';
   static const String ORDERS = DOMAIN + 'Orders/';
   static const String CHECKOUT = DOMAIN + 'Checkout/';
+  static const String SETTINGS = DOMAIN + 'Settings/';
+  static const String NOTIFICATIONS = DOMAIN + 'Notifications/';
 
   //-------------Auth------------
   static const String LOGIN = ACCOUNTS + 'Login';
+  static const String SIGNUP = ACCOUNTS + 'SignUp';
+  static const String CONFIRM_OTP = ACCOUNTS + 'ConfirmPhoneNumber';
+  static const String GENERATE_OTP = ACCOUNTS + 'GenerateOtp';
+
   static const String GET_PROFILE = ACCOUNTS + 'GetProfile';
   static const String UPDATE_PROFILE = ACCOUNTS + 'UpdateProfile';
 
@@ -52,5 +58,11 @@ class Urls {
 
   //------------REQUEST---------------
   static const String REQUEST_PAYMENT = CHECKOUT + 'RequestPayment';
+
+  //--------------SETTINGS------------
+  static const String GET_CONTACT_US = SETTINGS + 'GetContactUs';
+
+  //--------------NOTIFICATION------------
+  static const String GET_NOTIFICATION = NOTIFICATIONS + 'GetAllNotifications';
 
 }

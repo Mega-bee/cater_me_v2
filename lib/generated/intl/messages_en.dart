@@ -33,10 +33,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change quantity"),
         "checkOut": MessageLookupByLibrary.simpleMessage("CheckOut"),
         "city": MessageLookupByLibrary.simpleMessage("City"),
+        "code": MessageLookupByLibrary.simpleMessage("Otp code"),
         "companyInfo": MessageLookupByLibrary.simpleMessage("Company info"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "contactUs": MessageLookupByLibrary.simpleMessage("Contact us"),
         "country": MessageLookupByLibrary.simpleMessage("Country"),
+        "createAccount": MessageLookupByLibrary.simpleMessage("Create account"),
         "createAddress": MessageLookupByLibrary.simpleMessage("Create address"),
         "createCredit": MessageLookupByLibrary.simpleMessage("Create Credit"),
         "createFriend": MessageLookupByLibrary.simpleMessage("Create friend"),
@@ -46,6 +48,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dabbrniePrice": MessageLookupByLibrary.simpleMessage("Dabbrnie price"),
         "darkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
         "deliveringTo": MessageLookupByLibrary.simpleMessage("Delivering to"),
+        "dontHaveAccount":
+            MessageLookupByLibrary.simpleMessage("you don\'t have account ? "),
         "emailAddressIsRequired":
             MessageLookupByLibrary.simpleMessage("Email Address is Required"),
         "errorHappened": MessageLookupByLibrary.simpleMessage("Error Happened"),
@@ -62,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "loading": MessageLookupByLibrary.simpleMessage("Loading"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
+        "loginAlert":
+            MessageLookupByLibrary.simpleMessage("You should login first"),
         "maxQuantity": MessageLookupByLibrary.simpleMessage("Maximum Quantity"),
         "minQuantity": MessageLookupByLibrary.simpleMessage("Minimum Quantity"),
         "networkError": MessageLookupByLibrary.simpleMessage("networkError"),

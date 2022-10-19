@@ -37,6 +37,9 @@ class HomePageCubit extends Cubit<States> {
         HomePageResponse homePageModel =
             HomePageResponse.fromJson(value.data.insideData);
         state.orderSettingsModel = homePageModel.orderSettings!;
+        for(Packages pack in homePageModel.addons! ){
+          state.allProducts = state.allProducts + pack.items!;
+        }
         emit(
           HomePageSuccess(homepage: homePageModel, homepageState: state),
         );
@@ -51,6 +54,7 @@ class HomePageCubit extends Cubit<States> {
         TipDialogHelper.fail("Connection error, try again");
       }else if (value.code == 201){
         TipDialogHelper.dismiss();
+
         Navigator.pushNamed(screenState.context, PaymentRoutes.PAYMENT_METHOD ,arguments: value.data.insideData);
       }else {
         TipDialogHelper.dismiss();
