@@ -63,6 +63,7 @@ class FriendsScreenState extends State<FriendsScreen> {
                   context: context,
                   builder: (context) {
                     return CreateFriendSheet(createFriend: (req){
+                      Navigator.pop(context);
                       createFriend(req);
                     },isUpdated: false,);
                   },

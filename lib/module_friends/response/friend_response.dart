@@ -5,6 +5,8 @@ class FriendsResponse {
      this.phoneNumber,
      this.email,
      this.image,
+    this.isSelected = false,
+    this.amount
    });
 
     int? id;
@@ -12,6 +14,8 @@ class FriendsResponse {
    String? phoneNumber;
    String? email;
    String? image;
+   bool ? isSelected;
+   int? amount;
 
 
   FriendsResponse.fromJson(Map<String, dynamic> json)  {
@@ -20,6 +24,8 @@ class FriendsResponse {
        image = json["image"];
        phoneNumber = json["phoneNumber"];
        email = json["email"];
+       isSelected = false;
+       amount = 0;
 
      }
  }

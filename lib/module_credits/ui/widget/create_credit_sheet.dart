@@ -70,12 +70,12 @@ class _CreateOccasionCardState extends State<CreateCreditSheet> {
                     children: [
                       CustomFormField(
                         controller: cardNameHolder,
-                        hintText: 'holder name',
+                        hintText:  S.of(context).holderName,
                         validator: true,
                       ),
                       CustomFormField(
                         controller: cardNumber,
-                        hintText: 'Card number',
+                        hintText: S.of(context).cardNumber,
                         validator: true,
                         numbers: true,
                       ),

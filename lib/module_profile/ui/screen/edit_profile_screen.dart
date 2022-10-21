@@ -1,3 +1,4 @@
+import 'package:cater_me_v2/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -55,7 +56,7 @@ class EditProfileScreenState extends State<EditProfileScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(
-          "Profile",
+          S.of(context).profile,
           style: TextStyle(
             color: Colors.white,
           ),

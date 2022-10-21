@@ -96,7 +96,7 @@ class AddressCubit extends Cubit<States> {
             retry: () {
               getAddress(screenState);
             }));
-      } else if (value.code == 200) {
+      } else if (value.code == 201) {
         getAddress(screenState);
       } else {
         emit(ErrorState(

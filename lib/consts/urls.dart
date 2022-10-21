@@ -12,6 +12,7 @@ class Urls {
   static const String CHECKOUT = DOMAIN + 'Checkout/';
   static const String SETTINGS = DOMAIN + 'Settings/';
   static const String NOTIFICATIONS = DOMAIN + 'Notifications/';
+  static const String SURVEY = DOMAIN + 'Survey/';
 
   //-------------Auth------------
   static const String LOGIN = ACCOUNTS + 'Login';
@@ -61,6 +62,8 @@ class Urls {
 
   //--------------SETTINGS------------
   static const String GET_CONTACT_US = SETTINGS + 'GetContactUs';
+  static const String GET_RATE_POTIONS = SURVEY + 'GetFeedBackOptions';
+  static const String SUBMIT_SURVEY = SURVEY + 'SubmitSurvey';
 
   //--------------NOTIFICATION------------
   static const String GET_NOTIFICATION = NOTIFICATIONS + 'GetAllNotifications';

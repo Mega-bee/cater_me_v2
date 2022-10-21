@@ -640,6 +640,26 @@ class S {
     );
   }
 
+  /// `Holder name`
+  String get holderName {
+    return Intl.message(
+      'Holder name',
+      name: 'holderName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Card number`
+  String get cardNumber {
+    return Intl.message(
+      'Card number',
+      name: 'cardNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Address title`
   String get titleAddress {
     return Intl.message(
@@ -875,6 +895,156 @@ class S {
     return Intl.message(
       'You should login first',
       name: 'loginAlert',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `15% inclusive tax on food and beverage`
+  String get taxAlert {
+    return Intl.message(
+      '15% inclusive tax on food and beverage',
+      name: 'taxAlert',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `100% inclusive tax on shisha`
+  String get taxShesha {
+    return Intl.message(
+      '100% inclusive tax on shisha',
+      name: 'taxShesha',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add your location`
+  String get addLocation {
+    return Intl.message(
+      'Add your location',
+      name: 'addLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update location`
+  String get updateLocation {
+    return Intl.message(
+      'Update location',
+      name: 'updateLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select location`
+  String get selectLocation {
+    return Intl.message(
+      'Select location',
+      name: 'selectLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rate us`
+  String get rateUs {
+    return Intl.message(
+      'Rate us',
+      name: 'rateUs',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `OK`
+  String get ok {
+    return Intl.message(
+      'OK',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thank you for your feedBack`
+  String get thankFeedBack {
+    return Intl.message(
+      'Thank you for your feedBack',
+      name: 'thankFeedBack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to tell us anything else ?`
+  String get complaint {
+    return Intl.message(
+      'Do you want to tell us anything else ?',
+      name: 'complaint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We will be glad to hear your opinion`
+  String get rateTitle {
+    return Intl.message(
+      'We will be glad to hear your opinion',
+      name: 'rateTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Male`
+  String get male {
+    return Intl.message(
+      'Male',
+      name: 'male',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Female`
+  String get female {
+    return Intl.message(
+      'Female',
+      name: 'female',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Birthday`
+  String get birthDay {
+    return Intl.message(
+      'Birthday',
+      name: 'birthDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Gender`
+  String get gender {
+    return Intl.message(
+      'Gender',
+      name: 'gender',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select friends to share bill`
+  String get selectFriendsForBill {
+    return Intl.message(
+      'Select friends to share bill',
+      name: 'selectFriendsForBill',
       desc: '',
       args: [],
     );

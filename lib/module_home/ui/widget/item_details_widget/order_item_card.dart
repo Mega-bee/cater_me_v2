@@ -9,7 +9,8 @@ class OrderItemCard extends StatefulWidget {
   final Item model;
   final VoidCallback onDelete;
   final bool isDarrby;
-  const OrderItemCard({required this.model, required this.onDelete, required this.isDarrby});
+  final VoidCallback claulate;
+  const OrderItemCard({required this.model, required this.onDelete, required this.isDarrby, required this.claulate});
 
   @override
   State<OrderItemCard> createState() => _OrderItemCardState();
@@ -96,6 +97,7 @@ class _OrderItemCardState extends State<OrderItemCard> {
                                             widget.model.increment!);
                                       }
                                       setState(() {});
+                                      widget.claulate();
                               },
                               child: Icon(
                                 Icons.add,
@@ -130,6 +132,7 @@ class _OrderItemCardState extends State<OrderItemCard> {
                                           widget.model.increment!);
                                     }
                                     setState(() {});
+                                    widget.claulate();
                             },
                               child: Column(
                                 children: [

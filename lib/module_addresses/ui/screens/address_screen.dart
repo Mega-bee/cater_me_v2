@@ -74,6 +74,7 @@ class AddressScreenState extends State<AddressScreen> {
                   context: context,
                   builder: (context) {
                     return CreateAddressSheet(createAddress: (req){
+                      Navigator.pop(context);
                       createAddress(req);
                     },isUpdated: false,);
                   },

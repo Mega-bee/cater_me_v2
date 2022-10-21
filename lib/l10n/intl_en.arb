@@ -69,6 +69,8 @@
 
   "createCredit": "Create Credit",
   "credits" : "Credits",
+  "holderName": "Holder name",
+  "cardNumber": "Card number",
 
   "titleAddress": "Address title",
   "city": "City",
@@ -97,6 +99,25 @@
 
   "dontHaveAccount": "you don't have account ? ",
   "createAccount": "Create account",
-  "loginAlert": "You should login first"
+  "loginAlert": "You should login first",
+  "taxAlert": "15% inclusive tax on food and beverage",
+  "taxShesha": "100% inclusive tax on shisha",
+
+  "addLocation": "Add your location",
+  "updateLocation": "Update location",
+  "selectLocation": "Select location",
+
+  "rateUs": "Rate us",
+  "ok": "OK",
+  "thankFeedBack": "Thank you for your feedBack",
+  "complaint": "Do you want to tell us anything else ?",
+  "rateTitle": "We will be glad to hear your opinion",
+
+  "male": "Male",
+  "female": "Female",
+  "birthDay": "Birthday",
+  "gender": "Gender",
+
+  "selectFriendsForBill": "Select friends to share bill"
 
 }

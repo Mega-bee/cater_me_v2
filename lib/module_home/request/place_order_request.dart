@@ -9,6 +9,7 @@ class PlaceOrderRequest {
   String? contactPhone;
   List<int>? setupItem;
   List<OrderItem>? items = [];
+  List<PaymentFriend>? friends = [];
 
 
   PlaceOrderRequest(
@@ -20,7 +21,7 @@ class PlaceOrderRequest {
       this.numberOfGuest,
       this.contactName,
       this.contactPhone,
-      this.setupItem ,this.items);
+      this.setupItem ,this.items , this.friends);
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
@@ -32,6 +33,7 @@ class PlaceOrderRequest {
     data['Event.NumberOfGuestsId'] =this.numberOfGuest;
     data['SetupItems'] =this.setupItem;
     data['OrderItems'] = List<dynamic>.from(items!.map((x) => x.toJson()));
+    data['PaymentFriend'] = List<dynamic>.from(friends!.map((x) => x.toJson()));
     return data;
   }
 
@@ -47,6 +49,20 @@ class OrderItem {
     return {
       'itemId': id,
       'quantity':quantity
+    };
+  }
+}
+class PaymentFriend {
+  int? id;
+  num? amount;
+  String? name;
+
+  PaymentFriend({this.id, this.amount , this.name});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'friendId': id,
+      'amount':amount
     };
   }
 }

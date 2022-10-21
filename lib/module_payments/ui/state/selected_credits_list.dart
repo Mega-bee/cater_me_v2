@@ -5,7 +5,7 @@ import 'package:cater_me_v2/module_credits/ui/widget/credit_card.dart';
 import 'package:cater_me_v2/module_payments/request/payment_request.dart';
 import 'package:cater_me_v2/module_payments/ui/screens/payment_method_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:mad_pay/mad_pay.dart';
+// import 'package:mad_pay/mad_pay.dart';
 import '../../../abstracts/states/state.dart';
 
 class SelectedCreditsListSuccess extends States {
@@ -17,64 +17,6 @@ class SelectedCreditsListSuccess extends States {
       {required this.creditsList, required this.screenState});
 
   CreditsResponse? _selectedCard;
-
-  final AppleParameters appleParameters = AppleParameters(
-    merchantIdentifier: 'example_id',
-    billingContact: Contact(
-      emailAddress: 'test@test.com',
-      postalAddress: PostalAddress(
-        street: 's',
-        city: 'c',
-        state: 'st',
-        postalCode: '123321',
-        country: 'ct',
-      ),
-      name: PersonNameComponents(
-        familyName: 'qwe',
-        middleName: 'ewq',
-        namePrefix: 'a',
-        nameSuffix: 'h',
-        nickname: 'test',
-        phoneticRepresentation: PersonNameComponents(
-          middleName: 'ewq2',
-          givenName: 'rty2',
-          namePrefix: 'a2',
-          nameSuffix: 'h2',
-          nickname: 'test2',
-        ),
-      ),
-    ),
-    shippingContact: Contact(
-      emailAddress: 'test@test.com',
-    ),
-    merchantCapabilities: <MerchantCapabilities>[
-      MerchantCapabilities.threeds,
-      MerchantCapabilities.credit,
-    ],
-  );
-
-  final GoogleParameters googleParameters = GoogleParameters(
-    gatewayName: 'merchant',
-    gatewayMerchantId: '01234567890123456789',
-    merchantId: '01234567890123456789',
-    merchantName: 'Example Merchant Name',
-    cardParameters: CardParameters(
-      billingAddressRequired: true,
-      billingAddressParameters: BillingAddressParameters(
-        billingFormat: BillingFormat.full,
-        phoneNumberRequired: true,
-      ),
-    ),
-    // transactionInfo: TransactionInfo(
-    //   totalPriceLabel: 'Test',
-    //   checkoutOption: CheckoutOption.completeImmediatePurchase,
-    // ),
-    shippingAddressRequired: true,
-    shippingAddressParameters: ShippingAddressParameters(
-      phoneNumberRequired: true,
-    ),
-  );
-
   @override
   Widget getUI(BuildContext context) {
     return Stack(
@@ -146,58 +88,7 @@ class SelectedCreditsListSuccess extends States {
                           )),
                     )
                   : Container(),
-              AdaptivePayButton(
-                applePayButton: ApplePayButton(
-                  style: ApplePayButtonStyle.automatic,
-                  type: ApplePayButtonType.plain,
-                  height: 50,
-                  width: 376,
-                  request: PaymentRequest.apple(
-                    apple: appleParameters,
-                    currencyCode: 'SAR',
-                    countryCode: 'SA',
-                    paymentItems: [
-                      PaymentItem(name: 'Caterme', price: calculateTotalPrice())
-                    ],
-                  ),
-                  onPaymentResult: (PaymentResponse? req) {
-                    if (req != null) {
-                      screenState
-                          .requestPayment(PaymentTypeRequest(type: 'applepay'));
-                    }
-                  },
-                  onError: (Object? e) {},
-                ),
-                googlePayButton: GooglePayButton(
-                  type: GooglePayButtonType.plain,
-                  height: 50,
-                  width: 376,
-                  request: PaymentRequest.google(
-                    paymentNetworks: <PaymentNetwork>[
-                      PaymentNetwork.amex,
-                      PaymentNetwork.discover,
-                      PaymentNetwork.interac,
-                      PaymentNetwork.jcb,
-                      PaymentNetwork.mastercard,
-                      PaymentNetwork.visa,
-                      PaymentNetwork.mir,
-                    ],
-                    google: googleParameters,
-                    currencyCode: 'SAR',
-                    countryCode: 'SA',
-                    paymentItems: [
-                      PaymentItem(name: 'Caterme', price: calculateTotalPrice())
-                    ],
-                  ),
-                  onPaymentResult: (PaymentResponse? req) {
-                    if (req != null) {
-                      screenState.requestPayment(
-                          PaymentTypeRequest(type: 'googlepay'));
-                    }
-                  },
-                  onError: (Object? e) {},
-                ),
-              ),
+
               SizedBox(
                 height: 30,
               ),

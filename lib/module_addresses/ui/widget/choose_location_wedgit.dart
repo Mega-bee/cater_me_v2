@@ -45,11 +45,16 @@ class ChooseLocationWidgetState extends State<ChooseLocationWidget> {
   void initState() {
     super.initState();
     // _controller = GoogleMapController.init(id, _position);
+    _position = widget.previousLocation != null ? CameraPosition(
+      target: LatLng(widget.previousLocation!.latitude, widget.previousLocation!.longitude),
+      zoom: 15.0,
+    )  :_kInitialPosition;
     customInfoWindowController = CustomInfoWindowController();
     getDefualtLocation(widget.previousLocation);
   }
 
   getDefualtLocation([LatLng? previous]) async {
+    print('in loocc');
     late LatLng POS;
     if (previous == null || previous.latitude == 0.0) {
       var myLocation = await DeepLinksService.defaultLocation();
@@ -57,6 +62,7 @@ class ChooseLocationWidgetState extends State<ChooseLocationWidget> {
       print(POS);
       print('ddddddddddddddddddddddddddd');
     } else {
+     await Future.delayed(Duration(milliseconds: 30));
       print('innnnnnnnelllssseeeee');
       print(previous);
       POS = previous;
@@ -102,6 +108,7 @@ class ChooseLocationWidgetState extends State<ChooseLocationWidget> {
             Marker(markerId: MarkerId(v.latitude.toString()), position: v));
         setState(() {});
       },
+
     );
 
     return Scaffold(

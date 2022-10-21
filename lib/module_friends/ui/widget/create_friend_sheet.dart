@@ -26,6 +26,10 @@ class _CreateOccasionCardState extends State<CreateFriendSheet> {
   final GlobalKey<FormState> _addFriendKey = GlobalKey<FormState>();
   @override
   void initState() {
+    if(widget.isUpdated){
+      nameController.text = widget.response?.name ??'';
+      phoneController.text = widget.response?.phoneNumber ??'';
+    }
     super.initState();
   }
 
@@ -57,6 +61,7 @@ class _CreateOccasionCardState extends State<CreateFriendSheet> {
                 ),
                 CustomFormField(
                   validator: true,
+                  phone: true,
                   preIcon: Icon(
                     Icons.phone_android,
                   ),
@@ -105,7 +110,7 @@ class _CreateOccasionCardState extends State<CreateFriendSheet> {
                 loading: false,
                 buttonTab: () {
                   if(_addFriendKey.currentState!.validate()){
-
+                    widget.createFriend(CreateFriendRequest(name: nameController.text, phone: phoneController.text));
                   }
                 },
               ),

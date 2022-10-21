@@ -31,7 +31,7 @@
   "friends": " أصدقاء",
   "darkMode": " الوضع المظلم",
   "profile": "الملف الشخصي",
-  "address": " تبوك",
+  "address": "العناوين",
   "paymentMethod": " طريقة الدفع او السداد",
   "terms": " شروط",
   "contactUs": " اتصل بنا",
@@ -61,6 +61,8 @@
 
   "createCredit": "إنشاء بطاقة",
   "credits" : "البطاقات",
+  "holderName": "اسم حامل البطاقة",
+  "cardNumber": "رقم البطاقة",
 
   "titleAddress": "اسم العنوان",
   "city": "المدينة",
@@ -90,5 +92,24 @@
 
   "dontHaveAccount": "ليس لديك حساب ؟ ",
   "createAccount": "إنشاء حساب",
-  "loginAlert": "يجب عليك تسجيل الدخول أولا"
+  "loginAlert": "يجب عليك تسجيل الدخول أولا",
+
+  "taxAlert": "15٪ ضريبة شاملة على المأكولات والمشروبات",
+  "taxShesha": "100٪ ضريبة شاملة على الشيشة",
+
+  "addLocation": "أضف موقعك",
+  "updateLocation": "تعديل الموقع",
+  "selectLocation": "حدد موقعك",
+
+  "rateUs": "التقييم",
+  "ok": "تم",
+  "thankFeedBack": "شكرا لك على تقييمك",
+  "complaint": "هل تريد إخبارنا بأي شئ أخر",
+  "rateTitle": "سنكون سعداء بسماع رأيك",
+
+  "male": "ذكر",
+  "female": "إنثى",
+  "birthDay": "تاريخ الميلاد",
+  "gender": "الجنس",
+  "selectFriendsForBill": "أختر الأصدقاء لمشاركة الفاتورة"
 }

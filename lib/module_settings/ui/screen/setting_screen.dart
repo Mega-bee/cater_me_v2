@@ -11,6 +11,7 @@ import 'package:cater_me_v2/module_occasions/occasions_route.dart';
 import 'package:cater_me_v2/module_orders/order_route.dart';
 import 'package:cater_me_v2/module_payments/payment_route.dart';
 import 'package:cater_me_v2/module_profile/profile_route.dart';
+import 'package:cater_me_v2/module_settings/setting_routes.dart';
 import 'package:cater_me_v2/module_settings/state_manager/contact_state_manager.dart';
 import 'package:cater_me_v2/module_settings/ui/widgets/icon_background_card.dart';
 import 'package:cater_me_v2/module_settings/ui/widgets/language_sheet.dart';
@@ -41,6 +42,7 @@ class SettingScreenState extends State<SettingScreen> {
   void initState() {
     super.initState();
     widget.cubit.getContactInfo(this);
+
   }
 
   @override
@@ -219,10 +221,9 @@ class SettingScreenState extends State<SettingScreen> {
                                     title: Text(
                                       S.of(context).language,
                                     ),
-                                    trailing: Text(Text(
-                                                Localizations.localeOf(context)
-                                                    .languageCode) ==
-                                            'ar'
+                                    trailing: Text(
+                                        Localizations.localeOf(context)
+                                            .languageCode == 'ar'
                                         ? 'العربية'
                                         : 'English')),
                               ),
@@ -276,12 +277,12 @@ class SettingScreenState extends State<SettingScreen> {
                               InkWell(
                                 onTap: () {
                                   Navigator.pushNamed(
-                                      context, PaymentRoutes.PAYMENT_METHOD);
+                                      context, SettingRoutes.RATE_SCREEN);
                                 },
                                 child: ListTile(
-                                  leading: Icon(Icons.contact_phone),
+                                  leading: Icon(Icons.star),
                                   title: Text(
-                                    S.of(context).contactUs,
+                                    S.of(context).rateUs,
                                   ),
                                 ),
                               ),

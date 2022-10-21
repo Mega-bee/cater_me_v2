@@ -1,7 +1,7 @@
 class CreateAddressRequest {
   int? id;
   String? city;
-  String? country;
+
   String? street;
   String? buildingName;
   String? title;
@@ -12,7 +12,7 @@ class CreateAddressRequest {
   CreateAddressRequest(
       this.id,
       this.city,
-      this.country,
+
       this.street,
       this.buildingName,
       this.title,
@@ -25,7 +25,7 @@ class CreateAddressRequest {
       'id': id ?? 0,
       'Title': title,
       "City": city,
-      "Country": country,
+      "Country": '',
       "Street": street,
       "BuildingName": buildingName,
       "Longitude": longitude,

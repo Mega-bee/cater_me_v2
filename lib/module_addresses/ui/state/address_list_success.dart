@@ -15,6 +15,7 @@ class AddressListSuccess extends States {
   Widget getUI(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) => AddressCard(
+        onSelect: (){},
         model: addressList[index],
         isSelectedPage: false,
         onDelete: () {
@@ -28,6 +29,7 @@ class AddressListSuccess extends States {
                 return CreateAddressSheet(
                   createAddress: (req) {
                     req.id = addressList[index].id;
+                    Navigator.pop(context);
                     screenState.updateAddress(req);
                   },
                   isUpdated: true,

@@ -27,7 +27,7 @@ class ItemDetailsCard extends StatelessWidget {
                   key: UniqueKey(),
                   imageUrl:isArabic? model.imageAr ?? '' : model.image ?? '',
                   fit: BoxFit.cover,
-                  height: 105,
+                  height: 110,
                   color: Theme.of(context).cardColor,
                   imageBuilder: (context, imageProvider) => Container(
                     // width: 150,
@@ -57,7 +57,7 @@ class ItemDetailsCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(isArabic ? model.itemAr ?? '' : model.itemAr ?? ''),
+                    Text(isArabic ? model.itemAr ?? '' : model.item ?? ''),
                     Text(
                        "${model.price}"+S.of(context).sar ,
                       style: GoogleFonts.poppins(

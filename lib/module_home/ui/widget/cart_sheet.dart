@@ -2,6 +2,7 @@ import 'package:cater_me_v2/consts/globale_cart.dart';
 import 'package:cater_me_v2/generated/l10n.dart';
 import 'package:cater_me_v2/module_addresses/address_route.dart';
 import 'package:cater_me_v2/module_addresses/response/address_response.dart';
+import 'package:cater_me_v2/module_friends/friends_route.dart';
 import 'package:cater_me_v2/module_home/request/place_order_request.dart';
 import 'package:cater_me_v2/module_home/response/homepage_response.dart';
 import 'package:cater_me_v2/module_home/ui/widget/item_details_widget/order_item_card.dart';
@@ -38,6 +39,7 @@ class _CustomBottomSheetState extends State<CartSheet> {
 
   NumberOfGuest? selectedGuest;
   List<NumberOfGuest>  selectedSetupItem = [];
+  List<PaymentFriend>  friends = [];
   List<String>  selectedSetupItemNames = [];
   AddressResponse? selectedAddress;
   bool isShisha = false;
@@ -53,7 +55,7 @@ class _CustomBottomSheetState extends State<CartSheet> {
     super.initState();
     _selectedDate = DateTime.now();
     _selectTime = TimeOfDay.now();
-    calculatePrice();
+    checkDabbnei();
   }
 
   void checkDabbnei() {
@@ -76,9 +78,11 @@ class _CustomBottomSheetState extends State<CartSheet> {
   }
 
   void calculatePrice() {
+    basePrice =0;
+    dabbrneTotalPrice = 0;
     itemsInCart.forEach((element) {
-      basePrice = basePrice + element.price!;
-      dabbrneTotalPrice = dabbrneTotalPrice + element.daberniPrice!;
+      basePrice = basePrice + (element.price! * element.selectedQuantity!);
+      dabbrneTotalPrice = dabbrneTotalPrice + (element.daberniPrice!* element.selectedQuantity!);
     });
     isShisha =  itemsInCart.contains((element) => element.isShisha == true);
     setState(() {});
@@ -259,6 +263,63 @@ class _CustomBottomSheetState extends State<CartSheet> {
                         ),
                       ),
 
+                      // friends
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                          elevation: 3,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      S.of(context).selectFriendsForBill,
+                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () async {
+                                        Navigator.pushNamed(
+                                                context, FriendsRoutes.VIEW_SELECT_FRIEND)
+                                            .then((value) {
+                                          if (value != null) ;
+                                          value as List<PaymentFriend>;
+                                          friends = value;
+                                          setState(() {});
+                                        });
+                                      },
+                                      child: Text(S.of(context).select),
+                                      style: OutlinedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(12),
+                                            side: BorderSide(
+                                              color: Theme.of(context).primaryColor,
+                                              width: 2,
+                                            )),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                // SizedBox(height: 5,) ,
+
+                                friends.isNotEmpty
+                                    ? Wrap(children: friends.map((e) =>
+                                    Row(children: [
+                                      Text(e.name.toString() + ' : '),
+                                      Text(e.amount.toString() + S.of(context).sar , style: TextStyle(color: Colors.green.shade600),)
+                                ],)).toList(),)
+                                    : Container()
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+
                       //items
 
                       Padding(
@@ -276,6 +337,9 @@ class _CustomBottomSheetState extends State<CartSheet> {
                                 model: itemsInCart[index],
                                 onDelete: () {
                                   itemsInCart.remove(itemsInCart[index]);
+                                  calculatePrice();
+                                },
+                                claulate: (){
                                   calculatePrice();
                                 },
                               ),
@@ -539,26 +603,9 @@ class _CustomBottomSheetState extends State<CartSheet> {
                               SizedBox(
                                 height: 5,
                               ),
-                              // Padding(
-                              //   padding: const EdgeInsets.all(8.0),
-                              //   child: Row(
-                              //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              //     children: [
-                              //       Text('Total amount'),
-                              //       Text(
-                              //         totalAmount.toString() + S.of(context).sar,
-                              //         style: TextStyle(
-                              //             fontWeight: FontWeight.bold,
-                              //             fontSize: 18,
-                              //             color: Theme.of(context).primaryColor),
-                              //       ),
-                              //     ],
-                              //   ),
-                              // ),
-
                               Center(child:
-    isShisha ? Text('100% inclusive tax on shisha' , style: TextStyle(color: Colors.red),) :
-                              Text('15% inclusive tax on food and beverage' , style: TextStyle(color: Colors.red),))
+                                 isShisha ? Text(S.of(context).taxShesha , style: TextStyle(color: Colors.red),) :
+                                  Text(S.of(context).taxAlert , style: TextStyle(color: Colors.red),))
                             ]),
                           ),
                         ),
@@ -590,7 +637,7 @@ class _CustomBottomSheetState extends State<CartSheet> {
                                             .format(_selectedDate),
                                         _selectTime.format(context).split(' ').first,
                                         selectedGuest?.id,
-                                        '', '', setup,orders));
+                                        '', '', setup,orders,friends));
                               }else{
                                 Fluttertoast.showToast(msg: 'Write occasion title');
                               }

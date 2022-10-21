@@ -115,14 +115,18 @@ class _CustomFormFieldState extends State<CustomFormField> {
             suffixIcon: widget.sufIcon,
             // enabledBorder: InputBorder.none,
             contentPadding: widget.contentPadding,
+
             border: OutlineInputBorder(
                 borderSide: BorderSide(style: BorderStyle.none,color: Theme.of(context).secondaryHeaderColor,),
+                borderRadius: BorderRadius.circular(12)
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+                borderSide: BorderSide(style: BorderStyle.solid,color: Theme.of(context).errorColor,),
                 borderRadius: BorderRadius.circular(12)
             ),
             // focusedBorder: InputBorder.none,
 
           ),
-
         ),
       ),
     );

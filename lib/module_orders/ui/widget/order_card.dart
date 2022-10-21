@@ -34,8 +34,8 @@ class OrderCard extends StatelessWidget {
                 title: Text(model.eventName ?? ''),
                 subtitle: Row(
                   children: [
-                    Text('Total price: ' '${model.total.toString()}' +
-                        S.of(context).sar)
+                    Text(S.of(context).totalPrice + ': ' ),
+                    Text( '${model.total.toString()}' +S.of(context).sar , style: TextStyle(color: Colors.green.shade600),),
                   ],
                 ),
                 trailing: Text(

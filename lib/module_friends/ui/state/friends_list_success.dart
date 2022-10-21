@@ -27,6 +27,7 @@ class FriendsListSuccess extends States {
                   return CreateFriendSheet(
                     createFriend: (req) {
                       req.id = friendsList[index].id;
+                      Navigator.pop(context);
                       screenState.updateFriend(req);
                     },
                     isUpdated: true,

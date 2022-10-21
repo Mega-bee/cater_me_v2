@@ -3,6 +3,7 @@ import 'package:cater_me_v2/module_occasions/request/create_occasion_request.dar
 import 'package:cater_me_v2/module_occasions/response/occasions_response.dart';
 import 'package:cater_me_v2/utils/components/custom_feild.dart';
 import 'package:cater_me_v2/utils/components/custom_loading_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_date_pickers/flutter_date_pickers.dart';
 import 'package:intl/intl.dart';
@@ -21,6 +22,7 @@ class _CreateOccasionCardState extends State<CreateOccasionSheet> {
   late DateTime _selectedDate;
   late TimeOfDay _selectTime;
   var titleController = TextEditingController();
+  final GlobalKey<FormState> _addOccasionKey = GlobalKey<FormState>();
 
   @override
   void initState() {
@@ -51,13 +53,16 @@ class _CreateOccasionCardState extends State<CreateOccasionSheet> {
           shrinkWrap: true,
           physics: BouncingScrollPhysics(),
           children: [
-            CustomFormField(
-              validator: true,
-              preIcon: Icon(
-                Icons.title,
+            Form(
+              key: _addOccasionKey,
+              child: CustomFormField(
+                validator: true,
+                preIcon: Icon(
+                  Icons.title,
+                ),
+                hintText: S.of(context).occasionTitle,
+                controller: titleController,
               ),
-              hintText: S.of(context).occasionTitle,
-              controller: titleController,
             ),
             Padding(
               padding: const EdgeInsets.all(5.0),
@@ -88,12 +93,19 @@ class _CreateOccasionCardState extends State<CreateOccasionSheet> {
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    _selectTime = (await showTimePicker(
-                        context: context,
-                        initialTime: TimeOfDay.now()))!;
-                    setState(() {
-
-                    });
+                    showCupertinoModalPopup(builder: (context) =>
+                        Container(
+                          height: 200,
+                          color: Theme.of(context).cardColor,
+                          child: CupertinoDatePicker(
+                            mode: CupertinoDatePickerMode.time,
+                            onDateTimeChanged: (value) {
+                              _selectTime = TimeOfDay(hour: value.hour, minute: value.minute);
+                              setState(() {});
+                            },
+                            initialDateTime: DateTime.now(),
+                          ),
+                        ),context: context);
                   },
                   child: Text(_selectTime.format(context)),
                   style: OutlinedButton.styleFrom(
@@ -114,20 +126,19 @@ class _CreateOccasionCardState extends State<CreateOccasionSheet> {
                   textColor: Colors.white,
                   loading: false,
                   buttonTab: () {
-                    if(titleController.text.isEmpty){
-
+                    if(_addOccasionKey.currentState!.validate()){
+                      DateTime eventDate = DateTime(
+                          _selectedDate.year,
+                          _selectedDate.month,
+                          _selectedDate.day,
+                          _selectTime.hour,
+                          _selectTime.minute);
+                      Navigator.pop(context);
+                      widget.createOccasion(CreateOccasionRequest(
+                          title: titleController.text,
+                          dateTime: DateFormat('yyyy-MM-ddThh:mm')
+                              .format(eventDate)));
                     }
-                    DateTime eventDate = DateTime(
-                        _selectedDate.year,
-                        _selectedDate.month,
-                        _selectedDate.day,
-                        _selectTime.hour,
-                        _selectTime.minute);
-                    Navigator.pop(context);
-                    widget.createOccasion(CreateOccasionRequest(
-                        title: titleController.text,
-                        dateTime: DateFormat('yyyy-MM-ddThh:mm')
-                            .format(eventDate)));
                   },),
             )
           ],

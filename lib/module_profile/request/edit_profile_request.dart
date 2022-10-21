@@ -1,22 +1,17 @@
-
-import 'package:dio/dio.dart';
-
 class UpdateProfileRequest {
   String? Name;
-  String? PhoneNumber;
+  int? gender;
   String? BirthDate;
-  MultipartFile? image;
 
 
-  UpdateProfileRequest(
-      {required this.Name, this.image ,this.BirthDate ,this.PhoneNumber});
+
+  UpdateProfileRequest({required this.Name,   this.BirthDate ,this.gender});
 
   Map<String, dynamic> toJson() {
     return {
       'Name':Name,
-      'PhoneNumber':PhoneNumber,
+      'GenderId':gender,
       'BirthDate':BirthDate,
-      "image":image
     };
   }
 }

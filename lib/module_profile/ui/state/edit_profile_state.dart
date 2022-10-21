@@ -2,7 +2,9 @@ import 'package:cater_me_v2/generated/l10n.dart';
 import 'package:cater_me_v2/module_profile/request/edit_profile_request.dart';
 import 'package:cater_me_v2/utils/components/custom_feild.dart';
 import 'package:cater_me_v2/utils/components/custom_loading_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../../../abstracts/states/state.dart';
 import '../../response/get_profile_response.dart';
 import '../screen/edit_profile_screen.dart';
@@ -14,13 +16,18 @@ class EditProfileSate extends States {
   EditProfileSate({
     required this.screenState,
     required this.model,
-  }) :super(){
-    nameController.text = model.name ?? '' ;
-    numberController.text = model.phoneNumber ?? '' ;
+  }) : super() {
+    nameController.text = model.name ?? '';
+    genderValue = model.genderId ?? 1;
+    birController.text = model.birthDate!.split('T').first;
+    _selectDate =
+        DateFormat('yyyy-mm-dd').parse(model.birthDate ?? '1996-02-01');
   }
 
   var nameController = TextEditingController();
-  var numberController = TextEditingController();
+  var birController = TextEditingController();
+  DateTime _selectDate = DateTime.now();
+  int genderValue = 1;
   final GlobalKey<FormState> _updateProKey = GlobalKey<FormState>();
 
   @override
@@ -31,10 +38,74 @@ class EditProfileSate extends States {
         child: Form(
           key: _updateProKey,
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomFormField(controller: nameController , validator: true , ),
-
-              CustomFormField(controller: numberController , validator: true , phone: true,),
+              Text(
+                S.of(context).username,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              CustomFormField(
+                controller: nameController,
+                validator: true,
+                hintText: S.of(context).username,
+              ),
+              Text(
+                S.of(context).birthDay,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              CustomFormField(
+                controller: birController,
+                readOnly: true,
+                validator: true,
+                hintText: S.of(context).birthDay,
+                onTap: () {
+                  showCupertinoModalPopup(
+                      builder: (context) => Container(
+                            height: 200,
+                            color: Theme.of(context).cardColor,
+                            child: CupertinoDatePicker(
+                              mode: CupertinoDatePickerMode.date,
+                              onDateTimeChanged: (value) {
+                                _selectDate = value;
+                                birController.text = DateFormat('yyyy-MM-dd').format(_selectDate);
+                                screenState.refresh();
+                              },
+                              initialDateTime: _selectDate,
+                            ),
+                          ),
+                      context: context);
+                },
+              ),
+              Text(
+                S.of(context).gender,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+              Row(
+                children: [
+                  Flexible(
+                      flex: 1,
+                      child: RadioListTile(
+                        value: 1,
+                        groupValue: genderValue,
+                        onChanged: (v) {
+                          genderValue = v as int;
+                          screenState.refresh();
+                        },
+                        title: Text(S.of(context).male),
+                      )),
+                  Flexible(
+                      flex: 1,
+                      child: RadioListTile(
+                        value: 2,
+                        groupValue: genderValue,
+                        onChanged: (v) {
+                          genderValue = v as int;
+                          screenState.refresh();
+                        },
+                        title: Text(S.of(context).female),
+                      )),
+                ],
+              ),
               SizedBox(
                 height: 60,
               ),
@@ -45,11 +116,14 @@ class EditProfileSate extends States {
                 loading: screenState.loadingSnapshotLogin.connectionState ==
                     ConnectionState.waiting,
                 buttonTab: () {
-                  if(_updateProKey.currentState!.validate()){
-                    screenState.updateProfile(UpdateProfileRequest(Name: nameController.text ,PhoneNumber: numberController.text ));
+                  if (_updateProKey.currentState!.validate()) {
+                    screenState.updateProfile(UpdateProfileRequest(
+                        Name: nameController.text,
+                        BirthDate: DateFormat('yyyy-MM-dd').format(_selectDate),
+                        gender: genderValue));
                   }
-
-                },),
+                },
+              ),
             ],
           ),
         ),

@@ -11,6 +11,7 @@ class ImageAsset {
   static const PREPARING = ROOT + 'preper.png';
   static const DELIVERED = ROOT + 'deleiver.png';
   static const PASSWORD = ROOT + 'pass.png';
+  static const RATING = ROOT + 'rating.png';
 
 }
 
@@ -24,6 +25,8 @@ class LottieAsset {
   static const LOADING_CART = ROOT + 'loading.json';
   static const CONNECTION_ERROR = ROOT + 'connection-error.json';
   static const SPLASH_SCREEN = ROOT + 'splash_screen.gif';
+  static const RATE_US = ROOT + 'rate_us.json';
+  static const STARS = ROOT + 'stars.json';
 
 }
 class SocialMedia {
