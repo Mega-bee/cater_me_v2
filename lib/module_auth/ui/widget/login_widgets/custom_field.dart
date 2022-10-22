@@ -17,6 +17,7 @@ class CustomLoginFormField extends StatefulWidget {
   final bool phone;
   final double? borderRadius;
   final bool validator;
+  final TextAlign? textAlign;
   @override
   _CustomLoginFormFieldState createState() => _CustomLoginFormFieldState();
 
@@ -33,7 +34,8 @@ class CustomLoginFormField extends StatefulWidget {
       this.password = false,
       this.phone = false,
       this.borderRadius,
-      this.validator = true});
+      this.validator = true ,
+        this.textAlign});
 }
 
 class _CustomLoginFormFieldState extends State<CustomLoginFormField> {
@@ -49,11 +51,12 @@ class _CustomLoginFormFieldState extends State<CustomLoginFormField> {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(widget.borderRadius ?? 8),
-            color: Theme.of(context).dividerColor.withOpacity(0.1),
+            // color: Theme.of(context).dividerColor.withOpacity(0.1),
           ),
           child: Padding(
             padding: !clean ? EdgeInsets.only(bottom: 8.0) : EdgeInsets.zero,
             child: TextFormField(
+              textAlign:widget.textAlign != null ? widget.textAlign! : TextAlign.start ,
               autovalidateMode: mode,
               onChanged: (s) {
                 setState(() {});
@@ -86,16 +89,16 @@ class _CustomLoginFormFieldState extends State<CustomLoginFormField> {
               controller: widget.controller,
               readOnly: widget.readOnly,
               keyboardType: widget.phone ? TextInputType.phone : null,
-              inputFormatters: widget.phone
-                  ? <TextInputFormatter>[
-                      FilteringTextInputFormatter.allow(RegExp('^[5|9][0-9]*')),
-                    ]
-                  : [],
+              // inputFormatters: widget.phone
+              //     ? <TextInputFormatter>[
+              //         FilteringTextInputFormatter.allow(RegExp('^[5|9][0-9]*')),
+              //       ]
+              //     : [],
               obscureText: widget.password && !showPassword,
               onEditingComplete: widget.last ? null : () => node.nextFocus(),
               onFieldSubmitted: widget.last ? (_) => node.unfocus() : null,
               textInputAction: widget.last ? null : TextInputAction.next,
-              maxLength: widget.phone ? 9 : null,
+              // maxLength: widget.phone ? 9 : null,
               decoration: InputDecoration(
                 counterText: '',
                 hintText: widget.hintText,
@@ -114,34 +117,36 @@ class _CustomLoginFormFieldState extends State<CustomLoginFormField> {
                             ? Icons.remove_red_eye_rounded
                             : Icons.visibility_off_rounded))
                     : widget.sufIcon,
-                enabledBorder: InputBorder.none,
+                // enabledBorder: InputBorder.none,
                 contentPadding: widget.contentPadding,
 //                focusedBorder: InputBorder.none,
                 border: OutlineInputBorder(
-                  borderSide: BorderSide(style: BorderStyle.none,color: Theme.of(context).secondaryHeaderColor,),
+                  borderSide: BorderSide(style: BorderStyle.solid,
+                    color: Theme.of(context).secondaryHeaderColor,),
                   borderRadius: BorderRadius.circular(12)
                 ),
                 labelText: widget.hintText,
+
               ),
             ),
           ),
         ),
-        Hider(
-          active: widget.phone,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 12.0, right: 12, top: 8),
-            child: Align(
-              alignment: AlignmentDirectional.centerEnd,
-              child: Text(
-                '${widget.controller?.text.length ?? 0}/9',
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12,
-                    color: Theme.of(context).disabledColor),
-              ),
-            ),
-          ),
-        )
+        // Hider(
+        //   active: widget.phone,
+        //   child: Padding(
+        //     padding: const EdgeInsets.only(left: 12.0, right: 12, top: 8),
+        //     child: Align(
+        //       alignment: AlignmentDirectional.centerEnd,
+        //       child: Text(
+        //         '${widget.controller?.text.length ?? 0}/9',
+        //         style: TextStyle(
+        //             fontWeight: FontWeight.bold,
+        //             fontSize: 12,
+        //             color: Theme.of(context).disabledColor),
+        //       ),
+        //     ),
+        //   ),
+        // )
       ],
     );
   }

@@ -20,7 +20,6 @@ class CreateOccasionSheet extends StatefulWidget {
 
 class _CreateOccasionCardState extends State<CreateOccasionSheet> {
   late DateTime _selectedDate;
-  late TimeOfDay _selectTime;
   var titleController = TextEditingController();
   final GlobalKey<FormState> _addOccasionKey = GlobalKey<FormState>();
 
@@ -30,11 +29,9 @@ class _CreateOccasionCardState extends State<CreateOccasionSheet> {
     if(widget.isUpdated){
       titleController.text = widget.response?.title ?? '';
       print(widget.response?.date);
-      _selectedDate = DateFormat("yyyy-MM-dd").parse(widget.response?.date ?? '');
-      _selectTime = TimeOfDay.now();
+      _selectedDate = DateFormat("yyyy-MM-dd",'en').parse(widget.response?.date ?? '');
     }else {
       _selectedDate = DateTime.now();
-      _selectTime = TimeOfDay.now();
     }
 
   }
@@ -84,40 +81,6 @@ class _CreateOccasionCardState extends State<CreateOccasionSheet> {
               ),
             ),
             SizedBox(height: 10,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Text(
-                  S.of(context).timeOfEvent,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                ElevatedButton(
-                  onPressed: () async {
-                    showCupertinoModalPopup(builder: (context) =>
-                        Container(
-                          height: 200,
-                          color: Theme.of(context).cardColor,
-                          child: CupertinoDatePicker(
-                            mode: CupertinoDatePickerMode.time,
-                            onDateTimeChanged: (value) {
-                              _selectTime = TimeOfDay(hour: value.hour, minute: value.minute);
-                              setState(() {});
-                            },
-                            initialDateTime: DateTime.now(),
-                          ),
-                        ),context: context);
-                  },
-                  child: Text(_selectTime.format(context)),
-                  style: OutlinedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      side: BorderSide(color: Theme.of(context).primaryColor , width: 2,)
-                    ),
-                  ),
-                )
-              ],
-            ),
-            SizedBox(height: 10,),
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: CustomLoadingButton(
@@ -130,13 +93,11 @@ class _CreateOccasionCardState extends State<CreateOccasionSheet> {
                       DateTime eventDate = DateTime(
                           _selectedDate.year,
                           _selectedDate.month,
-                          _selectedDate.day,
-                          _selectTime.hour,
-                          _selectTime.minute);
+                          _selectedDate.day);
                       Navigator.pop(context);
                       widget.createOccasion(CreateOccasionRequest(
                           title: titleController.text,
-                          dateTime: DateFormat('yyyy-MM-ddThh:mm')
+                          dateTime: DateFormat('yyyy-MM-dd','en')
                               .format(eventDate)));
                     }
                   },),

@@ -33,7 +33,7 @@
   "profile": "الملف الشخصي",
   "address": "العناوين",
   "paymentMethod": " طريقة الدفع او السداد",
-  "terms": " شروط",
+  "terms": "الشروط والخصوصية",
   "contactUs": " اتصل بنا",
   "support": " الدعم",
   "orders": "الطلبات",
@@ -98,8 +98,8 @@
   "taxShesha": "100٪ ضريبة شاملة على الشيشة",
 
   "addLocation": "أضف موقعك",
-  "updateLocation": "تعديل الموقع",
-  "selectLocation": "حدد موقعك",
+  "updateLocation": "تعديل الموقع على الخريطة",
+  "selectLocation": "حدد موقعك على الخريطة",
 
   "rateUs": "التقييم",
   "ok": "تم",
@@ -111,5 +111,18 @@
   "female": "إنثى",
   "birthDay": "تاريخ الميلاد",
   "gender": "الجنس",
-  "selectFriendsForBill": "أختر الأصدقاء لمشاركة الفاتورة"
+  "selectFriendsForBill": "أختر الأصدقاء لمشاركة الفاتورة",
+  "ratherToSay": "بدلا من القول",
+
+  "alreadySelect": "لقد قمت بإختيار",
+  "removeMenu": "هل تريد حذفه واستبداله بهذا",
+  "cancel": "إلغاء",
+  "dabbrniMode": "أنت في وضع دبري",
+
+  "sharedAmount": "القيمة التي يمكن ان تشاركها",
+  "addAmount": "أضف المبلغ",
+  "add": "أضف",
+  "amount": "المبلغ",
+  "amountWrong": "لا يمكن ان تضيف هذه القيمة",
+  "agreeTerms": "يجب ان توافق على شروط الخوصية"
 }

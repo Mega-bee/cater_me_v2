@@ -5,6 +5,7 @@ import 'package:cater_me_v2/module_credits/ui/widget/credit_card.dart';
 import 'package:cater_me_v2/module_payments/request/payment_request.dart';
 import 'package:cater_me_v2/module_payments/ui/screens/payment_method_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:pay/pay.dart';
 // import 'package:mad_pay/mad_pay.dart';
 import '../../../abstracts/states/state.dart';
 
@@ -17,6 +18,17 @@ class SelectedCreditsListSuccess extends States {
       {required this.creditsList, required this.screenState});
 
   CreditsResponse? _selectedCard;
+  Pay _payClient = Pay.withAssets([
+    'default_payment_profile_apple_pay.json',
+    'default_payment_profile_google_pay.json'
+  ]);
+   var _paymentItems = [
+    PaymentItem(
+      label: 'Total',
+      amount: '1',
+      status: PaymentItemStatus.final_price,
+    )
+  ];
   @override
   Widget getUI(BuildContext context) {
     return Stack(
@@ -89,6 +101,30 @@ class SelectedCreditsListSuccess extends States {
                     )
                   : Container(),
 
+              GooglePayButton(
+                paymentConfigurationAsset:
+                    'default_payment_profile_google_pay.json',
+                paymentItems: _paymentItems,
+                type: GooglePayButtonType.plain,
+                margin: const EdgeInsets.only(top: 15.0),
+                onPaymentResult: onGooglePayResult,
+                onPressed: onGooglePayPressed,
+                loadingIndicator: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+              ApplePayButton(
+                  paymentConfigurationAsset:
+                      'default_payment_profile_apple_pay.json',
+                  paymentItems: _paymentItems,
+                  style: ApplePayButtonStyle.black,
+                  type: ApplePayButtonType.plain,
+                  margin: const EdgeInsets.only(top: 15.0),
+                  onPaymentResult: onApplePayResult,
+                  onPressed: onApplePayPressed,
+                  loadingIndicator: const Center(
+                    child: CircularProgressIndicator(),
+                  )),
               SizedBox(
                 height: 30,
               ),
@@ -98,7 +134,27 @@ class SelectedCreditsListSuccess extends States {
       ],
     );
   }
+  void onGooglePayResult(paymentResult) {
+    debugPrint(paymentResult.toString());
+  }
 
+  void onApplePayResult(paymentResult) {
+    debugPrint(paymentResult.toString());
+  }
+  void onGooglePayPressed() async {
+    final result = await _payClient.showPaymentSelector(
+      provider: PayProvider.google_pay,
+      paymentItems: _paymentItems,
+    );
+    // Send the resulting Google Pay token to your server / PSP
+  }
+  void onApplePayPressed() async {
+    final result = await _payClient.showPaymentSelector(
+      provider: PayProvider.apple_pay,
+      paymentItems: _paymentItems,
+    );
+    // Send the resulting Google Pay token to your server / PSP
+  }
   double calculateTotalPrice() {
     double price = 0;
     itemsInCart.forEach((element) {

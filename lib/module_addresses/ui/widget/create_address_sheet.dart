@@ -8,6 +8,7 @@ import 'package:cater_me_v2/utils/components/custom_feild.dart';
 import 'package:cater_me_v2/utils/components/custom_loading_button.dart';
 import 'package:custom_info_window/custom_info_window.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CreateAddressSheet extends StatefulWidget {
@@ -79,14 +80,7 @@ class _CreateOccasionCardState extends State<CreateAddressSheet> {
                     hintText: S.of(context).titleAddress,
                     controller: titleController,
                   ),
-                  CustomFormField(
-                    validator: true,
-                    preIcon: Icon(
-                      Icons.business_sharp,
-                    ),
-                    hintText: S.of(context).city,
-                    controller: cityController,
-                  ),
+
                   CustomFormField(
                     validator: true,
                     preIcon: Icon(
@@ -112,31 +106,44 @@ class _CreateOccasionCardState extends State<CreateAddressSheet> {
                     hintText: S.of(context).floorNumber,
                     controller: floorController,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Text(S.of(context).addLocation),
-                      InkWell(
-                          onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ChooseLocationWidget(
-                                          previousLocation: addressLoca,
-                                        ))).then((value) {
-                              if (value != null) {
-                                addressLoca = value as LatLng;
-                                ca = CameraPosition(
-                                    target: addressLoca!, zoom: 15);
-                                mapController?.animateCamera(CameraUpdate.newCameraPosition(ca));
-                                setState(() {});
-                              }
-                            });
-                          },
-                          child: widget.isUpdated
-                              ? Text(S.of(context).updateLocation)
-                              : Text(S.of(context).selectLocation)),
-                    ],
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Theme.of(context).secondaryHeaderColor
+                    ),
+                    child: widget.isUpdated
+                        ? TextButton.icon(icon: Icon(Icons.location_on),label: Text(S.of(context).updateLocation,),onPressed: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ChooseLocationWidget(
+                                previousLocation: addressLoca,
+                              ))).then((value) {
+                        if (value != null) {
+                          addressLoca = value as LatLng;
+                          ca = CameraPosition(
+                              target: addressLoca!, zoom: 15);
+                          mapController?.animateCamera(CameraUpdate.newCameraPosition(ca));
+                          setState(() {});
+                        }
+                      });
+                    },)
+                        :TextButton.icon(icon: Icon(Icons.location_on),label: Text(S.of(context).selectLocation,),onPressed: (){
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ChooseLocationWidget(
+                                previousLocation: addressLoca,
+                              ))).then((value) {
+                        if (value != null) {
+                          addressLoca = value as LatLng;
+                          ca = CameraPosition(
+                              target: addressLoca!, zoom: 15);
+                          mapController?.animateCamera(CameraUpdate.newCameraPosition(ca));
+                          setState(() {});
+                        }
+                      });
+                    },),
                   ),
                   addressLoca != null
                       ? Padding(
@@ -171,7 +178,7 @@ class _CreateOccasionCardState extends State<CreateAddressSheet> {
                 textColor: Colors.white,
                 loading: false,
                 buttonTab: () {
-                  if (_addAddressKey.currentState!.validate()) {
+                  if (_addAddressKey.currentState!.validate() && addressLoca !=null) {
                     widget.createAddress(CreateAddressRequest(
                         0,
                         cityController.text,
@@ -181,6 +188,8 @@ class _CreateOccasionCardState extends State<CreateAddressSheet> {
                         addressLoca?.longitude.toString(),
                         addressLoca?.latitude.toString(),
                         int.parse(floorController.text)));
+                  }else{
+                    Fluttertoast.showToast(msg: S.of(context).selectLocation);
                   }
                 },
               ),

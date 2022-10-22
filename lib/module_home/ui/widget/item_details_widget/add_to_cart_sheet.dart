@@ -109,7 +109,7 @@ class _AddToCartSheetState extends State<AddToCartSheet> {
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   children: [
-                    Text(S.of(context).increment),
+                    Text(S.of(context).increment +' : '),
                     Text(
                       widget.model.increment.toString(),
                       style: TextStyle(color: Colors.red),
@@ -170,7 +170,7 @@ class _AddToCartSheetState extends State<AddToCartSheet> {
                               if(widget.loggedUser){
                                 if(widget.model.isMenu){
                                   var f = itemsInCart.where((element) => element.isMenu);
-                                  if(f.isNotEmpty){
+                                  if(f.isNotEmpty && f.first.id != widget.model.id){
                                     showDialog(context: context,
                                       builder: (context) => showAlertForAnotherMenu(f.first.title ??'' , (){
                                         itemsInCart.remove(f.first);
@@ -178,7 +178,14 @@ class _AddToCartSheetState extends State<AddToCartSheet> {
                                         Navigator.pop(context);
                                         widget.refreshHome(true);
                                       }),);
-                                  }else{
+                                  }else
+                                    if(f.isNotEmpty && f.first.id == widget.model.id){
+                                      itemsInCart.remove(widget.model);
+                                      itemsInCart.add(widget.model);
+                                      Navigator.pop(context);
+                                      widget.refreshHome(true);
+                                  }
+                                  else{
                                     itemsInCart.add(widget.model);
                                     Navigator.pop(context);
                                     widget.refreshHome(true);
@@ -197,10 +204,15 @@ class _AddToCartSheetState extends State<AddToCartSheet> {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Theme.of(context).primaryColor,
+                                backgroundColor:widget.AlreadyExist ? Colors.yellow.shade900: Theme.of(context).primaryColor,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(25))),
-                            child: Text(
+                            child:widget.AlreadyExist ?
+                            Text(
+                              S.of(context).changeQuantity,
+                              style: TextStyle(color: Colors.white),
+                            ):
+                            Text(
                               S.of(context).addToCart,
                               style: TextStyle(color: Colors.white),
                             )),
@@ -232,23 +244,24 @@ class _AddToCartSheetState extends State<AddToCartSheet> {
 
   showAlertForAnotherMenu (String menuTitle , VoidCallback replaceMenu){
   return  AlertDialog(
-      title: Text('Warning' , style: TextStyle(color: Colors.yellow.shade700),),
+      title: Text(S.of(context).warning , style: TextStyle(color: Colors.yellow.shade700),),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       content:Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text('You are already select ${menuTitle}'),
+          Text(S.of(context).alreadySelect +' ${menuTitle}'),
           SizedBox(height: 12,),
-          Text('do you want remove and add this one?'),
+          Text(S.of(context).removeMenu),
         ],
       ),
       actions: [
         TextButton(onPressed: (){
+          Navigator.pop(context);
           replaceMenu();
-        }, child: Text('Ok')),
+        }, child: Text(S.of(context).ok)),
         TextButton(onPressed: (){
           Navigator.pop(context);
-        }, child: Text('Cancel')),
+        }, child: Text(S.of(context).cancel)),
     ],);
   }
 }

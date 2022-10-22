@@ -172,7 +172,6 @@ class _OrderItemCardState extends State<OrderItemCard> {
             ],
           ),
           SizedBox(height: 10,),
-          Divider(thickness: 2,indent: 50,endIndent: 50,height: 1,)
         ],
       ),
     );

@@ -60,7 +60,7 @@ class PaymentCubit extends Cubit<States> {
             retry: () {
               getCredits(screenState);
             }));
-      } else if (value.code == 201) {
+      } else if (value.code == 200) {
         getCredits(screenState);
       } else {
         emit(ErrorState(

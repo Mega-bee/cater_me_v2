@@ -41,7 +41,7 @@ class CreditCard extends StatelessWidget {
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                     colors: <Color>[
-                      Colors.green.shade600,
+                      Colors.grey.shade900,
                       Colors.grey.shade900,
                     ],
                     stops: [

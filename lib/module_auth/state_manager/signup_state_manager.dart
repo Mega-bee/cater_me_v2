@@ -36,9 +36,12 @@ class SignUpStateManager {
       }
     }).onError((err) {
       _loadingStateSubject.add(AsyncSnapshot.nothing());
-      if(_screenState.currentStates == SignUpStateInit){
+      print('onErrorr statttet');
+      if(_screenState.currentStates is SignUpStateInit){
+        print('in Sing error state');
         _SignUpStateSubject.add(SignUpStateInit(_screenState, error: err));
-      }else
+      }
+      else
       _SignUpStateSubject.add(ConfirmCodeState(_screenState,error: err));
 
     });

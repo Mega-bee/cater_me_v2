@@ -21,7 +21,7 @@ class EditProfileSate extends States {
     genderValue = model.genderId ?? 1;
     birController.text = model.birthDate!.split('T').first;
     _selectDate =
-        DateFormat('yyyy-mm-dd').parse(model.birthDate ?? '1996-02-01');
+        DateFormat('yyyy-MM-dd','en').parse(model.birthDate ?? '1996-02-01');
   }
 
   var nameController = TextEditingController();
@@ -80,30 +80,35 @@ class EditProfileSate extends States {
                 S.of(context).gender,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               ),
-              Row(
+              Wrap(
                 children: [
-                  Flexible(
-                      flex: 1,
-                      child: RadioListTile(
-                        value: 1,
-                        groupValue: genderValue,
-                        onChanged: (v) {
-                          genderValue = v as int;
-                          screenState.refresh();
-                        },
-                        title: Text(S.of(context).male),
-                      )),
-                  Flexible(
-                      flex: 1,
-                      child: RadioListTile(
-                        value: 2,
-                        groupValue: genderValue,
-                        onChanged: (v) {
-                          genderValue = v as int;
-                          screenState.refresh();
-                        },
-                        title: Text(S.of(context).female),
-                      )),
+                  RadioListTile(
+                    value: 1,
+                    groupValue: genderValue,
+                    onChanged: (v) {
+                      genderValue = v as int;
+                      screenState.refresh();
+                    },
+                    title: Text(S.of(context).male),
+                  ),
+                  RadioListTile(
+                    value: 2,
+                    groupValue: genderValue,
+                    onChanged: (v) {
+                      genderValue = v as int;
+                      screenState.refresh();
+                    },
+                    title: Text(S.of(context).female),
+                  ),
+                  RadioListTile(
+                    value: 3,
+                    groupValue: genderValue,
+                    onChanged: (v) {
+                      genderValue = v as int;
+                      screenState.refresh();
+                    },
+                    title: Text(S.of(context).ratherToSay),
+                  ),
                 ],
               ),
               SizedBox(
@@ -119,7 +124,7 @@ class EditProfileSate extends States {
                   if (_updateProKey.currentState!.validate()) {
                     screenState.updateProfile(UpdateProfileRequest(
                         Name: nameController.text,
-                        BirthDate: DateFormat('yyyy-MM-dd').format(_selectDate),
+                        BirthDate: DateFormat('yyyy-MM-dd','en').format(_selectDate),
                         gender: genderValue));
                   }
                 },

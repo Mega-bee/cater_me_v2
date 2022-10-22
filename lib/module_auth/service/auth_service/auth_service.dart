@@ -55,22 +55,22 @@ class AuthService {
     WebServiceResponse? signResult = await _authManager.registerClient(request);
     if (signResult == null) {
       _authSubject.addError('Connection error');
-      throw AuthorizationException('Connection error');
-    } else if (  signResult.code != 401  ) {
+      // throw AuthorizationException('Connection error');
+    } else if (  signResult.code != 200  ) {
       _authSubject.addError(signResult.errorMessage);
-      throw AuthorizationException(signResult.errorMessage);
+      // throw AuthorizationException(signResult.errorMessage);
     }
-    generateOtpApi(GenerateOtpRequest(request.phone),request.password ??'');
+  else  generateOtpApi(GenerateOtpRequest(request.phone),request.password ??'');
   }
 
   Future<void> generateOtpApi(GenerateOtpRequest request,String pass) async {
     WebServiceResponse? generateResult = await _authManager.generateOtp(request);
     if (generateResult == null) {
       _authSubject.addError('Connection error');
-      throw AuthorizationException('Connection error');
+      // throw AuthorizationException('Connection error');
     } else if (  generateResult.code != 200  ) {
       _authSubject.addError(generateResult.errorMessage);
-      throw AuthorizationException(generateResult.errorMessage);
+      // throw AuthorizationException(generateResult.errorMessage);
     }
       _prefsHelper.setPassword(pass);
       _prefsHelper.setUsername(request.phoneNumber ?? '');

@@ -38,7 +38,7 @@
   "profile": "Profile",
   "address": "Address",
   "paymentMethod": "Payment method",
-  "terms": "Terms",
+  "terms": "Terms and Conditions",
   "contactUs": "Contact us",
   "support": "Support",
   "orders": "Orders",
@@ -104,8 +104,8 @@
   "taxShesha": "100% inclusive tax on shisha",
 
   "addLocation": "Add your location",
-  "updateLocation": "Update location",
-  "selectLocation": "Select location",
+  "updateLocation": "Update your location on the map",
+  "selectLocation": "Mark your location on the map",
 
   "rateUs": "Rate us",
   "ok": "OK",
@@ -118,6 +118,19 @@
   "birthDay": "Birthday",
   "gender": "Gender",
 
-  "selectFriendsForBill": "Select friends to share bill"
+  "selectFriendsForBill": "Select friends to share bill",
+  "ratherToSay": "Rather to say",
+
+  "alreadySelect": "You are already select",
+  "removeMenu": "do you want remove and add this one ?",
+  "cancel": "Cancel",
+  "dabbrniMode": "You are in dabbrni mode",
+
+  "sharedAmount": "Amount that can be shared",
+  "addAmount": "Add Amount",
+  "add": "Add",
+  "amount": "Amount",
+  "amountWrong": "Can't add this amount",
+  "agreeTerms": "You must agree to the privacy terms"
 
 }

@@ -198,6 +198,24 @@ class SettingScreenState extends State<SettingScreen> {
                               ),
                               InkWell(
                                 onTap: () {
+                                  Navigator.pushNamed(
+                                      context, SettingRoutes.RATE_SCREEN);
+                                },
+                                child: ListTile(
+                                  leading: Icon(Icons.star),
+                                  title: Text(
+                                    S.of(context).rateUs,
+                                  ),
+                                ),
+                              ),
+                              Divider(
+                                endIndent: 50,
+                                indent: 50,
+                                thickness: 1,
+                                height: 1,
+                              ),
+                              InkWell(
+                                onTap: () {
                                   showModalBottomSheet(
                                       backgroundColor: Colors.transparent,
                                       context: context,
@@ -234,7 +252,9 @@ class SettingScreenState extends State<SettingScreen> {
                                 height: 1,
                               ),
                               InkWell(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.pushNamed(context, AuthorizationRoutes.TERMS_CONDITIONS);
+                                },
                                 child: ListTile(
                                   leading: Icon(Icons.privacy_tip_rounded),
                                   title: Text(
@@ -268,24 +288,7 @@ class SettingScreenState extends State<SettingScreen> {
                                   S.of(context).darkMode,
                                 ),
                               ),
-                              Divider(
-                                endIndent: 50,
-                                indent: 50,
-                                thickness: 1,
-                                height: 1,
-                              ),
-                              InkWell(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, SettingRoutes.RATE_SCREEN);
-                                },
-                                child: ListTile(
-                                  leading: Icon(Icons.star),
-                                  title: Text(
-                                    S.of(context).rateUs,
-                                  ),
-                                ),
-                              ),
+
                               Divider(
                                 endIndent: 50,
                                 indent: 50,
@@ -303,7 +306,7 @@ class SettingScreenState extends State<SettingScreen> {
                     child: Align(
                       alignment: AlignmentDirectional.center,
                       child: Container(
-                        height: 370,
+                        height: 424,
                         width: double.maxFinite,
                        decoration: BoxDecoration( color: Colors.grey.shade400.withOpacity(0.4),borderRadius: BorderRadius.circular(8)),
                         child: Image.asset(ImageAsset.PASSWORD ,height: 50, ),

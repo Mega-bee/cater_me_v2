@@ -15,7 +15,7 @@ class FriendsResponse {
    String? email;
    String? image;
    bool ? isSelected;
-   int? amount;
+   num? amount;
 
 
   FriendsResponse.fromJson(Map<String, dynamic> json)  {

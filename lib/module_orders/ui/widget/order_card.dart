@@ -39,7 +39,7 @@ class OrderCard extends StatelessWidget {
                   ],
                 ),
                 trailing: Text(
-                  model.orderStatus ?? '',
+                 isArabic ? model.orderStatusAr ?? '': model.orderStatus ?? '',
                   style: TextStyle(
                       color: StatusOrderHelper.getOrderColor(
                           StatusOrderHelper.getStatusEnum(model.orderStatus))),

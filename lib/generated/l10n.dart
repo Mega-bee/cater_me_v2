@@ -380,10 +380,10 @@ class S {
     );
   }
 
-  /// `Terms`
+  /// `Terms and Conditions`
   String get terms {
     return Intl.message(
-      'Terms',
+      'Terms and Conditions',
       name: 'terms',
       desc: '',
       args: [],
@@ -930,20 +930,20 @@ class S {
     );
   }
 
-  /// `Update location`
+  /// `Update your location on the map`
   String get updateLocation {
     return Intl.message(
-      'Update location',
+      'Update your location on the map',
       name: 'updateLocation',
       desc: '',
       args: [],
     );
   }
 
-  /// `Select location`
+  /// `Mark your location on the map`
   String get selectLocation {
     return Intl.message(
-      'Select location',
+      'Mark your location on the map',
       name: 'selectLocation',
       desc: '',
       args: [],
@@ -1045,6 +1045,116 @@ class S {
     return Intl.message(
       'Select friends to share bill',
       name: 'selectFriendsForBill',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rather to say`
+  String get ratherToSay {
+    return Intl.message(
+      'Rather to say',
+      name: 'ratherToSay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are already select`
+  String get alreadySelect {
+    return Intl.message(
+      'You are already select',
+      name: 'alreadySelect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `do you want remove and add this one ?`
+  String get removeMenu {
+    return Intl.message(
+      'do you want remove and add this one ?',
+      name: 'removeMenu',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are in dabbrni mode`
+  String get dabbrniMode {
+    return Intl.message(
+      'You are in dabbrni mode',
+      name: 'dabbrniMode',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount that can be shared`
+  String get sharedAmount {
+    return Intl.message(
+      'Amount that can be shared',
+      name: 'sharedAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Amount`
+  String get addAmount {
+    return Intl.message(
+      'Add Amount',
+      name: 'addAmount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add`
+  String get add {
+    return Intl.message(
+      'Add',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Amount`
+  String get amount {
+    return Intl.message(
+      'Amount',
+      name: 'amount',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Can't add this amount`
+  String get amountWrong {
+    return Intl.message(
+      'Can\'t add this amount',
+      name: 'amountWrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You must agree to the privacy terms`
+  String get agreeTerms {
+    return Intl.message(
+      'You must agree to the privacy terms',
+      name: 'agreeTerms',
       desc: '',
       args: [],
     );

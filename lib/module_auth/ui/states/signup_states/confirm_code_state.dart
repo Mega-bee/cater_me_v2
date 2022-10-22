@@ -57,6 +57,7 @@ class ConfirmCodeState  extends SignUpState {
                   password: false,
                   preIcon: Icon(Icons.security),
                   borderRadius: 15,
+                  textAlign: TextAlign.center,
                 ),
 
                 SizedBox(

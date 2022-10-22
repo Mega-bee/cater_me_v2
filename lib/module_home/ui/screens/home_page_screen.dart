@@ -8,6 +8,7 @@ import 'package:cater_me_v2/utils/global/global_state_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:injectable/injectable.dart';
 import '../../../abstracts/states/state.dart';
 import '../../../utils/images/images.dart';
@@ -65,21 +66,32 @@ class HomePageScreenState extends State<HomePageScreen> {
             height: 50,
           ),
           centerTitle: true,
-          leading: InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, SettingRoutes.SETTING_SCREEN);
-              },
-              child: Icon(Icons.person)),
+          leading: Padding(
+            padding: const EdgeInsetsDirectional.fromSTEB(15, 5, 5, 5),
+            child: InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, SettingRoutes.SETTING_SCREEN);
+                },
+                child: Icon(CupertinoIcons.person,color: Theme.of(context).brightness == Brightness.light ?
+                Colors.black : Colors.white ,size: 35,)),
+          ),
           actions: [
-            IconButton(
-              onPressed: (){
-                  showSearch(context: context, delegate: CustomDelegate(allProducts));
-              },
-              icon: Icon(Icons.search),
+            Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(5, 5, 15, 5),
+              child: IconButton(
+                onPressed: (){
+                    showSearch(context: context, delegate: CustomDelegate(allProducts));
+                },
+                icon: Icon(Icons.search , color: Theme.of(context).brightness == Brightness.light ?
+                  Colors.black : Colors.white,size: 35,),
 
+              ),
             )
           ],
+          elevation: 0,
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         ),
+
         body: BlocBuilder<HomePageCubit, States>(
           bloc: widget.cubit,
           builder: (context, state) {

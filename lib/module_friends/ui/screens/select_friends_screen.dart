@@ -20,10 +20,12 @@ class SelectFriendsScreen extends StatefulWidget {
 }
 
 class SelectFriendsScreenState extends State<SelectFriendsScreen> {
+  num? price;
+  bool flag = true;
   @override
   void initState() {
     super.initState();
-    widget.cubit.getFriendsForSelect(this);
+
   }
 
   getFriends() {
@@ -43,6 +45,12 @@ class SelectFriendsScreenState extends State<SelectFriendsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var args = ModalRoute.of(context)?.settings.arguments;
+    if (args != null && flag) {
+      price = args as num;
+      flag = false;
+      widget.cubit.getFriendsForSelect(this);
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).selectFriendsForBill),

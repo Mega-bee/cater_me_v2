@@ -28,11 +28,11 @@ class _AddressCardState extends State<AddressCard> {
           child: ListTile(title: Text(widget.model.title ?? ''),subtitle:
           Row(
             children: [
-              Text(widget.model.city ??''),
-              Text(' , '),
               Text(widget.model.street ??''),
               Text(' , '),
               Text(widget.model.buildingName ??''),
+              Text(' , '),
+              Text(widget.model.floorNumber.toString() ??''),
             ],
           ),
             leading: Image.asset(ImageAsset.ADDRESS),

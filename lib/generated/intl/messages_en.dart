@@ -23,12 +23,22 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "Item": MessageLookupByLibrary.simpleMessage("Item"),
+        "add": MessageLookupByLibrary.simpleMessage("Add"),
+        "addAmount": MessageLookupByLibrary.simpleMessage("Add Amount"),
         "addLocation":
             MessageLookupByLibrary.simpleMessage("Add your location"),
         "addToCart": MessageLookupByLibrary.simpleMessage("Add to cart"),
         "address": MessageLookupByLibrary.simpleMessage("Address"),
+        "agreeTerms": MessageLookupByLibrary.simpleMessage(
+            "You must agree to the privacy terms"),
+        "alreadySelect":
+            MessageLookupByLibrary.simpleMessage("You are already select"),
+        "amount": MessageLookupByLibrary.simpleMessage("Amount"),
+        "amountWrong":
+            MessageLookupByLibrary.simpleMessage("Can\'t add this amount"),
         "birthDay": MessageLookupByLibrary.simpleMessage("Birthday"),
         "buildingName": MessageLookupByLibrary.simpleMessage("Building name"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cardNumber": MessageLookupByLibrary.simpleMessage("Card number"),
         "changeLanguage":
             MessageLookupByLibrary.simpleMessage("Change Language"),
@@ -51,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "createOccasion":
             MessageLookupByLibrary.simpleMessage("Create occasion"),
         "credits": MessageLookupByLibrary.simpleMessage("Credits"),
+        "dabbrniMode":
+            MessageLookupByLibrary.simpleMessage("You are in dabbrni mode"),
         "dabbrniePrice": MessageLookupByLibrary.simpleMessage("Dabbrnie price"),
         "darkMode": MessageLookupByLibrary.simpleMessage("Dark mode"),
         "deliveringTo": MessageLookupByLibrary.simpleMessage("Delivering to"),
@@ -106,17 +118,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "rateTitle": MessageLookupByLibrary.simpleMessage(
             "We will be glad to hear your opinion"),
         "rateUs": MessageLookupByLibrary.simpleMessage("Rate us"),
+        "ratherToSay": MessageLookupByLibrary.simpleMessage("Rather to say"),
         "refresh": MessageLookupByLibrary.simpleMessage("refresh"),
+        "removeMenu": MessageLookupByLibrary.simpleMessage(
+            "do you want remove and add this one ?"),
         "sar": MessageLookupByLibrary.simpleMessage(" SAR "),
         "select": MessageLookupByLibrary.simpleMessage("Select"),
         "selectFriendsForBill": MessageLookupByLibrary.simpleMessage(
             "Select friends to share bill"),
         "selectFromContact":
             MessageLookupByLibrary.simpleMessage("Select from contacts"),
-        "selectLocation":
-            MessageLookupByLibrary.simpleMessage("Select location"),
+        "selectLocation": MessageLookupByLibrary.simpleMessage(
+            "Mark your location on the map"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "setupItem": MessageLookupByLibrary.simpleMessage("Setup item"),
+        "sharedAmount":
+            MessageLookupByLibrary.simpleMessage("Amount that can be shared"),
         "signOut": MessageLookupByLibrary.simpleMessage("Sign out"),
         "street": MessageLookupByLibrary.simpleMessage("Street"),
         "support": MessageLookupByLibrary.simpleMessage("Support"),
@@ -125,7 +142,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "15% inclusive tax on food and beverage"),
         "taxShesha": MessageLookupByLibrary.simpleMessage(
             "100% inclusive tax on shisha"),
-        "terms": MessageLookupByLibrary.simpleMessage("Terms"),
+        "terms": MessageLookupByLibrary.simpleMessage("Terms and Conditions"),
         "thankFeedBack":
             MessageLookupByLibrary.simpleMessage("Thank you for your feedBack"),
         "timeOfEvent": MessageLookupByLibrary.simpleMessage("Time of event"),
@@ -137,8 +154,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "totalTax": MessageLookupByLibrary.simpleMessage("Total tax"),
         "updateAddress": MessageLookupByLibrary.simpleMessage("Update address"),
         "updateFriend": MessageLookupByLibrary.simpleMessage("Update friend"),
-        "updateLocation":
-            MessageLookupByLibrary.simpleMessage("Update location"),
+        "updateLocation": MessageLookupByLibrary.simpleMessage(
+            "Update your location on the map"),
         "updateOccasion":
             MessageLookupByLibrary.simpleMessage("Update Occasion"),
         "updateProfile": MessageLookupByLibrary.simpleMessage("Update profile"),

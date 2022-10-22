@@ -72,7 +72,7 @@ class OrdersDetailsSuccess extends States {
                     endIndent: 10,
                     indent: 10,
                   ),
-                  Center(child: Text(S.of(context).taxAlert , style: TextStyle(color: Colors.red),))
+                  Center(child: Text(S.of(context).taxAlert , style: TextStyle(color: Colors.red,fontSize: 12),))
                 ]),
               ),
             ),

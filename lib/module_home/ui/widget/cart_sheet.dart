@@ -8,8 +8,6 @@ import 'package:cater_me_v2/module_home/response/homepage_response.dart';
 import 'package:cater_me_v2/module_home/ui/widget/item_details_widget/order_item_card.dart';
 import 'package:cater_me_v2/utils/components/custom_feild.dart';
 import 'package:cater_me_v2/utils/components/custom_loading_button.dart';
-
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -200,7 +198,7 @@ class _CustomBottomSheetState extends State<CartSheet> {
                       isDabbrneiActive
                           ? Center(
                               child: Text(
-                              'You are in dabbrni mode',
+                              S.of(context).dabbrniMode,
                               style: TextStyle(
                                   color: Colors.red.shade600, fontSize: 18),
                             ))
@@ -262,66 +260,7 @@ class _CustomBottomSheetState extends State<CartSheet> {
                           ),
                         ),
                       ),
-
-                      // friends
-                      Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Card(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12)),
-                          elevation: 3,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      S.of(context).selectFriendsForBill,
-                                      style: TextStyle(fontWeight: FontWeight.bold),
-                                    ),
-                                    ElevatedButton(
-                                      onPressed: () async {
-                                        Navigator.pushNamed(
-                                                context, FriendsRoutes.VIEW_SELECT_FRIEND)
-                                            .then((value) {
-                                          if (value != null) ;
-                                          value as List<PaymentFriend>;
-                                          friends = value;
-                                          setState(() {});
-                                        });
-                                      },
-                                      child: Text(S.of(context).select),
-                                      style: OutlinedButton.styleFrom(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(12),
-                                            side: BorderSide(
-                                              color: Theme.of(context).primaryColor,
-                                              width: 2,
-                                            )),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                // SizedBox(height: 5,) ,
-
-                                friends.isNotEmpty
-                                    ? Wrap(children: friends.map((e) =>
-                                    Row(children: [
-                                      Text(e.name.toString() + ' : '),
-                                      Text(e.amount.toString() + S.of(context).sar , style: TextStyle(color: Colors.green.shade600),)
-                                ],)).toList(),)
-                                    : Container()
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-
-
                       //items
-
                       Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Card(
@@ -360,49 +299,6 @@ class _CustomBottomSheetState extends State<CartSheet> {
                               TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                       ),
-                      // Padding(
-                      //   padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                      //   child: Card(
-                      //     shape: RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.circular(12)),
-                      //     elevation: 3,
-                      //     child: DropdownButton2(
-                      //       dropdownFullScreen: true,
-                      //
-                      //       hint: Text(S.of(context).numberOfGuest),
-                      //       items: widget.settings.numberOfGuests
-                      //           ?.map((item) => DropdownMenuItem<NumberOfGuest>(
-                      //                 value: item,
-                      //                 child: Text(
-                      //                   isArabic
-                      //                       ? item.titleAr ?? ''
-                      //                       : item.title ?? '',
-                      //                   style: const TextStyle(
-                      //                     fontSize: 14,
-                      //                   ),
-                      //                 ),
-                      //               ))
-                      //           .toList(),
-                      //       onChanged: (value) {
-                      //         setState(() {
-                      //           selectedGuest = value as NumberOfGuest;
-                      //         });
-                      //       },
-                      //       underline: Container(),
-                      //       dropdownElevation: 5,
-                      //       isExpanded: true,
-                      //       dropdownOverButton: true,
-                      //       // dropdownPadding: const EdgeInsets.symmetric(vertical: 6),
-                      //       dropdownDecoration: BoxDecoration(
-                      //         borderRadius: BorderRadius.circular(4),
-                      //         color: Colors.grey.shade200,
-                      //       ),
-                      //       itemPadding: EdgeInsetsDirectional.all(5),
-                      //       value: selectedGuest,
-                      //       buttonPadding: EdgeInsetsDirectional.all(5),
-                      //     ),
-                      //   ),
-                      // ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
                         child: Card(
@@ -415,7 +311,8 @@ class _CustomBottomSheetState extends State<CartSheet> {
                               dropdownSearchDecoration: InputDecoration(
                                 // labelText: S.of(context).numberOfGuest,
                                 hintText: S.of(context).numberOfGuest,
-                                contentPadding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8)
+                                contentPadding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                                border: InputBorder.none
                                 // filled: true,
                               ),
                             ),
@@ -428,8 +325,9 @@ class _CustomBottomSheetState extends State<CartSheet> {
                              onChanged: (v){
                               selectedGuest = v;
                              },
-                            itemAsString: (item) => item.title ?? '',
+                            itemAsString: (item) =>isArabic ? item.titleAr ?? '': item.title ?? '',
                               compareFn: (item1, item2) => item1.id == item2.id,
+
                           ),
                         ),
                       ),
@@ -466,6 +364,7 @@ class _CustomBottomSheetState extends State<CartSheet> {
                               dropdownSearchDecoration: InputDecoration(
                                   hintText: S.of(context).setupItem,
                                   contentPadding: EdgeInsetsDirectional.fromSTEB(8, 8, 8, 8),
+                                  border: InputBorder.none
                                 // filled: true,
                               ),
                             ),
@@ -479,93 +378,63 @@ class _CustomBottomSheetState extends State<CartSheet> {
                         ),
                       ),
 
-                      // Padding(
-                      //   padding: const EdgeInsetsDirectional.fromSTEB(8, 0, 15, 0),
-                      //   child: Card(
-                      //     shape: RoundedRectangleBorder(
-                      //         borderRadius: BorderRadius.circular(12)),
-                      //     elevation: 3,
-                      //     child: DropdownButton2(
-                      //       hint: Text(S.of(context).setupItem),
-                      //       selectedItemBuilder: (context) {
-                      //         return widget.settings.setupItems!.map(
-                      //               (item) {
-                      //             return Container(
-                      //               alignment: AlignmentDirectional.center,
-                      //               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      //               child: Text(
-                      //                 selectedSetupItemNames.join(', '),
-                      //                 style: const TextStyle(
-                      //                   fontSize: 14,
-                      //                   overflow: TextOverflow.ellipsis,
-                      //                 ),
-                      //                 maxLines: 1,
-                      //               ),
-                      //             );
-                      //           },
-                      //         ).toList();
-                      //       },
-                      //       items: widget.settings.setupItems
-                      //           ?.map((item) => DropdownMenuItem<NumberOfGuest>(
-                      //                 value: item,
-                      //                 child: StatefulBuilder(
-                      //                    builder:(context, menuSetState) {
-                      //                      final _isSelected = selectedSetupItem.contains(item);
-                      //                      return InkWell(
-                      //                        onTap: () {
-                      //                          if(_isSelected){
-                      //                            selectedSetupItem.remove(item) ;
-                      //                          isArabic?  selectedSetupItemNames.remove(item.titleAr)
-                      //                              : selectedSetupItemNames.remove(item.title);
-                      //                          }else {
-                      //                            selectedSetupItem.add(item) ;
-                      //                            isArabic?  selectedSetupItemNames.add(item.titleAr ?? '')
-                      //                                : selectedSetupItemNames.add(item.title ?? '');
-                      //                          }
-                      //
-                      //                          //This rebuilds the StatefulWidget to update the button's text
-                      //                          setState(() {});
-                      //                          //This rebuilds the dropdownMenu Widget to update the check mark
-                      //                          menuSetState(() {});
-                      //                        },
-                      //                        child: Container(
-                      //                          height: double.infinity,
-                      //                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      //                          child: Row(
-                      //                            children: [
-                      //                              _isSelected
-                      //                                  ? const Icon(Icons.check_box_outlined)
-                      //                                  : const Icon(Icons.check_box_outline_blank),
-                      //                              const SizedBox(width: 16),
-                      //                              Text(
-                      //                              isArabic ? item.titleAr ?? '' : item.title ?? '',
-                      //                              ),
-                      //                            ],
-                      //                          ),
-                      //                        ),
-                      //                      );
-                      //                    },
-                      //                 ),
-                      //               ))
-                      //           .toList(),
-                      //       onChanged: (value) {
-                      //       },
-                      //       underline: Container(),
-                      //       dropdownElevation: 5,
-                      //       isExpanded: true,
-                      //       dropdownOverButton: true,
-                      //       // dropdownPadding: const EdgeInsets.symmetric(vertical: 6),
-                      //       dropdownDecoration: BoxDecoration( borderRadius: BorderRadius.circular(4),
-                      //         color: Colors.grey.shade200,),
-                      //       itemPadding: EdgeInsetsDirectional.all(5),
-                      //       value: selectedSetupItem.isEmpty ? null : selectedSetupItem.last,
-                      //       buttonPadding: EdgeInsetsDirectional.all(5),
-                      //
-                      //     ),
-                      //   ),
-                      // ),
+                      // friends
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12)),
+                          elevation: 3,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      S.of(context).selectFriendsForBill,
+                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                    ElevatedButton(
+                                      onPressed: () async {
+                                        Navigator.pushNamed(
+                                            context, FriendsRoutes.VIEW_SELECT_FRIEND,arguments: isDabbrneiActive ? dabbrneTotalPrice :basePrice)
+                                            .then((value) {
+                                          if (value != null) ;
+                                          value as List<PaymentFriend>;
+                                          friends = value;
+                                          setState(() {});
+                                        });
+                                      },
+                                      child: Text(S.of(context).select),
+                                      style: OutlinedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(12),
+                                            side: BorderSide(
+                                              color: Theme.of(context).primaryColor,
+                                              width: 2,
+                                            )),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                // SizedBox(height: 5,) ,
 
-                      // total amount
+                                friends.isNotEmpty
+                                    ? Wrap(children: friends.map((e) =>
+                                    Row(children: [
+                                      Text(e.name.toString() + ' : '),
+                                      Text(e.amount.toString() + S.of(context).sar , style: TextStyle(color: Colors.green.shade600),)
+                                    ],)).toList(),)
+                                    : Container()
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      //total price
                       Padding(
                         padding: const EdgeInsets.all(12.0),
                         child: Card(
@@ -604,8 +473,8 @@ class _CustomBottomSheetState extends State<CartSheet> {
                                 height: 5,
                               ),
                               Center(child:
-                                 isShisha ? Text(S.of(context).taxShesha , style: TextStyle(color: Colors.red),) :
-                                  Text(S.of(context).taxAlert , style: TextStyle(color: Colors.red),))
+                                 isShisha ? Text(S.of(context).taxShesha , style: TextStyle(color: Colors.red,fontSize: 12),) :
+                                  Text(S.of(context).taxAlert , style: TextStyle(color: Colors.red,fontSize: 12),))
                             ]),
                           ),
                         ),
@@ -633,13 +502,13 @@ class _CustomBottomSheetState extends State<CartSheet> {
                                         selectedAddress?.id,
                                         isDabbrneiActive ? 2 :1,
                                         titleController.text,
-                                        DateFormat('yyyy-MM-dd')
+                                        DateFormat('yyyy-MM-dd','en')
                                             .format(_selectedDate),
                                         _selectTime.format(context).split(' ').first,
                                         selectedGuest?.id,
                                         '', '', setup,orders,friends));
                               }else{
-                                Fluttertoast.showToast(msg: 'Write occasion title');
+                                Fluttertoast.showToast(msg: S.of(context).pleaseCompleteField);
                               }
                             }),
                       )

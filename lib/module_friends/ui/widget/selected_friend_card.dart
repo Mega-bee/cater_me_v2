@@ -54,14 +54,15 @@ class _SelectFriendCardState extends State<SelectFriendCard> {
 
   Widget showAlertForAmount( ){
     var amountController = TextEditingController();
-    return AlertDialog(title: Text('add Amount'),actions: [
+    return AlertDialog(title: Text(S.of(context).addAmount),actions: [
       TextButton(onPressed: (){
         widget.model.amount =int.parse( amountController.text);
         widget.model.isSelected = true;
         setState(() {});
         Navigator.pop(context);
         widget.onSelect();
-      }, child: Text('add'))
-    ],content: CustomFormField(hintText: 'amount',numbers: true,controller: amountController,),);
+      }, child: Text(S.of(context).add))
+    ],content: CustomFormField(hintText: S.of(context).amount,
+      numbers: true,controller: amountController, ),);
   }
 }

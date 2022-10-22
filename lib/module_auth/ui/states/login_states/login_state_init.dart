@@ -50,9 +50,13 @@ class LoginStateInit extends LoginState {
                 CustomLoginFormField(
                   hintText: S.of(context).phoneNumber,
                   validator: true,
-                  phone: true,
                   controller: usernameController,
-                  preIcon: Icon(Icons.phone_android),
+                  password: false,
+                  phone: true,
+                  preIcon: Padding(
+                    padding: const EdgeInsetsDirectional.fromSTEB(5, 10, 5, 10),
+                    child: Text('+966'),
+                  ),
                   borderRadius: 15,
                 ),
                 SizedBox(
