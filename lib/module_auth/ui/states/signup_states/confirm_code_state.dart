@@ -31,7 +31,6 @@ class ConfirmCodeState  extends SignUpState {
       child: Form(
         key: _loginKey,
         child: Container(
-          color: Colors.white,
           child: Padding(
             padding: const EdgeInsets.all(25.0),
             child: ListView(

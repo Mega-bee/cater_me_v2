@@ -4,8 +4,7 @@ import 'package:cater_me_v2/module_friends/response/friend_response.dart';
 import 'package:cater_me_v2/utils/components/custom_feild.dart';
 import 'package:cater_me_v2/utils/components/custom_loading_button.dart';
 import 'package:flutter/material.dart';
- import 'package:fluttercontactpicker/fluttercontactpicker.dart';
-
+import 'package:flutter_native_contact_picker/flutter_native_contact_picker.dart';
 
 class CreateFriendSheet extends StatefulWidget {
   final Function(CreateFriendRequest) createFriend;
@@ -21,6 +20,7 @@ class CreateFriendSheet extends StatefulWidget {
 class _CreateOccasionCardState extends State<CreateFriendSheet> {
   var nameController = TextEditingController();
   var phoneController = TextEditingController();
+  final FlutterContactPicker _contactPicker = new FlutterContactPicker();
 
 
   final GlobalKey<FormState> _addFriendKey = GlobalKey<FormState>();
@@ -78,14 +78,15 @@ class _CreateOccasionCardState extends State<CreateFriendSheet> {
                 InkWell(
                   onTap: ()async{
 
-                    final FullContact contact =
-                    (await FlutterContactPicker.pickFullContact());
+                    // final FullContact contact =
+                    // (await FlutterContactPicker.pickFullContact());
+                    Contact? contact = await  _contactPicker.selectContact();
                     print('--------------------------------');
-                    print(contact.name?.firstName);
-                    print(contact.phones.first.number);
+                    print(contact?.fullName);
+                    // print(contact.phoneNumbers?.number);
                     setState(() {
-                    nameController.text = contact.name?.firstName ?? '';
-                    phoneController.text = contact.phones.first.number.toString();
+                    nameController.text = contact?.fullName ?? '';
+                    phoneController.text = contact?.phoneNumbers?.first ?? '';
                     });
                   },
                   child: Card(

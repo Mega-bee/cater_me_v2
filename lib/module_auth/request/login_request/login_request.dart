@@ -7,8 +7,8 @@ class LoginRequest {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    data['PhoneNumber '] = this.username;
-    data['Password '] = this.password;
+    data['PhoneNumber'] = this.username;
+    data['Password'] = this.password;
     return data;
   }
 }

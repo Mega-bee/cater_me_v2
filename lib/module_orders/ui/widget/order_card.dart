@@ -28,9 +28,9 @@ class OrderCard extends StatelessWidget {
               child: ListTile(
                 leading: CircleAvatar(
                     radius: 40,
-                    backgroundColor: Colors.grey.shade50,
+                    backgroundColor: Colors.transparent,
                     child: Image.asset(StatusOrderHelper.getOrderImage(
-                        StatusOrderHelper.getStatusEnum(model.orderStatus)))),
+                        StatusOrderHelper.getStatusEnum(model.orderStatus)),color: Colors.green.shade600,)),
                 title: Text(model.eventName ?? ''),
                 subtitle: Row(
                   children: [

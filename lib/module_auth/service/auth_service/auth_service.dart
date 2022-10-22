@@ -31,23 +31,23 @@ class AuthService {
 
 
   Future<void> loginApi(String username, String password) async {
-    // WebServiceResponse? loginResult = await _authManager.getToken(LoginRequest(
-    //   username: username,
-    //   password: password,
-    // ));
-    // if (loginResult == null) {
-    //   await logout();
-    //   _authSubject.addError('Connection error');
-    //   throw AuthorizationException('Connection error');
-    // } else if (  loginResult.code != 200  ) {
-    //   await logout();
-    //   _authSubject.addError(S.current.invalidCredentials);
-    //   throw AuthorizationException(S.current.invalidCredentials);
-    // }
+    WebServiceResponse? loginResult = await _authManager.getToken(LoginRequest(
+      username: username,
+      password: password,
+    ));
+    if (loginResult == null) {
+      await logout();
+      _authSubject.addError('Connection error');
+      // throw AuthorizationException('Connection error');
+    } else if (  loginResult.code != 200  ) {
+      await logout();
+      _authSubject.addError(loginResult.errorMessage);
+      // throw AuthorizationException(S.current.invalidCredentials);
+    }
     _prefsHelper.setUsername(username);
     _prefsHelper.setPassword(password);
-    // _prefsHelper.setToken(loginResult.data!.token);
-    _prefsHelper.setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiNzg5NTExNzgiLCJQSUQiOiI4MTQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjU4NGQ1YWRjLWY3NzEtNDQ3NC04MTBhLTY0Y2NhMGZmNjU2ZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJuYmYiOjE2NjUxNDExMjMsImV4cCI6MTY5NjY3NzEyMywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMTAiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxMCJ9.kXS72XWE3UrwJ3Ogk_tsD3ChfdmisKXVthQJwM_yWyE');
+    _prefsHelper.setToken(loginResult?.data!.token);
+    // _prefsHelper.setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiNzg5NTExNzgiLCJQSUQiOiI4MTQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjU4NGQ1YWRjLWY3NzEtNDQ3NC04MTBhLTY0Y2NhMGZmNjU2ZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJuYmYiOjE2NjUxNDExMjMsImV4cCI6MTY5NjY3NzEyMywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMTAiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxMCJ9.kXS72XWE3UrwJ3Ogk_tsD3ChfdmisKXVthQJwM_yWyE');
     _authSubject.add(AuthStatus.AUTHORIZED_CLIENT);
   }
 

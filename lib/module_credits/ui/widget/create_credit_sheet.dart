@@ -7,7 +7,6 @@ import 'package:cater_me_v2/utils/components/custom_loading_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_checkout_payment/flutter_checkout_payment.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
-import 'package:fluttercontactpicker/fluttercontactpicker.dart';
 import 'package:tip_dialog/tip_dialog.dart';
 
 class CreateCreditSheet extends StatefulWidget {
