@@ -8,6 +8,7 @@ import 'package:cater_me_v2/module_auth/request/login_request/login_request.dart
 import 'package:cater_me_v2/module_auth/request/register_request/generate_otp.dart';
 import 'package:cater_me_v2/module_auth/request/register_request/register_request.dart';
 import 'package:cater_me_v2/module_auth/request/register_request/verfy_code_request.dart';
+import 'package:cater_me_v2/module_auth/response/login_response/login_response.dart';
 import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -44,9 +45,10 @@ class AuthService {
       _authSubject.addError(loginResult.errorMessage);
       // throw AuthorizationException(S.current.invalidCredentials);
     }
+    LoginResponse response = LoginResponse.fromJson(loginResult?.data.insideData);
     _prefsHelper.setUsername(username);
     _prefsHelper.setPassword(password);
-    _prefsHelper.setToken(loginResult?.data!.token);
+    _prefsHelper.setToken(response.token);
     // _prefsHelper.setToken('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiNzg5NTExNzgiLCJQSUQiOiI4MTQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjU4NGQ1YWRjLWY3NzEtNDQ3NC04MTBhLTY0Y2NhMGZmNjU2ZSIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IlVzZXIiLCJuYmYiOjE2NjUxNDExMjMsImV4cCI6MTY5NjY3NzEyMywiaXNzIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMTAiLCJhdWQiOiJodHRwczovL2xvY2FsaG9zdDo0NDMxMCJ9.kXS72XWE3UrwJ3Ogk_tsD3ChfdmisKXVthQJwM_yWyE');
     _authSubject.add(AuthStatus.AUTHORIZED_CLIENT);
   }
